@@ -1,0 +1,83 @@
+---
+const currentPath = Astro.url.pathname;
+
+const isLayananActive = currentPath.startsWith('/layanan');
+const isFasilitasActive = currentPath.startsWith('/fasilitas');
+const isWorkshopActive = currentPath.startsWith('/lokasi-workshop');
+const isRfqActive = currentPath.startsWith('/request-quotation');
+---
+
+<aside
+  class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-slate-200/90 shadow-lg safe-area-pb select-none font-sans"
+  aria-label="Aksi Cepat Mobile"
+>
+  <div class="grid grid-cols-4 gap-1 max-w-lg mx-auto px-2 py-1.5 items-center">
+    
+    <!-- Action 1: Layanan -->
+    <a
+      href="/layanan/electro-motor/"
+      class:list={[
+        'flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-colors touch-target',
+        isLayananActive
+          ? 'bg-slate-100 text-slate-950 font-semibold'
+          : 'text-slate-500 hover:text-slate-900',
+      ]}
+    >
+      <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+      </svg>
+      <span class="text-[10px] leading-tight font-medium">Layanan</span>
+    </a>
+
+    <!-- Action 2: Fasilitas Mesin -->
+    <a
+      href="/fasilitas/"
+      class:list={[
+        'flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-colors touch-target',
+        isFasilitasActive
+          ? 'bg-slate-100 text-slate-950 font-semibold'
+          : 'text-slate-500 hover:text-slate-900',
+      ]}
+    >
+      <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+      <span class="text-[10px] leading-tight font-medium">Fasilitas</span>
+    </a>
+
+    <!-- Action 3: 9 Workshop -->
+    <a
+      href="/lokasi-workshop/"
+      class:list={[
+        'flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-colors touch-target',
+        isWorkshopActive
+          ? 'bg-slate-100 text-slate-950 font-semibold'
+          : 'text-slate-500 hover:text-slate-900',
+      ]}
+    >
+      <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+        <circle cx="12" cy="10" r="3"></circle>
+      </svg>
+      <span class="text-[10px] leading-tight font-medium">Workshop</span>
+    </a>
+
+    <!-- Action 4: Request Quotation / RFQ (Highlight Button) -->
+    <a
+      href="/request-quotation/"
+      class:list={[
+        'flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-white font-medium transition-colors touch-target shadow-2xs',
+        isRfqActive ? 'bg-slate-900 ring-2 ring-brand-500' : 'bg-brand-600 active:bg-brand-700'
+      ]}
+      aria-label="Request Quotation RFQ"
+    >
+      <svg class="w-5 h-5 mb-0.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+      </svg>
+      <span class="text-[10px] leading-tight font-semibold">Minta RFQ</span>
+    </a>
+
+  </div>
+</aside>

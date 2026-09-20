@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import ServicesGrid from '../../components/home/ServicesGrid.astro';
+import TrustPartnersStrip from '../../components/home/TrustPartnersStrip.astro';
+import { generateGeneralInquiryUrl } from '../../utils/whatsapp';
+
+const services = await getCollection('layanan');
+services.sort((a, b) => a.data.orderPriority - b.data.orderPriority);
+
+const waCatalogUrl = generateGeneralInquiryUrl('catalog-page');
+---
+
+<BaseLayout
+  title="Koleksi Layanan Engineering & Workshop B2B - PT Mesindo Tekninesia"
+  description="Katalog lengkap layanan repair, rewinding, overhaul, balancing 150 ton, transformer, machining 6.7m, dan testing diagnostik sesuai standar EASA, IEEE, dan ISO 9001."
+>
+  <!-- Shopify Collection Banner -->
+  <div class="bg-industrial-950 text-white border-b border-industrial-800 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 font-sans relative overflow-hidden">
+    <div class="absolute inset-0 z-0 opacity-25">
+      <img
+        src="/images/hero-industrial.webp"
+        alt="Workshop Mesindo Tekninesia"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-industrial-950 via-industrial-950/90 to-industrial-950/60"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-slate-400 mb-4" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Beranda</a>
+        <span>/</span>
+        <span class="text-brand-300 font-semibold">Koleksi Layanan B2B</span>
+      </nav>
+
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        <div class="max-w-3xl">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-500/20 text-brand-300 border border-brand-500/30 mb-3">
+            Katalog B2B Storefront • 8 Kategori Spesialisasi
+          </span>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+            Katalog Layanan Engineering &amp; Rekondisi
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed max-w-2xl">
+            Solusi satu atap perbaikan rotating equipment, trafo daya, balancing dinamis, hingga permesinan raksasa. Dilengkapi fasilitas VPI Class H, test bench hingga 15 kV, dan 8 jaringan workshop se-Indonesia.
+          </p>
+        </div>
+
+        <!-- Quick Hotline & Inquire -->
+        <div class="flex flex-wrap items-center gap-3 shrink-0">
+          <a
+            href={waCatalogUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md"
+          >
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/>
+            </svg>
+            <span>Konsultasi Nameplate</span>
+          </a>
+
+          <a
+            href="/request-quotation/"
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-industrial-900 hover:bg-industrial-800 text-slate-200 border border-industrial-700 font-semibold text-xs transition-all"
+          >
+            <span>Formulir RFQ Multi-Item</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust Partner Strip -->
+  <TrustPartnersStrip />
+
+  <!-- The Services Grid Component -->
+  <ServicesGrid />
+
+  <!-- B2B Procurement Advice & FAQ -->
+  <section class="py-16 bg-white font-sans border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-sm">
+            01
+          </div>
+          <h3 class="text-base font-extrabold text-slate-900">Proses Nameplate Inquiry</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Cukup kirimkan foto nameplate atau data teknis equipment Anda. Tim engineering kami langsung memverifikasi spesifikasi lilitan, bearing, isolasi, dan dimensi.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-sm">
+            02
+          </div>
+          <h3 class="text-base font-extrabold text-slate-900">Standar Pengujian FAT &amp; SAT</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Setiap unit yang direparasi melalui prosedur Factory Acceptance Test (FAT) komprehensif, mulai dari surge test, tan delta, getaran FFT, hingga no-load test run.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-sm">
+            03
+          </div>
+          <h3 class="text-base font-extrabold text-slate-900">Garansi Rekondisi 12 Bulan</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Pekerjaan rewinding total dan overhaul mekanikal dilindungi garansi mutu operasional 12 bulan didukung jaringan teknisi dan mobile diagnostic on-site.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>

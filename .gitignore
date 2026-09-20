@@ -1,0 +1,14 @@
+# Build & Dependencies
+node_modules/
+dist/
+.astro/
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# OS files & Tools
+.DS_Store
+Thumbs.db
+.vercel

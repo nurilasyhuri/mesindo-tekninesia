@@ -1,0 +1,200 @@
+---
+import { COMPANY_INFO } from '../../data/companyInfo';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  jsonLd?: Record<string, any> | Array<Record<string, any>>;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image = '/images/hero-industrial.webp',
+  type = 'website',
+  jsonLd,
+  noindex = false,
+} = Astro.props;
+
+const siteUrl = 'https://mesindotekninesia.com';
+
+// Ensure canonical URL is always production domain with clean trailing slash
+let pathname = Astro.url.pathname;
+if (!pathname.endsWith('/')) {
+  pathname += '/';
+}
+const canonicalUrl = canonical || `${siteUrl}${pathname}`;
+
+// Absolute image URL for social previews
+const resolvedImage = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? image : `/${image}`}`;
+
+const fullTitle = title.includes(COMPANY_INFO.name) 
+  ? title 
+  : `${title} | ${COMPANY_INFO.name}`;
+
+// Build BreadcrumbList Schema dynamically from pathname
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const breadcrumbItems = [
+  {
+    '@type': 'ListItem',
+    position: 1,
+    name: 'Beranda',
+    item: `${siteUrl}/`,
+  },
+  ...pathSegments.map((segment, index) => {
+    const url = `${siteUrl}/${pathSegments.slice(0, index + 1).join('/')}/`;
+    const formattedName = segment
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+    return {
+      '@type': 'ListItem',
+      position: index + 2,
+      name: formattedName,
+      item: url,
+    };
+  }),
+];
+
+// Rich Organization / LocalBusiness Schema
+const organizationSchema = {
+  '@type': 'LocalBusiness',
+  '@id': `${siteUrl}/#organization`,
+  name: COMPANY_INFO.name,
+  legalName: COMPANY_INFO.legalName,
+  url: siteUrl,
+  logo: `${siteUrl}/images/hero-industrial.webp`,
+  image: resolvedImage,
+  description: COMPANY_INFO.tagline,
+  telephone: COMPANY_INFO.contact.phoneFormatted,
+  email: COMPANY_INFO.contact.email,
+  foundingDate: `${COMPANY_INFO.establishedYear}`,
+  priceRange: '$$$$',
+  currenciesAccepted: 'IDR, USD',
+  paymentAccepted: 'Bank Transfer, Official Invoice / RFQ Terms',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: COMPANY_INFO.workshops[0].address,
+    addressLocality: 'Jakarta Utara',
+    addressRegion: 'DKI Jakarta',
+    postalCode: COMPANY_INFO.workshops[0].postalCode,
+    addressCountry: 'ID',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -6.1084,
+    longitude: 106.8837,
+  },
+  areaServed: [
+    { '@type': 'Country', name: 'Indonesia' },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Layanan Engineering & Rekondisi Industri',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Electro Motor Repair & Rewinding LV/HV' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Generator Stator & Rotor Services' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Transformer Overhaul & Oil Purification' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'High Speed Dynamic Balancing hingga 150 Ton' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Vertical Lathe 6.7m & Machining Industri' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Mechanical Overhaul Pompa, Kompresor & Valve' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Testing & Condition Assessment EL CID & PD' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Coil Manufacturing & Slip Ring Fabrication' } },
+    ],
+  },
+  sameAs: [
+    'https://mesindotekninesia.com',
+  ],
+};
+
+const websiteSchema = {
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  url: siteUrl,
+  name: COMPANY_INFO.name,
+  description: COMPANY_INFO.tagline,
+  publisher: {
+    '@id': `${siteUrl}/#organization`,
+  },
+  inLanguage: 'id-ID',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${siteUrl}/?q={search_term_string}`,
+    },
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+const breadcrumbsSchema = {
+  '@type': 'BreadcrumbList',
+  '@id': `${canonicalUrl}#breadcrumbs`,
+  itemListElement: breadcrumbItems,
+};
+
+// Build complete graph
+const pageSchemas = Array.isArray(jsonLd) 
+  ? jsonLd 
+  : (jsonLd ? [jsonLd] : []);
+
+const structuredDataGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    organizationSchema,
+    websiteSchema,
+    breadcrumbsSchema,
+    ...pageSchemas,
+  ],
+};
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Robots Indexing Directives -->
+<meta 
+  name="robots" 
+  content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} 
+/>
+<meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
+<meta name="bingbot" content={noindex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large"} />
+
+<!-- Author and Technical Directives -->
+<meta name="author" content={COMPANY_INFO.name} />
+<meta name="format-detection" content="telephone=yes" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={resolvedImage} />
+<meta property="og:image:alt" content={title} />
+<meta property="og:site_name" content={COMPANY_INFO.name} />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={resolvedImage} />
+<meta name="twitter:image:alt" content={title} />
+
+<!-- Theme Color & Mobile Experience -->
+<meta name="theme-color" content="#0f172a" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230284c7'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>" />
+
+<!-- JSON-LD Comprehensive Schema Graph -->
+<script is:inline type="application/ld+json" set:html={JSON.stringify(structuredDataGraph)} />

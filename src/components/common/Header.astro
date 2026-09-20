@@ -1,0 +1,1333 @@
+---
+import { COMPANY_INFO } from '../../data/companyInfo';
+import { generateGeneralInquiryUrl } from '../../utils/whatsapp';
+import { getCollection } from 'astro:content';
+
+export interface Props {
+  isHomePage?: boolean;
+}
+
+const currentPath = Astro.url.pathname;
+const { isHomePage = currentPath === '/' || currentPath === '' } = Astro.props;
+
+const waInquiryUrl = generateGeneralInquiryUrl('header-contact');
+const rfqUrl = '/request-quotation/';
+
+// Pre-load content collections for instant search index
+const [allServices, allFacilities, allProjects] = await Promise.all([
+  getCollection('layanan'),
+  getCollection('fasilitas'),
+  getCollection('proyek'),
+]);
+
+const searchItems = [
+  // Core Services
+  ...allServices.map((s) => ({
+    title: s.data.title,
+    desc: s.data.description,
+    url: `/layanan/${s.slug}/`,
+    category: 'Layanan',
+    badge: s.data.categoryLabel,
+    img: s.data.thumbnail,
+  })),
+  // Facilities
+  ...allFacilities.map((f) => ({
+    title: f.data.title,
+    desc: `${f.data.category} - Kapasitas: ${f.data.capacity}. ${f.data.description}`,
+    url: `/fasilitas/`,
+    category: 'Fasilitas',
+    badge: f.data.category,
+    img: f.data.coverImage,
+  })),
+  // Projects
+  ...allProjects.map((p) => ({
+    title: p.data.title,
+    desc: `${p.data.sector} - ${p.data.equipment} di ${p.data.location}.`,
+    url: `/proyek/`,
+    category: 'Proyek',
+    badge: p.data.sector,
+    img: p.data.coverImage,
+  })),
+  // 9 Workshops
+  ...COMPANY_INFO.workshops.map((w) => ({
+    title: w.name,
+    desc: `${w.address}. Melayani: ${w.capabilities.join(', ')}.`,
+    url: `/lokasi-workshop/#${w.id}`,
+    category: 'Workshop',
+    badge: w.region,
+    img: '/images/facility-workshop.webp',
+  })),
+  // RFQ Tool
+  {
+    title: 'Request Quotation (RFQ) Online',
+    desc: 'Formulir permohonan penawaran teknis untuk electro motor, generator, transformer, balancing, dan permesinan industri.',
+    url: '/request-quotation/',
+    category: 'Layanan',
+    badge: 'Estimasi RFQ',
+    img: '/images/hero-industrial.webp',
+  },
+];
+---
+
+<!-- Top Announcement Strip (Shopify B2B Style) -->
+<div
+  id="top-announcement-bar"
+  class="bg-industrial-950 text-slate-300 text-[11px] font-medium tracking-wide py-2 px-4 border-b border-industrial-800/80 select-none relative z-40"
+>
+  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-between items-center">
+    <!-- Left: Value Proposition & Experience -->
+    <div class="flex items-center gap-3">
+      <span class="inline-flex items-center gap-1.5 text-brand-400 font-semibold uppercase tracking-wider text-[10px] sm:text-[11px]">
+        <svg class="w-3.5 h-3.5 text-brand-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <span>PT Mesindo Tekninesia • Est. 1994</span>
+      </span>
+      <span class="text-slate-700 hidden sm:inline">•</span>
+      <span class="hidden md:inline text-slate-400 font-normal">
+        Standar Internasional IEEE, IEC, EASA, API, NFPA &amp; VDE
+      </span>
+    </div>
+
+    <!-- Right: Hotline & 9 Workshops Indicator -->
+    <div class="flex items-center gap-3 text-slate-300 font-medium">
+      <a
+        href="/lokasi-workshop/"
+        class="hidden lg:inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors text-[11px]"
+      >
+        <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span>Workshop Nasional</span>
+      </a>
+      <span class="hidden sm:inline text-slate-700">•</span>
+      <a
+        href="/kontak/"
+        class="inline-flex items-center gap-1.5 text-slate-300 hover:text-white font-medium transition-colors text-[11px]"
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse"></span>
+        <span>Konsultasi &amp; Kontak Resmi</span>
+        <svg class="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Main Sticky Header -->
+<header
+  id="main-header"
+  data-home={isHomePage ? 'true' : 'false'}
+  class="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-slate-200/90 shadow-2xs font-sans transition-all duration-300"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-[72px] relative">
+      
+      <!-- Mobile Left: Hamburger Button -->
+      <div class="flex items-center lg:hidden z-10">
+        <button
+          id="menu-btn"
+          type="button"
+          aria-label="Buka Menu Navigasi"
+          class="p-2 -ml-1 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Center Logo (Mobile) / Left Logo (Desktop) -->
+      <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:static lg:translate-x-0 lg:translate-y-0 lg:flex items-center shrink-0 z-10 text-center lg:text-left">
+        <a href="/" title="PT Mesindo Tekninesia" class="flex flex-col group">
+          <span class="text-lg sm:text-xl font-black tracking-tight leading-none text-slate-950 uppercase transition-colors group-hover:text-brand-700">
+            MESINDO TEKNINESIA<span class="text-brand-600">.</span>
+          </span>
+          <span class="text-[8px] sm:text-[9px] font-bold tracking-[0.2em] text-slate-500 uppercase leading-none mt-1">
+            REPAIR • BALANCING • ENGINEERING
+          </span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation Menu (Refined, Editorial Shopify B2B Style with Full Dropdowns) -->
+      <nav class="hidden lg:flex items-center gap-4 xl:gap-6 h-full">
+        
+        <!-- 1. Beranda Dropdown -->
+        <div class="relative group h-full flex items-center">
+          <a
+            href="/"
+            class:list={[
+              'inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider transition-colors py-2 relative select-none',
+              currentPath === '/'
+                ? 'text-brand-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-brand-600'
+                : 'text-slate-700 hover:text-slate-950'
+            ]}
+          >
+            <span>Beranda</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+
+          <div class="absolute left-0 top-[68px] w-[330px] rounded-2xl border border-slate-200 bg-white p-4 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 pb-1.5 border-b border-slate-100 mb-2">
+              Navigasi Cepat Beranda
+            </div>
+            <div class="space-y-1">
+              <a href="/#katalog-layanan" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Katalog Layanan Engineering</span>
+                <span class="text-[11px] text-slate-500">Koleksi 8 spesialisasi repair &amp; overhaul</span>
+              </a>
+              <a href="/#keunggulan" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Standar Mutu Sejak 1994</span>
+                <span class="text-[11px] text-slate-500">IEEE, IEC, EASA &amp; ISO 9001:2015</span>
+              </a>
+              <a href="/lokasi-workshop/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Jaringan 8 Workshop Nasional</span>
+                <span class="text-[11px] text-slate-500">Jakarta, Sidoarjo, Purwakarta s/d Timika</span>
+              </a>
+              <a href="/request-quotation/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Permohonan Penawaran (RFQ)</span>
+                <span class="text-[11px] text-slate-500">Estimasi berbasis data nameplate</span>
+              </a>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="text-slate-400 text-[10px]">PT Mesindo Tekninesia</span>
+              <a href="/" class="text-[11px] font-bold text-brand-700 hover:text-brand-800">Ke Beranda Utama &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Layanan (Unified Mega Dropdown) -->
+        <div class="relative group h-full flex items-center">
+          <a
+            href="/layanan/"
+            class:list={[
+              'inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider transition-colors py-2 relative select-none',
+              currentPath.startsWith('/layanan')
+                ? 'text-brand-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-brand-600'
+                : 'text-slate-700 hover:text-slate-950'
+            ]}
+          >
+            <span>Layanan</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+          
+          <div class="absolute left-1/2 -translate-x-1/2 top-[68px] w-[540px] rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+            <div class="grid grid-cols-2 gap-6">
+              <!-- Col 1: Rotating & Electrical -->
+              <div class="space-y-1">
+                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 pb-1.5 border-b border-slate-100 mb-2">
+                  Rotating &amp; Electrical
+                </div>
+                <a href="/layanan/electro-motor/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                  <span class="text-xs font-bold text-slate-900">Electro Motor</span>
+                  <span class="text-[11px] text-slate-500">Repair, LV/HV Rewinding &amp; Overhaul</span>
+                </a>
+                <a href="/layanan/generator/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                  <span class="text-xs font-bold text-slate-900">Generator &amp; Turbogenerator</span>
+                  <span class="text-[11px] text-slate-500">Stator/Rotor Rewind &amp; Re-insulation</span>
+                </a>
+                <a href="/layanan/transformer/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                  <span class="text-xs font-bold text-slate-900">Transformer</span>
+                  <span class="text-[11px] text-slate-500">Overhaul, Oil Purification &amp; OLTC</span>
+                </a>
+                <a href="/layanan/coil-manufacturing/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                  <span class="text-xs font-bold text-slate-900">Coil Manufacturing</span>
+                  <span class="text-[11px] text-slate-500">Formed Coils &amp; Slip Ring Precision</span>
+                </a>
+              </div>
+
+              <!-- Col 2: Mechanical & Machining -->
+              <div class="space-y-1">
+                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 pb-1.5 border-b border-slate-100 mb-2">
+                  Mechanical &amp; Testing
+                </div>
+                <a href="/layanan/high-speed-balancing/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                  <span class="text-xs font-bold text-slate-900">High Speed Balancing</span>
+                  <span class="text-[11px] text-slate-500">Hingga 150 Ton di Kecepatan Operasi</span>
+                </a>
+                <a href="/layanan/industrial-machining/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                  <span class="text-xs font-bold text-slate-900">Industrial Machining</span>
+                  <span class="text-[11px] text-slate-500">Vertical Lathe 6.7m &amp; Horizontal 15m</span>
+                </a>
+                <a href="/layanan/mechanical-services/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                  <span class="text-xs font-bold text-slate-900">Mechanical Services</span>
+                  <span class="text-[11px] text-slate-500">Pump, Compressor, Turbocharger &amp; Valve</span>
+                </a>
+                <a href="/layanan/testing-assessment/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                  <span class="text-xs font-bold text-slate-900">Testing &amp; Assessment</span>
+                  <span class="text-[11px] text-slate-500">EL CID, Partial Discharge &amp; NDT</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="text-slate-500 text-[11px]">Standar IEEE, IEC, EASA, API &amp; VDE</span>
+              <a href="/layanan/" class="font-bold text-brand-700 hover:text-brand-800">Katalog Semua Layanan (8) &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Fasilitas Dropdown -->
+        <div class="relative group h-full flex items-center">
+          <a
+            href="/fasilitas/"
+            class:list={[
+              'inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider transition-colors py-2 relative select-none',
+              currentPath.startsWith('/fasilitas')
+                ? 'text-brand-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-brand-600'
+                : 'text-slate-700 hover:text-slate-950'
+            ]}
+          >
+            <span>Fasilitas</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+
+          <div class="absolute left-1/2 -translate-x-1/2 top-[68px] w-[380px] rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 pb-1.5 border-b border-slate-100 mb-2">
+              Fasilitas Permesinan &amp; Pengujian
+            </div>
+            <div class="space-y-1">
+              <a href="/layanan/high-speed-balancing/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-900">High Speed Balancing 150 Ton</span>
+                  <span class="text-[9px] font-bold uppercase bg-brand-50 text-brand-700 px-1.5 py-0.5 rounded">150T</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Terowongan balancing turbin uap &amp; generator</span>
+              </a>
+              <a href="/layanan/industrial-machining/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-900">Vertical Lathe 6.7m x 8m</span>
+                  <span class="text-[9px] font-bold uppercase bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">6.7m</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Bubut vertikal ekstra besar diameter 6.7 meter</span>
+              </a>
+              <a href="/fasilitas/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Horizontal Lathe Panjang 15 Meter</span>
+                <span class="text-[11px] text-slate-500">Pemesinan poros turbin, shaft, dan roll industri</span>
+              </a>
+              <a href="/fasilitas/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">VPI Impregnation Chamber Class H</span>
+                <span class="text-[11px] text-slate-500">Tangki vakum resin insulasi tahan suhu 200°C</span>
+              </a>
+              <a href="/layanan/testing-assessment/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Electrical Test Bench &amp; NDT 15kV</span>
+                <span class="text-[11px] text-slate-500">Uji beban, EL CID, partial discharge &amp; vibration</span>
+              </a>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="text-slate-400 text-[10px]">Kapasitas Crane s/d 50 Ton</span>
+              <a href="/fasilitas/" class="text-[11px] font-bold text-brand-700 hover:text-brand-800">Katalog Semua Fasilitas &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Workshop Dropdown -->
+        <div class="relative group h-full flex items-center">
+          <a
+            href="/lokasi-workshop/"
+            class:list={[
+              'inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider transition-colors py-2 relative select-none',
+              currentPath.startsWith('/lokasi-workshop')
+                ? 'text-brand-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-brand-600'
+                : 'text-slate-700 hover:text-slate-950'
+            ]}
+          >
+            <span>Workshop</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+
+          <div class="absolute left-1/2 -translate-x-1/2 top-[68px] w-[400px] rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 pb-1.5 border-b border-slate-100 mb-2">
+              8 Jaringan Workshop Nasional
+            </div>
+            <div class="grid grid-cols-2 gap-1">
+              <a href="/lokasi-workshop/#workshop-jakarta-utara" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Jakarta Utara (HQ)</span>
+                <span class="text-[10px] text-brand-700 font-semibold">Area 25.000 M² &bull; Hub Utama</span>
+              </a>
+              <a href="/lokasi-workshop/#workshop-makassar" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Makassar (Sulawesi)</span>
+                <span class="text-[10px] text-slate-500">Area 5.000 M² &bull; Hub Timur</span>
+              </a>
+              <a href="/lokasi-workshop/#workshop-purwakarta" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Purwakarta (Jabar)</span>
+                <span class="text-[10px] text-slate-500">Area 3.000 M² &bull; Koridor Kimia</span>
+              </a>
+              <a href="/lokasi-workshop/#workshop-sidoarjo" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Sidoarjo (Jatim)</span>
+                <span class="text-[10px] text-slate-500">Sentra Motor &amp; Machining</span>
+              </a>
+              <a href="/lokasi-workshop/#workshop-jakarta-timur" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Jakarta Timur</span>
+                <span class="text-[10px] text-slate-500">Repair Motor &amp; Generator</span>
+              </a>
+              <a href="/lokasi-workshop/#workshop-demak" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Demak (Jateng)</span>
+                <span class="text-[10px] text-slate-500">Workshop Jawa Tengah</span>
+              </a>
+              <a href="/lokasi-workshop/#workshop-pekanbaru" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Pekanbaru (Riau)</span>
+                <span class="text-[10px] text-slate-500">Sektor Sawit &amp; Energi</span>
+              </a>
+              <a href="/lokasi-workshop/#workshop-timika" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Timika (Papua)</span>
+                <span class="text-[10px] text-slate-500">Heavy Mining Support</span>
+              </a>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="text-slate-400 text-[10px]">Layanan On-Site &amp; Pick-Up</span>
+              <a href="/lokasi-workshop/" class="text-[11px] font-bold text-brand-700 hover:text-brand-800">Detail 8 Lokasi Workshop &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Proyek Dropdown -->
+        <div class="relative group h-full flex items-center">
+          <a
+            href="/proyek/"
+            class:list={[
+              'inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider transition-colors py-2 relative select-none',
+              currentPath.startsWith('/proyek')
+                ? 'text-brand-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-brand-600'
+                : 'text-slate-700 hover:text-slate-950'
+            ]}
+          >
+            <span>Proyek</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+
+          <div class="absolute left-1/2 -translate-x-1/2 top-[68px] w-[360px] rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 pb-1.5 border-b border-slate-100 mb-2">
+              Portofolio &amp; Pengalaman Industri
+            </div>
+            <div class="space-y-1">
+              <a href="/proyek/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Pembangkit Listrik (Power Gen)</span>
+                <span class="text-[11px] text-slate-500">Overhaul generator 150MW, rotor turbin PLTU &amp; PLTA</span>
+              </a>
+              <a href="/proyek/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Petrokimia, Kimia &amp; Pupuk</span>
+                <span class="text-[11px] text-slate-500">High speed balancing rotor kompresor &amp; turbin uap</span>
+              </a>
+              <a href="/proyek/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Pabrik Semen &amp; Pertambangan</span>
+                <span class="text-[11px] text-slate-500">Rewinding motor gilingan mill 6.6 kV &amp; crusher</span>
+              </a>
+              <a href="/proyek/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Pulp &amp; Paper / Manufaktur</span>
+                <span class="text-[11px] text-slate-500">Overhaul boiler feed pump &amp; roll press machining</span>
+              </a>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="text-slate-400 text-[10px]">Rekam Jejak Sejak 1994</span>
+              <a href="/proyek/" class="text-[11px] font-bold text-brand-700 hover:text-brand-800">Semua Studi Kasus &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Tentang Kami Dropdown -->
+        <div class="relative group h-full flex items-center">
+          <a
+            href="/tentang-kami/"
+            class:list={[
+              'inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider transition-colors py-2 relative select-none',
+              currentPath.startsWith('/tentang-kami')
+                ? 'text-brand-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-brand-600'
+                : 'text-slate-700 hover:text-slate-950'
+            ]}
+          >
+            <span>Tentang Kami</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+
+          <div class="absolute right-0 top-[68px] w-[350px] rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 pb-1.5 border-b border-slate-100 mb-2">
+              Profil PT Mesindo Tekninesia
+            </div>
+            <div class="space-y-1">
+              <a href="/tentang-kami/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Profil &amp; Dedikasi Sejak 1994</span>
+                <span class="text-[11px] text-slate-500">Perjalanan 30+ tahun rekayasa rotating equipment</span>
+              </a>
+              <a href="/tentang-kami/#sertifikasi" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-900">Sertifikasi ISO 9001 / 14001 / 45001</span>
+                  <span class="text-[9px] font-bold bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded">Tersertifikasi</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Standar mutu, K3, dan kepatuhan EASA AR100</span>
+              </a>
+              <a href="/tentang-kami/#mitra" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Authorized Agent TECO &amp; Goltens</span>
+                <span class="text-[11px] text-slate-500">Mitra kolaborasi Powertech Lab Canada</span>
+              </a>
+              <a href="/tentang-kami/#manajemen" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Manajemen &amp; Tim Engineer</span>
+                <span class="text-[11px] text-slate-500">Praktisi teknik berpengalaman puluhan tahun</span>
+              </a>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="text-slate-400 text-[10px]">Member EASA &amp; AEMT</span>
+              <a href="/tentang-kami/" class="text-[11px] font-bold text-brand-700 hover:text-brand-800">Profil Selengkapnya &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Kontak Dropdown -->
+        <div class="relative group h-full flex items-center">
+          <a
+            href="/kontak/"
+            class:list={[
+              'inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider transition-colors py-2 relative select-none',
+              currentPath.startsWith('/kontak')
+                ? 'text-brand-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-brand-600'
+                : 'text-slate-700 hover:text-slate-950'
+            ]}
+          >
+            <span>Kontak</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+
+          <div class="absolute right-0 top-[68px] w-[340px] rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 pb-1.5 border-b border-slate-100 mb-2">
+              Hubungi Tim Engineering
+            </div>
+            <div class="space-y-1">
+              <a href={waInquiryUrl} target="_blank" rel="noopener noreferrer" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-900">Hotline WhatsApp Resmi</span>
+                  <span class="text-[9px] font-bold bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded">Fast Response</span>
+                </div>
+                <span class="text-[11px] text-brand-700 font-mono font-bold">{COMPANY_INFO.contact.mobileFormatted}</span>
+              </a>
+              <a href="/kontak/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Kantor Pusat &amp; Workshop</span>
+                <span class="text-[11px] text-slate-500">Jl. Raya Pelabuhan No. 12, Jakarta Utara</span>
+              </a>
+              <a href={`mailto:${COMPANY_INFO.contact.salesEmail}`} class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Email Penawaran Resmi</span>
+                <span class="text-[11px] text-slate-500">{COMPANY_INFO.contact.salesEmail}</span>
+              </a>
+              <a href="/request-quotation/" class="flex flex-col p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="text-xs font-bold text-slate-900">Formulir RFQ Online</span>
+                <span class="text-[11px] text-slate-500">Kirim spesifikasi nameplate resmi</span>
+              </a>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="text-slate-400 text-[10px]">Respon &lt; 2 Jam Kerja</span>
+              <a href="/kontak/" class="text-[11px] font-bold text-brand-700 hover:text-brand-800">Peta &amp; Kontak Lengkap &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+      </nav>
+
+      <!-- Right Header Actions: Minimalist Search + RFQ Cart Icon -->
+      <div class="flex items-center gap-1 z-10">
+        <button
+          id="search-trigger"
+          type="button"
+          aria-label="Cari Equipment &amp; Layanan (Ctrl+K)"
+          class="p-2 text-slate-600 hover:text-slate-950 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+          title="Cari (Ctrl+K)"
+        >
+          <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.34-4.34"></path>
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          onclick="window.openRfqDrawer()"
+          aria-label="Buka Keranjang RFQ"
+          class="relative p-2 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+          title="Daftar Permintaan Penawaran (RFQ)"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span
+            class="rfq-cart-count absolute top-0.5 right-0.5 inline-flex items-center justify-center min-w-[17px] h-[17px] px-1 rounded-full bg-brand-600 text-white text-[9px] font-bold font-mono leading-none hidden shadow-2xs"
+          >
+            0
+          </span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- Spotlight Command Palette Search Modal -->
+<div
+  id="search-overlay"
+  class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs z-50 hidden opacity-0 transition-opacity duration-200 flex items-start justify-center p-3 sm:p-6 sm:pt-14 font-sans"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Pencarian Mesindo Tekninesia"
+>
+  <div
+    id="search-box"
+    class="w-full max-w-2xl bg-white border border-slate-200 rounded-2xl shadow-2xl flex flex-col transition-all duration-200 transform -translate-y-4 opacity-0 max-h-[88vh] overflow-hidden"
+  >
+    <!-- Search Input Header -->
+    <div class="relative flex items-center px-4 py-3.5 sm:px-5 sm:py-4 border-b border-slate-200 bg-white">
+      <svg class="w-5 h-5 text-slate-400 shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.34-4.34"></path>
+      </svg>
+      <input
+        id="search-input"
+        type="search"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Ketik nama equipment, layanan, balancing, machining, atau kota workshop..."
+        class="w-full bg-transparent border-none text-slate-900 focus:outline-none text-sm sm:text-base placeholder:text-slate-400 font-sans pr-20"
+      />
+      
+      <!-- Right Actions -->
+      <div class="absolute right-3 sm:right-4 flex items-center gap-1.5">
+        <button
+          id="search-clear-btn"
+          type="button"
+          aria-label="Bersihkan kata kunci"
+          class="hidden p-1 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-md transition-colors cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+        <button
+          id="close-search-btn"
+          type="button"
+          aria-label="Tutup dialog pencarian"
+          class="p-1.5 text-slate-400 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer inline-flex items-center"
+        >
+          <span class="hidden sm:inline-block text-[10px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">ESC</span>
+          <svg class="w-5 h-5 inline-block sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="flex items-center gap-1.5 px-4 sm:px-5 py-2.5 bg-slate-50 border-b border-slate-100 overflow-x-auto no-scrollbar text-xs">
+      <button
+        type="button"
+        class="search-tab-pill px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-colors bg-brand-100 text-brand-800 cursor-pointer"
+        data-category="all"
+      >
+        Semua
+      </button>
+      <button
+        type="button"
+        class="search-tab-pill px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors text-slate-600 hover:bg-slate-200/60 cursor-pointer"
+        data-category="Layanan"
+      >
+        Layanan Engineering
+      </button>
+      <button
+        type="button"
+        class="search-tab-pill px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors text-slate-600 hover:bg-slate-200/60 cursor-pointer"
+        data-category="Fasilitas"
+      >
+        Fasilitas Mesin
+      </button>
+      <button
+        type="button"
+        class="search-tab-pill px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors text-slate-600 hover:bg-slate-200/60 cursor-pointer"
+        data-category="Workshop"
+      >
+        9 Lokasi Workshop
+      </button>
+      <button
+        type="button"
+        class="search-tab-pill px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors text-slate-600 hover:bg-slate-200/60 cursor-pointer"
+        data-category="Proyek"
+      >
+        Portofolio Proyek
+      </button>
+    </div>
+
+    <!-- Scrollable Body -->
+    <div id="search-scroll-container" class="overflow-y-auto max-h-[58vh] sm:max-h-[62vh] p-3 sm:p-4">
+      
+      <!-- 1. Zero State: Popular Keywords -->
+      <div id="search-default-state" class="space-y-4 py-1">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2 px-1">
+            Pencarian Populer
+          </span>
+          <div class="flex flex-wrap gap-1.5">
+            <button type="button" class="search-keyword-tag inline-flex items-center bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer" data-query="Balancing 150 Ton">
+              High Speed Balancing 150T
+            </button>
+            <button type="button" class="search-keyword-tag inline-flex items-center bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer" data-query="Vertical Lathe">
+              Vertical Lathe 6.7m
+            </button>
+            <button type="button" class="search-keyword-tag inline-flex items-center bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer" data-query="Rewinding Motor">
+              Rewinding Motor HV
+            </button>
+            <button type="button" class="search-keyword-tag inline-flex items-center bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer" data-query="Generator Stator">
+              Generator Stator &amp; Rotor
+            </button>
+            <button type="button" class="search-keyword-tag inline-flex items-center bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer" data-query="Transformer Oil">
+              Transformer Oil Purification
+            </button>
+            <button type="button" class="search-keyword-tag inline-flex items-center bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer" data-query="EL CID">
+              EL CID Stator Core Test
+            </button>
+            <button type="button" class="search-keyword-tag inline-flex items-center bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-slate-700 px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer" data-query="Sidoarjo">
+              Workshop Sidoarjo
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-2 border-t border-slate-100">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2 px-1">
+            Layanan Utama &amp; RFQ
+          </span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <a href="/request-quotation/" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-brand-200 hover:bg-brand-50/40 transition-all group">
+              <div class="w-11 h-11 rounded-lg bg-slate-900 text-white flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div class="min-w-0">
+                <span class="text-xs font-bold text-slate-900 group-hover:text-brand-700 truncate block">Request Quotation (RFQ)</span>
+                <p class="text-[11px] text-slate-500 truncate mt-0.5">Formulir penawaran teknis online</p>
+              </div>
+            </a>
+            <a href="/layanan/high-speed-balancing/" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-brand-200 hover:bg-brand-50/40 transition-all group">
+              <img src="/images/service-balancing.webp" alt="Balancing" class="w-11 h-11 rounded-lg object-cover bg-slate-100 shrink-0 border border-slate-200" loading="lazy" />
+              <div class="min-w-0">
+                <span class="text-xs font-bold text-slate-900 group-hover:text-brand-700 truncate block">High Speed Balancing 150T</span>
+                <p class="text-[11px] text-slate-500 truncate mt-0.5">Rotor turbin uap, gas &amp; generator</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Active Search Results List -->
+      <div id="search-results-wrapper" class="hidden space-y-1.5 py-1">
+        <div class="flex items-center justify-between pb-1.5 px-1">
+          <span id="search-count-label" class="text-xs font-semibold text-slate-500">
+            Hasil pencarian
+          </span>
+          <span class="hidden sm:inline text-[10px] text-slate-400">Gunakan panah ↑ ↓ lalu Enter</span>
+        </div>
+        <div id="search-results-list" class="space-y-1" role="listbox">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- 3. No Results State -->
+      <div id="search-no-results" class="hidden py-8 text-center space-y-3">
+        <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-sm font-bold text-slate-900">Tidak ada hasil yang cocok</h4>
+          <p id="search-no-results-query" class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+            Coba kata kunci lain atau konsultasikan langsung kebutuhan Anda dengan tim engineering kami.
+          </p>
+        </div>
+        <div class="pt-2">
+          <a
+            href={waInquiryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold shadow-xs transition-colors"
+          >
+            <span>Konsultasi Teknis via WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer Bar -->
+    <div class="px-4 py-2.5 sm:px-5 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-400">
+      <div class="hidden sm:flex items-center gap-3">
+        <span><kbd class="px-1 py-0.5 bg-white border border-slate-200 rounded font-mono text-[10px] text-slate-600">↑</kbd> <kbd class="px-1 py-0.5 bg-white border border-slate-200 rounded font-mono text-[10px] text-slate-600">↓</kbd> Navigasi</span>
+        <span><kbd class="px-1 py-0.5 bg-white border border-slate-200 rounded font-mono text-[10px] text-slate-600">↵</kbd> Buka</span>
+        <span><kbd class="px-1 py-0.5 bg-white border border-slate-200 rounded font-mono text-[10px] text-slate-600">ESC</kbd> Tutup</span>
+      </div>
+      <div class="flex items-center gap-2 sm:ml-auto">
+        <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+        <span class="text-slate-600 font-medium">Mesindo Engineering Search</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Embedded Search Index -->
+<script is:inline type="application/json" id="search-index-json" set:html={JSON.stringify(searchItems)} />
+
+<!-- Mobile Navigation Drawer Backdrop -->
+<div
+  id="mobile-drawer-backdrop"
+  class="fixed inset-0 bg-black/60 backdrop-blur-2xs z-50 hidden opacity-0 transition-opacity duration-200"
+  aria-hidden="true"
+></div>
+
+<!-- Mobile Navigation Sheet Drawer -->
+<aside
+  id="mobile-drawer"
+  class="fixed bottom-0 left-0 right-0 w-full max-h-[90vh] bg-white z-50 transform translate-y-full flex flex-col rounded-t-2xl border-t border-slate-200 pb-6 transition-transform duration-300 overflow-hidden font-sans lg:hidden shadow-2xl"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu Navigasi Mobile"
+>
+  <div class="w-12 h-1.5 bg-slate-300 mx-auto my-3 shrink-0 rounded-full"></div>
+
+  <div class="flex justify-between items-center px-5 pb-3 border-b border-slate-200">
+    <div class="flex flex-col">
+      <span class="text-base font-black tracking-tight text-slate-950 uppercase leading-none">
+        MESINDO TEKNINESIA<span class="text-brand-600">.</span>
+      </span>
+      <span class="text-[8px] font-bold tracking-widest text-slate-400 uppercase leading-none mt-1">
+        ENGINEERING SERVICES
+      </span>
+    </div>
+    <button
+      id="close-menu-btn"
+      type="button"
+      aria-label="Tutup menu"
+      class="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="overflow-y-auto px-5 py-4 space-y-4">
+    <!-- Quick Search trigger in drawer -->
+    <button
+      id="drawer-search-trigger"
+      type="button"
+      class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 text-slate-600 text-xs font-medium transition-all text-left cursor-pointer"
+    >
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.34-4.34"></path>
+        </svg>
+        <span>Cari equipment, layanan, fasilitas...</span>
+      </div>
+      <span class="text-[10px] font-bold text-brand-700 uppercase">Cari &rarr;</span>
+    </button>
+
+    <div class="space-y-4 text-xs font-sans">
+      
+      <!-- 1. Beranda -->
+      <div class="space-y-1">
+        <a href="/" class="flex items-center justify-between py-2 px-3 rounded-lg font-bold text-slate-900 hover:bg-slate-50 text-sm">
+          <span>Beranda</span>
+          <span class="text-brand-600 font-bold">&rarr;</span>
+        </a>
+      </div>
+
+      <!-- 2. Layanan -->
+      <div class="border-t border-slate-100 pt-3">
+        <div class="flex items-center justify-between px-3 mb-1.5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Layanan Workshop &amp; On-Site</span>
+          <a href="/layanan/" class="text-[11px] font-bold text-brand-700 hover:text-brand-800">Semua Layanan (8) &rarr;</a>
+        </div>
+        <div class="space-y-0.5">
+          <a href="/layanan/electro-motor/" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>Electro Motor (Repair, Rewind, Overhaul)</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+          <a href="/layanan/generator/" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>Generator Stator &amp; Rotor Services</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+          <a href="/layanan/high-speed-balancing/" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span class="font-semibold text-brand-700">High Speed Balancing 150 Ton</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+          <a href="/layanan/industrial-machining/" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>Vertical Lathe 6.7m &amp; Horizontal 15m</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+          <a href="/layanan/transformer/" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>Transformer &amp; Oil Purification</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+          <a href="/layanan/testing-assessment/" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>Testing, EL CID &amp; Partial Discharge</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. Fasilitas -->
+      <div class="border-t border-slate-100 pt-3">
+        <div class="flex items-center justify-between px-3 mb-1.5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Fasilitas Permesinan</span>
+          <a href="/fasilitas/" class="text-[11px] font-bold text-brand-700 hover:text-brand-800">Katalog Fasilitas &rarr;</a>
+        </div>
+        <div class="space-y-0.5">
+          <a href="/layanan/high-speed-balancing/" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>Balancing Tunnel s/d 150 Ton</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+          <a href="/layanan/industrial-machining/" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>Vertical Lathe 6.7m x 8m</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+          <a href="/fasilitas/" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>VPI Vacuum Impregnation Tank Class H</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. Workshop -->
+      <div class="border-t border-slate-100 pt-3">
+        <div class="flex items-center justify-between px-3 mb-1.5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Jaringan Workshop Nasional</span>
+          <a href="/lokasi-workshop/" class="text-[11px] font-bold text-brand-700 hover:text-brand-800">8 Lokasi &rarr;</a>
+        </div>
+        <div class="space-y-0.5">
+          <a href="/lokasi-workshop/#workshop-jakarta-utara" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>Jakarta Utara HQ (25.000 M²)</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+          <a href="/lokasi-workshop/#workshop-makassar" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>Makassar Sulawesi (5.000 M²)</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+          <a href="/lokasi-workshop/#workshop-purwakarta" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>Purwakarta &amp; Sidoarjo</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 5. Proyek & Perusahaan -->
+      <div class="border-t border-slate-100 pt-3">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 block mb-1.5">Perusahaan &amp; Kontak</span>
+        <div class="space-y-0.5">
+          <a href="/proyek/" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>Portofolio Proyek &amp; Studi Kasus</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+          <a href="/tentang-kami/" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>Tentang Kami (Profil &amp; Sertifikasi ISO)</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+          <a href="/kontak/" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-slate-800 hover:bg-slate-50">
+            <span>Kontak &amp; Alamat Kantor Pusat</span>
+            <span class="text-slate-400">&rarr;</span>
+          </a>
+          <a href={waInquiryUrl} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between py-1.5 px-3 rounded-lg text-brand-700 font-bold hover:bg-brand-50">
+            <span>Hotline WhatsApp (0851-8300-2070)</span>
+            <span class="text-emerald-500">●</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Drawer RFQ CTA -->
+    <div class="pt-4 border-t border-slate-200 space-y-2">
+      <a
+        href={rfqUrl}
+        class="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-slate-900 text-white font-semibold text-xs tracking-wide uppercase shadow-xs transition-colors"
+      >
+        <span>Request Quotation (RFQ)</span>
+      </a>
+      <a
+        href={waInquiryUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-brand-600 text-white font-semibold text-xs tracking-wide shadow-xs transition-colors"
+      >
+        <span>Konsultasi Engineering WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</aside>
+
+<script>
+  function initHeader() {
+    // Mobile Drawer
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const drawerBackdrop = document.getElementById('mobile-drawer-backdrop');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+
+    function openMenu() {
+      if (!mobileDrawer || !drawerBackdrop) return;
+      drawerBackdrop.classList.remove('hidden');
+      setTimeout(() => {
+        drawerBackdrop.classList.remove('opacity-0');
+        drawerBackdrop.classList.add('opacity-100');
+        mobileDrawer.classList.remove('translate-y-full');
+        mobileDrawer.classList.add('translate-y-0');
+      }, 10);
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeMenu() {
+      if (!mobileDrawer || !drawerBackdrop) return;
+      mobileDrawer.classList.remove('translate-y-0');
+      mobileDrawer.classList.add('translate-y-full');
+      drawerBackdrop.classList.remove('opacity-100');
+      drawerBackdrop.classList.add('opacity-0');
+      setTimeout(() => {
+        drawerBackdrop.classList.add('hidden');
+      }, 250);
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    menuBtn?.addEventListener('click', openMenu);
+    closeMenuBtn?.addEventListener('click', closeMenu);
+    drawerBackdrop?.addEventListener('click', closeMenu);
+
+    // Search Elements
+    const searchTrigger = document.getElementById('search-trigger');
+    const drawerSearchTrigger = document.getElementById('drawer-search-trigger');
+    const searchOverlay = document.getElementById('search-overlay');
+    const searchBox = document.getElementById('search-box');
+    const closeSearchBtn = document.getElementById('close-search-btn');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+    const searchClearBtn = document.getElementById('search-clear-btn');
+    const searchDefaultState = document.getElementById('search-default-state');
+    const searchResultsWrapper = document.getElementById('search-results-wrapper');
+    const searchResultsList = document.getElementById('search-results-list');
+    const searchNoResults = document.getElementById('search-no-results');
+    const searchNoResultsQuery = document.getElementById('search-no-results-query');
+    const searchCountLabel = document.getElementById('search-count-label');
+    const tabPills = document.querySelectorAll<HTMLButtonElement>('.search-tab-pill');
+    const keywordTags = document.querySelectorAll<HTMLButtonElement>('.search-keyword-tag');
+
+    interface SearchItem {
+      title: string;
+      desc: string;
+      url: string;
+      category: string;
+      badge: string;
+      img: string;
+    }
+
+    let searchItems: SearchItem[] = [];
+    try {
+      const raw = document.getElementById('search-index-json')?.textContent;
+      if (raw) searchItems = JSON.parse(raw);
+    } catch {
+      searchItems = [];
+    }
+
+    let activeCategory = 'all';
+    let currentResults: SearchItem[] = [];
+    let activeIndex = -1;
+
+    function escapeHtml(str: string): string {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function highlight(text: string, q: string): string {
+      if (!q.trim()) return escapeHtml(text);
+      const terms = q.trim().split(/\s+/).filter(Boolean);
+      if (terms.length === 0) return escapeHtml(text);
+      try {
+        const regex = new RegExp(`(${terms.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi');
+        return escapeHtml(text).replace(regex, '<mark class="bg-brand-100 text-brand-950 px-0.5 rounded font-bold">$1</mark>');
+      } catch {
+        return escapeHtml(text);
+      }
+    }
+
+    function getBadgeStyle(cat: string): string {
+      switch (cat) {
+        case 'Layanan':
+          return 'bg-brand-50 text-brand-800 border border-brand-200';
+        case 'Fasilitas':
+          return 'bg-amber-50 text-amber-900 border border-amber-200';
+        case 'Proyek':
+          return 'bg-emerald-50 text-emerald-800 border border-emerald-200';
+        case 'Workshop':
+          return 'bg-slate-100 text-slate-800 border border-slate-200';
+        default:
+          return 'bg-slate-100 text-slate-700 border border-slate-200';
+      }
+    }
+
+    function updateVisualSelection() {
+      const domItems = searchResultsList?.querySelectorAll<HTMLElement>('.search-result-item');
+      if (!domItems) return;
+      domItems.forEach((el, i) => {
+        if (i === activeIndex) {
+          el.classList.add('bg-brand-50/80', 'border-brand-300', 'ring-1', 'ring-brand-300');
+          el.classList.remove('bg-white', 'border-slate-100');
+          el.setAttribute('aria-selected', 'true');
+          el.scrollIntoView({ block: 'nearest' });
+        } else {
+          el.classList.remove('bg-brand-50/80', 'border-brand-300', 'ring-1', 'ring-brand-300');
+          el.classList.add('bg-white', 'border-slate-100');
+          el.setAttribute('aria-selected', 'false');
+        }
+      });
+    }
+
+    function performSearch(query: string) {
+      const q = query.trim().toLowerCase();
+      const terms = q ? q.split(/\s+/).filter(Boolean) : [];
+
+      let filtered = searchItems;
+      if (activeCategory !== 'all') {
+        filtered = filtered.filter((it) => it.category === activeCategory);
+      }
+
+      if (terms.length > 0) {
+        filtered = filtered.filter((it) => {
+          const haystack = `${it.title} ${it.desc} ${it.badge} ${it.category}`.toLowerCase();
+          return terms.every((t) => haystack.includes(t));
+        });
+      }
+
+      currentResults = filtered;
+      activeIndex = currentResults.length > 0 ? 0 : -1;
+
+      if (!q && activeCategory === 'all') {
+        searchClearBtn?.classList.add('hidden');
+        searchDefaultState?.classList.remove('hidden');
+        searchResultsWrapper?.classList.add('hidden');
+        searchNoResults?.classList.add('hidden');
+        return;
+      }
+
+      searchDefaultState?.classList.add('hidden');
+      if (q) {
+        searchClearBtn?.classList.remove('hidden');
+      } else {
+        searchClearBtn?.classList.add('hidden');
+      }
+
+      if (currentResults.length === 0) {
+        searchResultsWrapper?.classList.add('hidden');
+        searchNoResults?.classList.remove('hidden');
+        if (searchNoResultsQuery) {
+          searchNoResultsQuery.textContent = q
+            ? `Tidak ditemukan hasil untuk "${query}". Coba cari "electro motor", "balancing", "lathe", atau "sidoarjo".`
+            : 'Tidak ada item dalam filter kategori ini.';
+        }
+      } else {
+        searchNoResults?.classList.add('hidden');
+        searchResultsWrapper?.classList.remove('hidden');
+        if (searchCountLabel) {
+          searchCountLabel.textContent = `Ditemukan ${currentResults.length} hasil${q ? ` untuk "${query}"` : ''}`;
+        }
+
+        if (searchResultsList) {
+          searchResultsList.innerHTML = currentResults
+            .map((item, index) => {
+              const isSelected = index === activeIndex;
+              const badgeStyle = getBadgeStyle(item.category);
+              return `
+                <a
+                  href="${item.url}"
+                  role="option"
+                  aria-selected="${isSelected}"
+                  data-index="${index}"
+                  class="search-result-item flex items-center gap-3 p-2.5 sm:p-3 rounded-xl border transition-all duration-150 cursor-pointer ${
+                    isSelected
+                      ? 'bg-brand-50/80 border-brand-300 ring-1 ring-brand-300'
+                      : 'bg-white border-slate-100 hover:border-slate-200 hover:bg-slate-50'
+                  }"
+                >
+                  <img
+                    src="${item.img}"
+                    alt="${escapeHtml(item.title)}"
+                    class="w-11 h-11 sm:w-12 sm:h-12 rounded-lg object-cover bg-slate-100 border border-slate-200 shrink-0"
+                    loading="lazy"
+                    onerror="this.style.opacity='0.3'"
+                  />
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-center gap-2 mb-0.5">
+                      <span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${badgeStyle}">
+                        ${escapeHtml(item.badge)}
+                      </span>
+                    </div>
+                    <h4 class="text-xs sm:text-sm font-bold text-slate-900 truncate">
+                      ${highlight(item.title, query)}
+                    </h4>
+                    <p class="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+                      ${escapeHtml(item.desc)}
+                    </p>
+                  </div>
+                  <div class="shrink-0 text-slate-300 pr-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                      <path d="M9 18l6-6-6-6"></path>
+                    </svg>
+                  </div>
+                </a>
+              `;
+            })
+            .join('');
+
+          searchResultsList.querySelectorAll('.search-result-item').forEach((el) => {
+            el.addEventListener('mouseenter', () => {
+              const idx = Number(el.getAttribute('data-index'));
+              if (!isNaN(idx)) {
+                activeIndex = idx;
+                updateVisualSelection();
+              }
+            });
+          });
+        }
+      }
+    }
+
+    // Tabs
+    tabPills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        tabPills.forEach((p) => {
+          p.classList.remove('bg-brand-100', 'text-brand-800', 'font-semibold');
+          p.classList.add('text-slate-600', 'font-medium');
+        });
+        pill.classList.remove('text-slate-600', 'font-medium');
+        pill.classList.add('bg-brand-100', 'text-brand-800', 'font-semibold');
+        activeCategory = pill.getAttribute('data-category') || 'all';
+        performSearch(searchInput?.value || '');
+      });
+    });
+
+    // Keywords
+    keywordTags.forEach((tag) => {
+      tag.addEventListener('click', () => {
+        const q = tag.getAttribute('data-query') || '';
+        if (searchInput) {
+          searchInput.value = q;
+          searchInput.focus();
+          performSearch(q);
+        }
+      });
+    });
+
+    searchClearBtn?.addEventListener('click', () => {
+      if (searchInput) {
+        searchInput.value = '';
+        searchInput.focus();
+        performSearch('');
+      }
+    });
+
+    searchInput?.addEventListener('input', () => {
+      performSearch(searchInput.value);
+    });
+
+    searchInput?.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (currentResults.length > 0) {
+          activeIndex = (activeIndex + 1) % currentResults.length;
+          updateVisualSelection();
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (currentResults.length > 0) {
+          activeIndex = (activeIndex - 1 + currentResults.length) % currentResults.length;
+          updateVisualSelection();
+        }
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (activeIndex >= 0 && activeIndex < currentResults.length) {
+          window.location.href = currentResults[activeIndex].url;
+        } else if (currentResults.length > 0) {
+          window.location.href = currentResults[0].url;
+        }
+      }
+    });
+
+    function openSearch() {
+      if (!searchOverlay || !searchBox) return;
+      closeMenu();
+      searchOverlay.classList.remove('hidden');
+      setTimeout(() => {
+        searchOverlay.classList.remove('opacity-0');
+        searchOverlay.classList.add('opacity-100');
+        searchBox.classList.remove('-translate-y-4', 'opacity-0');
+        searchBox.classList.add('translate-y-0', 'opacity-100');
+        searchInput?.focus();
+        performSearch(searchInput?.value || '');
+      }, 10);
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeSearch() {
+      if (!searchOverlay || !searchBox) return;
+      searchBox.classList.remove('translate-y-0', 'opacity-100');
+      searchBox.classList.add('-translate-y-4', 'opacity-0');
+      searchOverlay.classList.remove('opacity-100');
+      searchOverlay.classList.add('opacity-0');
+      setTimeout(() => {
+        searchOverlay.classList.add('hidden');
+      }, 200);
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    searchTrigger?.addEventListener('click', openSearch);
+    drawerSearchTrigger?.addEventListener('click', openSearch);
+    closeSearchBtn?.addEventListener('click', closeSearch);
+
+    searchOverlay?.addEventListener('click', (e) => {
+      if (e.target === searchOverlay) {
+        closeSearch();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSearch();
+        closeMenu();
+      } else if (
+        (e.key === '/' || (e.key === 'k' && (e.metaKey || e.ctrlKey))) &&
+        !['INPUT', 'TEXTAREA', 'SELECT'].includes((e.target as HTMLElement)?.tagName)
+      ) {
+        e.preventDefault();
+        openSearch();
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>

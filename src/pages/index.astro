@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/home/HeroSection.astro';
+import TrustPartnersStrip from '../components/home/TrustPartnersStrip.astro';
+import ServicesGrid from '../components/home/ServicesGrid.astro';
+import FacilitiesHighlight from '../components/home/FacilitiesHighlight.astro';
+import IndustriesSection from '../components/home/IndustriesSection.astro';
+import WorkshopNetwork from '../components/home/WorkshopNetwork.astro';
+import ProjectsShowcase from '../components/home/ProjectsShowcase.astro';
+import RfqCtaBanner from '../components/home/RfqCtaBanner.astro';
+---
+
+<BaseLayout
+  title="Jasa Repair, Rewinding & Engineering Equipment Industri"
+  description="PT Mesindo Tekninesia spesialis repair, rewinding, overhaul electro motor, generator, transformer, high speed balancing hingga 150 ton, dan machining presisi sejak 1994."
+>
+  <!-- 1. Hero Section -->
+  <HeroSection />
+
+  <!-- 1.5. Kredensial & Otorisasi Global (TECO, Goltens, EASA, AEMT, ISO) -->
+  <TrustPartnersStrip />
+
+  <!-- 2. Services Grid (8 Core Industrial Services) -->
+  <ServicesGrid />
+
+  <!-- 3. Heavy Engineering Facilities (Balancing 150T & Lathe 6.7m) -->
+  <FacilitiesHighlight />
+
+  <!-- 4. Strategic Industries Served -->
+  <IndustriesSection />
+
+  <!-- 5. 9 Workshop Network Across Indonesia -->
+  <WorkshopNetwork />
+
+  <!-- 6. Proven Project Portfolio & Case Studies -->
+  <ProjectsShowcase />
+
+  <!-- 7. Request Quotation & Engineering Consultation CTA -->
+  <RfqCtaBanner />
+</BaseLayout>

@@ -1,0 +1,355 @@
+---
+// RfqCartDrawer.astro - Shopify B2B RFQ Cart Slide-over Drawer
+---
+
+<!-- RFQ Drawer Backdrop -->
+<div
+  id="rfq-drawer-backdrop"
+  class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden opacity-0 transition-opacity duration-300"
+  aria-hidden="true"
+></div>
+
+<!-- RFQ Slide-Over Drawer (Shopify Ajax Cart Equivalent for B2B) -->
+<aside
+  id="rfq-drawer"
+  class="fixed inset-y-0 right-0 w-full max-w-md bg-white z-50 shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col font-sans"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Keranjang Permintaan Penawaran RFQ"
+>
+  <!-- Drawer Header -->
+  <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50/80">
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+      </div>
+      <div>
+        <h2 class="text-sm font-bold text-slate-900 leading-none">
+          Daftar Permintaan Penawaran (RFQ)
+        </h2>
+        <span class="text-[11px] text-slate-500 mt-0.5 block">
+          <span id="rfq-drawer-count">0</span> item equipment dipilih
+        </span>
+      </div>
+    </div>
+
+    <button
+      id="close-rfq-drawer-btn"
+      type="button"
+      aria-label="Tutup Keranjang RFQ"
+      class="p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-200/60 rounded-full transition-colors cursor-pointer"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Drawer Body -->
+  <div class="flex-1 overflow-y-auto p-5">
+    
+    <!-- Empty State -->
+    <div id="rfq-empty-state" class="py-12 text-center space-y-4">
+      <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 mx-auto flex items-center justify-center">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+        </svg>
+      </div>
+      <div class="max-w-xs mx-auto">
+        <h3 class="text-sm font-bold text-slate-900">Belum Ada Equipment Dipilih</h3>
+        <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+          Pilih layanan atau fasilitas di katalog kami dan klik <span class="font-semibold text-slate-700">"Minta Penawaran"</span> untuk menambahkan ke daftar ini.
+        </p>
+      </div>
+      <div class="pt-2">
+        <a
+          href="/#katalog-layanan"
+          id="rfq-browse-btn"
+          class="inline-flex items-center justify-center px-4 py-2 rounded-full bg-slate-900 hover:bg-brand-600 text-white text-xs font-semibold uppercase tracking-wider transition-colors"
+        >
+          Lihat Katalog Layanan
+        </a>
+      </div>
+    </div>
+
+    <!-- Items List -->
+    <div id="rfq-items-list" class="space-y-3 hidden">
+      <!-- Injected via JavaScript -->
+    </div>
+
+  </div>
+
+  <!-- Drawer Footer (Shopify Checkout Equivalent) -->
+  <div id="rfq-drawer-footer" class="p-5 border-t border-slate-200 bg-slate-50/90 space-y-3 hidden">
+    <div class="flex items-center justify-between text-xs pb-1">
+      <span class="text-slate-500">Estimasi Respon Tim Teknis:</span>
+      <span class="font-bold text-slate-900">&lt; 2 Jam Kerja</span>
+    </div>
+    
+    <button
+      id="rfq-submit-wa-btn"
+      type="button"
+      class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all cursor-pointer select-none"
+    >
+      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/>
+      </svg>
+      <span>Kirim Permintaan via WhatsApp</span>
+    </button>
+
+    <a
+      href="/request-quotation/"
+      id="rfq-submit-form-btn"
+      class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold text-xs tracking-wide transition-all"
+    >
+      <span>Lengkapi Formulir Nameplate Formal &rarr;</span>
+    </a>
+
+    <p class="text-[10px] text-slate-400 text-center leading-snug">
+      PT Mesindo Tekninesia • Standar Mutu ISO 9001:2015 &bull; EASA &amp; IEEE Compliant
+    </p>
+  </div>
+</aside>
+
+<!-- Client Script for RFQ Cart Store -->
+<script is:inline>
+  (function () {
+    const STORAGE_KEY = 'mesindo_rfq_cart';
+
+    function getCart() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        return saved ? JSON.parse(saved) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCart(cart) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+      } catch (e) {}
+      updateUI();
+      window.dispatchEvent(new CustomEvent('rfq-cart-updated', { detail: cart }));
+    }
+
+    window.addEquipmentToRfq = function (item) {
+      const cart = getCart();
+      const existingIndex = cart.findIndex(x => x.id === item.id && x.variant === (item.variant || ''));
+      if (existingIndex > -1) {
+        cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + (item.quantity || 1);
+      } else {
+        cart.push({
+          id: item.id || 'item-' + Date.now(),
+          title: item.title,
+          category: item.category || 'Layanan Engineering',
+          spec: item.spec || 'Spesifikasi standar nameplate',
+          variant: item.variant || '',
+          quantity: item.quantity || 1,
+          image: item.image || '',
+          timestamp: Date.now()
+        });
+      }
+      saveCart(cart);
+      openRfqDrawer();
+    };
+
+    window.updateRfqItemQty = function (id, variant, delta) {
+      let cart = getCart();
+      const idx = cart.findIndex(x => x.id === id && (x.variant || '') === (variant || ''));
+      if (idx > -1) {
+        const newQty = (cart[idx].quantity || 1) + delta;
+        if (newQty <= 0) {
+          cart.splice(idx, 1);
+        } else {
+          cart[idx].quantity = newQty;
+        }
+        saveCart(cart);
+      }
+    };
+
+    window.removeEquipmentFromRfq = function (id, variant) {
+      let cart = getCart();
+      cart = cart.filter(x => !(x.id === id && (x.variant || '') === (variant || '')));
+      saveCart(cart);
+    };
+
+    window.clearRfqCart = function () {
+      saveCart([]);
+    };
+
+    function updateUI() {
+      const cart = getCart();
+      const totalUnits = cart.reduce((sum, it) => sum + (it.quantity || 1), 0);
+
+      // Update badge elements
+      document.querySelectorAll('.rfq-cart-count').forEach(el => {
+        el.textContent = totalUnits;
+        if (totalUnits > 0) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+
+      const drawerCount = document.getElementById('rfq-drawer-count');
+      if (drawerCount) drawerCount.textContent = totalUnits;
+
+      const emptyState = document.getElementById('rfq-empty-state');
+      const itemsList = document.getElementById('rfq-items-list');
+      const footer = document.getElementById('rfq-drawer-footer');
+
+      if (emptyState && itemsList && footer) {
+        if (cart.length === 0) {
+          emptyState.classList.remove('hidden');
+          itemsList.classList.add('hidden');
+          footer.classList.add('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+          itemsList.classList.remove('hidden');
+          footer.classList.remove('hidden');
+
+          // Render cards (Shopify B2B Cart Row)
+          itemsList.innerHTML = cart.map(item => `
+            <div class="p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition-all flex flex-col gap-2.5 shadow-2xs">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  ${item.image ? `
+                    <div class="w-12 h-12 rounded-lg bg-slate-100 border border-slate-200 overflow-hidden shrink-0">
+                      <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover" />
+                    </div>
+                  ` : ''}
+                  <div class="space-y-1">
+                    <span class="inline-block px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-brand-50 text-brand-700 border border-brand-200/60">
+                      ${item.category}
+                    </span>
+                    <h4 class="text-xs font-bold text-slate-950 leading-snug">${item.title}</h4>
+                    ${item.variant ? `<p class="text-[10px] font-medium text-brand-700 bg-slate-50 px-2 py-0.5 rounded inline-block border border-slate-200/60">${item.variant}</p>` : ''}
+                    <p class="text-[11px] text-slate-500 leading-relaxed line-clamp-1">${item.spec}</p>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onclick="window.removeEquipmentFromRfq('${item.id}', '${(item.variant || '').replace(/'/g, "\\'")}')"
+                  class="p-1 text-slate-400 hover:text-red-600 rounded-md hover:bg-slate-100 transition-colors cursor-pointer shrink-0"
+                  title="Hapus item"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Quantity & Price Note -->
+              <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+                <div class="flex items-center border border-slate-200 rounded-lg overflow-hidden bg-slate-50">
+                  <button
+                    type="button"
+                    onclick="window.updateRfqItemQty('${item.id}', '${(item.variant || '').replace(/'/g, "\\'")}', -1)"
+                    class="px-2.5 py-1 text-slate-600 hover:bg-slate-200 transition-colors font-bold"
+                    title="Kurang Qty"
+                  >-</button>
+                  <span class="px-2.5 py-1 text-slate-900 font-bold font-mono text-[11px]">${item.quantity || 1} Unit</span>
+                  <button
+                    type="button"
+                    onclick="window.updateRfqItemQty('${item.id}', '${(item.variant || '').replace(/'/g, "\\'")}', 1)"
+                    class="px-2.5 py-1 text-slate-600 hover:bg-slate-200 transition-colors font-bold"
+                    title="Tambah Qty"
+                  >+</button>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-500">Estimasi: Inquire RFQ</span>
+              </div>
+            </div>
+          `).join('');
+        }
+      }
+    }
+
+    const drawer = document.getElementById('rfq-drawer');
+    const backdrop = document.getElementById('rfq-drawer-backdrop');
+    const closeBtn = document.getElementById('close-rfq-drawer-btn');
+    const browseBtn = document.getElementById('rfq-browse-btn');
+    const submitWaBtn = document.getElementById('rfq-submit-wa-btn');
+
+    function openRfqDrawer() {
+      if (!drawer || !backdrop) return;
+      backdrop.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        backdrop.classList.remove('opacity-0');
+        drawer.classList.remove('translate-x-full');
+      });
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeRfqDrawer() {
+      if (!drawer || !backdrop) return;
+      backdrop.classList.add('opacity-0');
+      drawer.classList.add('translate-x-full');
+      setTimeout(() => {
+        backdrop.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }, 300);
+    }
+
+    window.openRfqDrawer = openRfqDrawer;
+    window.closeRfqDrawer = closeRfqDrawer;
+
+    if (closeBtn) closeBtn.addEventListener('click', closeRfqDrawer);
+    if (backdrop) backdrop.addEventListener('click', closeRfqDrawer);
+    if (browseBtn) browseBtn.addEventListener('click', closeRfqDrawer);
+
+    if (submitWaBtn) {
+      submitWaBtn.addEventListener('click', function () {
+        const cart = getCart();
+        if (cart.length === 0) return;
+
+        const itemsText = cart.map((it, idx) => {
+          const qty = it.quantity || 1;
+          const varText = it.variant ? ` | Variant: ${it.variant}` : '';
+          return `${idx + 1}. *${it.title}* (Qty: ${qty} Unit${varText})\n   • Scope/Spec: ${it.spec}`;
+        }).join('\n\n');
+
+        const message = `*PERMINTAAN PENAWARAN TEKNIS (RFQ) - PT MESINDO TEKNINESIA*\n` +
+          `----------------------------------------\n` +
+          `Halo Tim Engineering PT Mesindo Tekninesia, saya ingin mengajukan penawaran resmi untuk item equipment berikut:\n\n` +
+          itemsText + `\n\n` +
+          `----------------------------------------\n` +
+          `Mohon informasi estimasi biaya, jadwal workshop/on-site, dan ketersediaan tim teknisi.\n` +
+          `[Sumber: Shopify B2B Storefront PT Mesindo Tekninesia]`;
+
+        const waUrl = `https://wa.me/6285183002070?text=${encodeURIComponent(message)}`;
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+      });
+    }
+
+    // Attach click listeners to all buttons with data-add-rfq
+    document.addEventListener('click', function (e) {
+      const trigger = e.target.closest('[data-add-rfq]');
+      if (trigger) {
+        e.preventDefault();
+        const id = trigger.getAttribute('data-rfq-id') || 'item-' + Date.now();
+        const title = trigger.getAttribute('data-rfq-title') || 'Layanan Industri';
+        const category = trigger.getAttribute('data-rfq-category') || 'Engineering';
+        const spec = trigger.getAttribute('data-rfq-spec') || '';
+        const variant = trigger.getAttribute('data-rfq-variant') || '';
+        const image = trigger.getAttribute('data-rfq-image') || '';
+        const qtyStr = trigger.getAttribute('data-rfq-qty');
+        const quantity = qtyStr ? parseInt(qtyStr, 10) : 1;
+        window.addEquipmentToRfq({ id, title, category, spec, variant, image, quantity });
+      }
+    });
+
+    // Listen to Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && drawer && !drawer.classList.contains('translate-x-full')) {
+        closeRfqDrawer();
+      }
+    });
+
+    // Initialize on page load
+    updateUI();
+  })();
+</script>

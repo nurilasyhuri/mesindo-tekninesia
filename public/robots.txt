@@ -1,0 +1,10 @@
+# robots.txt for PT Mesindo Tekninesia
+User-agent: *
+Allow: /
+
+# Disallow administrative or temporary assets if any
+Disallow: /api/
+
+# Sitemaps
+Sitemap: https://mesindotekninesia.com/sitemap-index.xml
+Sitemap: https://mesindotekninesia.com/sitemap-0.xml

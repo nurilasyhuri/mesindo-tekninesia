@@ -1,0 +1,80 @@
+---
+import { COMPANY_INFO } from '../../data/companyInfo';
+---
+
+<section class="py-16 sm:py-24 bg-white font-sans border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-slate-200/80 gap-4">
+      <div class="max-w-2xl">
+        <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block mb-1">
+          Workshop &amp; Area Operasional
+        </span>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Jaringan Workshop Strategis di Seluruh Indonesia
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+          Mendukung mobilitas tim teknisi dan penanganan cepat equipment industri Anda di Jawa, Sumatera, Sulawesi, hingga Papua.
+        </p>
+      </div>
+
+      <a
+        href="/lokasi-workshop/"
+        class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 hover:text-brand-800 transition-colors uppercase tracking-wider shrink-0"
+      >
+        <span>Lihat Detail Alamat &amp; Kontak</span>
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+
+    <!-- 9 Workshops Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {COMPANY_INFO.workshops.map((w) => (
+        <div class="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-200 text-slate-700">
+                {w.region}
+              </span>
+              {w.isMainOffice && (
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-brand-100 text-brand-800">
+                  Kantor Pusat
+                </span>
+              )}
+            </div>
+
+            <h3 class="text-base font-bold text-slate-900 leading-snug">
+              {w.name}
+            </h3>
+
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+              {w.address}
+            </p>
+
+            <div class="mt-4 pt-3 border-t border-slate-200/60">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">Fasilitas Utama:</span>
+              <div class="flex flex-wrap gap-1">
+                {w.capabilities.map((cap) => (
+                  <span class="px-2 py-0.5 rounded text-[10px] bg-white border border-slate-200 text-slate-700">
+                    {cap}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-200/60">
+            <a
+              href={`/lokasi-workshop/#${w.id}`}
+              class="text-xs font-semibold text-brand-700 hover:text-brand-800 inline-flex items-center gap-1"
+            >
+              <span>Info Lokasi</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

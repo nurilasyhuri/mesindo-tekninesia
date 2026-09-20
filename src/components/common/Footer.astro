@@ -1,0 +1,190 @@
+---
+import { COMPANY_INFO } from '../../data/companyInfo';
+import { generateGeneralInquiryUrl } from '../../utils/whatsapp';
+
+const waUrl = generateGeneralInquiryUrl('footer-contact');
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-industrial-950 text-slate-400 font-sans border-t border-industrial-800 text-xs">
+  
+  <!-- Top Standards & Trust Ribbon -->
+  <div class="border-b border-industrial-800/90 py-6 px-4 sm:px-6 lg:px-8 bg-industrial-900/60">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3 text-center md:text-left">
+        <div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-sm">Standar Internasional Pengujian &amp; Perbaikan</h4>
+          <p class="text-[11px] text-slate-400">Pekerjaan workshop dan on-site mengacu pada standar global rekayasa teknik</p>
+        </div>
+      </div>
+
+      <!-- Standards Badges -->
+      <div class="flex flex-wrap items-center justify-center gap-2">
+        {COMPANY_INFO.standards.map((st) => (
+          <span class="px-2.5 py-1 rounded-md bg-industrial-800/80 border border-industrial-700/60 text-slate-300 text-[11px] font-mono font-semibold" title={st.desc}>
+            {st.name}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Footer Content (4 Columns) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
+      
+      <!-- Column 1: Company Profile -->
+      <div class="space-y-4">
+        <div class="flex flex-col">
+          <span class="text-lg font-black tracking-tight text-white uppercase leading-none">
+            MESINDO TEKNINESIA<span class="text-brand-500">.</span>
+          </span>
+          <span class="text-[9px] font-bold tracking-[0.2em] text-slate-500 uppercase leading-none mt-1">
+            TOTAL ENGINEERING SERVICES
+          </span>
+        </div>
+        
+        <p class="text-xs text-slate-400 leading-relaxed">
+          {COMPANY_INFO.name} beroperasi sejak 1994 menyediakan layanan total services perbaikan, rewinding, overhaul, balancing, testing, machining, serta engineering untuk equipment industri di seluruh Indonesia.
+        </p>
+
+        <div class="space-y-2 pt-2 border-t border-industrial-800 text-xs">
+          <p class="flex items-start gap-2">
+            <span class="text-slate-500">Kantor:</span>
+            <span class="text-slate-300">{COMPANY_INFO.workshops[0].address}</span>
+          </p>
+          <p class="flex items-center gap-2">
+            <span class="text-slate-500">Telp Kantor:</span>
+            <a href="tel:+6285183002070" class="text-slate-300 hover:text-white transition-colors font-mono">
+              {COMPANY_INFO.contact.phoneFormatted}
+            </a>
+          </p>
+          <p class="flex items-center gap-2">
+            <span class="text-slate-500">Hotline / WA:</span>
+            <a href={waUrl} target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:text-brand-300 font-semibold transition-colors font-mono">
+              {COMPANY_INFO.contact.mobileFormatted}
+            </a>
+          </p>
+          <p class="flex items-center gap-2">
+            <span class="text-slate-500">Email:</span>
+            <span class="text-slate-300">{COMPANY_INFO.contact.email}</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Column 2: Layanan Electrical -->
+      <div class="space-y-3">
+        <h5 class="text-xs font-bold text-white uppercase tracking-wider">Layanan Electrical</h5>
+        <ul class="space-y-2 text-xs">
+          <li>
+            <a href="/layanan/electro-motor/" class="hover:text-white transition-colors">
+              Electro Motor (LV/HV/DC)
+            </a>
+          </li>
+          <li>
+            <a href="/layanan/generator/" class="hover:text-white transition-colors">
+              Generator Stator &amp; Rotor Rewinding
+            </a>
+          </li>
+          <li>
+            <a href="/layanan/transformer/" class="hover:text-white transition-colors">
+              Power &amp; Distribution Transformer
+            </a>
+          </li>
+          <li>
+            <a href="/layanan/transformer/#purifikasi" class="hover:text-white transition-colors">
+              Transformer Oil Purification (Purifikasi Minyak)
+            </a>
+          </li>
+          <li>
+            <a href="/layanan/coil-manufacturing/" class="hover:text-white transition-colors">
+              Form-Wound Coils &amp; Slip Ring
+            </a>
+          </li>
+          <li>
+            <a href="/layanan/testing-assessment/" class="hover:text-white transition-colors">
+              Condition Assessment (EL CID / PD)
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Mechanical & Permesinan -->
+      <div class="space-y-3">
+        <h5 class="text-xs font-bold text-white uppercase tracking-wider">Mechanical &amp; Balancing</h5>
+        <ul class="space-y-2 text-xs">
+          <li>
+            <a href="/layanan/high-speed-balancing/" class="hover:text-white transition-colors">
+              High Speed Balancing hingga 150 Ton
+            </a>
+          </li>
+          <li>
+            <a href="/layanan/high-speed-balancing/#kapasitas" class="hover:text-white transition-colors">
+              Dynamic Balancing Machine 20T, 5T, 0.5T
+            </a>
+          </li>
+          <li>
+            <a href="/layanan/industrial-machining/" class="hover:text-white transition-colors">
+              Vertical Lathe Diameter s/d 6.7 Meter
+            </a>
+          </li>
+          <li>
+            <a href="/layanan/industrial-machining/#horizontal" class="hover:text-white transition-colors">
+              Horizontal Lathe Panjang s/d 15 Meter
+            </a>
+          </li>
+          <li>
+            <a href="/layanan/mechanical-services/" class="hover:text-white transition-colors">
+              Pump, Compressor &amp; Valve Overhaul
+            </a>
+          </li>
+          <li>
+            <a href="/request-quotation/" class="text-brand-400 hover:text-brand-300 font-semibold transition-colors">
+              Request Quotation (RFQ) &rarr;
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 4: 9 Wilayah Workshop -->
+      <div class="space-y-3">
+        <h5 class="text-xs font-bold text-white uppercase tracking-wider">9 Workshop Operasional</h5>
+        <div class="grid grid-cols-2 gap-2 text-[11px]">
+          {COMPANY_INFO.workshops.map((w) => (
+            <a
+              href={`/lokasi-workshop/#${w.id}`}
+              class="p-2 rounded-lg bg-industrial-900 border border-industrial-800/80 hover:border-brand-500/50 hover:bg-industrial-800 transition-all block"
+            >
+              <span class="font-bold text-slate-200 block truncate">{w.region}</span>
+              <span class="text-slate-500 text-[10px] block truncate">{w.name.replace('Workshop ', '')}</span>
+            </a>
+          ))}
+        </div>
+        <div class="pt-2">
+          <a
+            href="/lokasi-workshop/"
+            class="text-brand-400 hover:text-brand-300 text-xs font-semibold inline-flex items-center gap-1 transition-colors"
+          >
+            <span>Detail Alamat &amp; Fasilitas 9 Workshop</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom Strip -->
+  <div class="border-t border-industrial-800/80 py-5 px-4 sm:px-6 lg:px-8 text-center sm:flex sm:justify-between sm:items-center max-w-7xl mx-auto text-slate-500 text-[11px]">
+    <p>&copy; {currentYear} {COMPANY_INFO.legalName}. Hak Cipta Dilindungi Undang-Undang.</p>
+    <div class="flex items-center justify-center gap-4 mt-2 sm:mt-0">
+      <span>Standar Mutu IEEE &bull; IEC &bull; EASA &bull; API &bull; NFPA</span>
+    </div>
+  </div>
+
+</footer>

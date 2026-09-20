@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { COMPANY_INFO } from '../data/companyInfo';
+---
+
+<BaseLayout
+  title="Tentang PT Mesindo Tekninesia"
+  description="Profil resmi PT Mesindo Tekninesia, penyedia total engineering services peralatan listrik dan mekanik industri di Indonesia sejak tahun 1994."
+>
+  <!-- Page Header -->
+  <div class="bg-slate-50 border-b border-slate-200/80 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 font-sans">
+    <div class="max-w-7xl mx-auto">
+      <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block mb-2">
+        Profil Perusahaan • Sejak 1994
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+        Dedikasi Lebih dari 30 Tahun untuk Keandalan Industri
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-600 mt-3 max-w-3xl leading-relaxed">
+        PT Mesindo Tekninesia telah beroperasi sejak 1994 di Jakarta di atas lahan total 25.000 M² (10.000 M² workshop tertutup dan 15.000 M² area terbuka) dengan konsep Total Services mengacu pada standar rekayasa teknik internasional.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 font-sans space-y-16">
+    
+    <!-- Partner & Certification Strip -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200/90 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xs">
+      <div class="max-w-xl">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-brand-700 block mb-1">
+          Kredensial &amp; Sertifikasi Resmi
+        </span>
+        <h3 class="text-lg font-bold text-slate-900 leading-snug">
+          Authorized Partner TECO &amp; Goltens • EASA &amp; AEMT Member
+        </h3>
+        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+          Tersertifikasi ISO 9001:2015 (Mutu), ISO 14001:2015 (Lingkungan), dan ISO 45001:2018 (K3). Memiliki joint facility dengan Powertech Lab. Inc. dan Volts Industry Inc. di Kanada untuk asesmen kegagalan equipment berteknologi tinggi.
+        </p>
+      </div>
+
+      <div class="p-3 bg-white rounded-2xl border border-slate-200 shadow-2xs shrink-0">
+        <img
+          src="/images/partners-certifications.webp"
+          alt="Sertifikasi & Partner PT Mesindo Tekninesia"
+          class="max-h-16 w-auto object-contain"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <!-- Concept of Total Services -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-6 space-y-4">
+        <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block">
+          Konsep Total Services
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+          Menangani Siklus Lengkap dari Investigasi hingga Commissioning
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          Ruang lingkup layanan PT Mesindo Tekninesia dirancang terintegrasi agar pemilik aset tidak perlu membagi pekerjaan ke berbagai kontraktor terpisah. Kami mengombinasikan keahlian elektrikal tingkat tinggi, presisi permesinan bubut, dan pengujian non-destruktif berstandar internasional.
+        </p>
+
+        <div class="grid grid-cols-2 gap-2.5 pt-3">
+          {[
+            'Design & Engineering',
+            'Installation & Erection',
+            'Inspection & Assessment',
+            'Testing & Diagnostic NDT',
+            'Fault Finding & Root Cause',
+            'Repair & Reconditioning',
+            'Rewinding LV/HV/DC',
+            'Major Overhaul Generator',
+            'Maintenance Contract',
+            'Heavy Machining (Lathe 6.7m & 15m)',
+            'Dynamic Balancing hingga 150T',
+            'On-Site Field Engineering',
+          ].map((scope) => (
+            <div class="flex items-center gap-2 text-xs text-slate-700 p-2 rounded-lg bg-slate-50 border border-slate-200/60">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-600 shrink-0"></span>
+              <span class="font-medium truncate">{scope}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 rounded-3xl overflow-hidden border border-slate-200 bg-slate-100 shadow-sm h-80 sm:h-96">
+        <img
+          src="/images/facility-lathe-real.webp"
+          alt="Workshop Heavy Machining PT Mesindo Tekninesia"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <!-- Visi, Misi & Kebijakan Mutu Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Visi & Misi Card -->
+      <div class="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-2xs space-y-4">
+        <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block">
+          Arah Perusahaan
+        </span>
+        <h3 class="text-xl font-bold text-slate-900">Visi &amp; Misi</h3>
+        
+        <div class="space-y-4 text-xs text-slate-600 leading-relaxed">
+          <div>
+            <span class="font-bold text-slate-900 block mb-1">Visi:</span>
+            <p>
+              Menyediakan jasa pelayanan yang melampaui harapan klien terhadap mutu, presisi, dan ketepatan penyerahan. Berkomitmen memenuhi tingkatan mutu tertinggi yang menetapkan standar keunggulan di pasar Power Generator dan Electric Motor Repair di Indonesia.
+            </p>
+          </div>
+          <div>
+            <span class="font-bold text-slate-900 block mb-1">Misi:</span>
+            <p>
+              Memenuhi kebutuhan industri terhadap jasa perawatan, overhaul, dan rekondisi peralatan putar dan generator, serta mempertinggi profil keandalan operasional perusahaan-perusahaan klien di seluruh Indonesia dengan sistem manajemen keselamatan, kesehatan kerja, dan mutu terstandarisasi.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kebijakan Mutu Card -->
+      <div class="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-2xs space-y-4">
+        <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block">
+          Komitmen Kualitas
+        </span>
+        <h3 class="text-xl font-bold text-slate-900">Kebijakan Mutu</h3>
+        
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Kebijakan manajemen PT Mesindo Tekninesia adalah senantiasa menjadi perusahaan terpercaya dalam bidang Repairing &amp; Rewinding Electric Motor, Generator AC/DC, Transformator, Panel Control &amp; Hoist Crane. Kami berkomitmen memenuhi kepuasan pelanggan melalui:
+        </p>
+
+        <ul class="space-y-2 text-xs text-slate-600">
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-600 shrink-0 mt-1.5"></span>
+            <span>Penerapan berkelanjutan Sistem Manajemen Mutu ISO 9001:2015, ISO 14001:2015, dan ISO 45001:2018.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-600 shrink-0 mt-1.5"></span>
+            <span>Pelaksanaan kegiatan operasi sesuai sasaran kinerja kontrak kerja pelanggan.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-600 shrink-0 mt-1.5"></span>
+            <span>Budaya kerja saling percaya, integritas, kepedulian K3, dan pembelajaran teknologi mutakhir.</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Standards Section -->
+    <div class="p-8 sm:p-12 rounded-3xl bg-industrial-950 text-white space-y-6">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold text-brand-400 uppercase tracking-wider block mb-2">
+          Komitmen Standar Kualitas Internasional
+        </span>
+        <h3 class="text-xl sm:text-3xl font-black text-white leading-tight">
+          Mengacu pada Standar Teknik Global
+        </h3>
+        <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+          Dalam pelaksanaan layanan workshop maupun on-site, PT Mesindo Tekninesia mengacu pada standar rekayasa teknik terkemuka di dunia untuk menjamin keandalan, keamanan, dan umur pakai equipment yang direkondisi:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+        {COMPANY_INFO.standards.map((s) => (
+          <div class="p-4 rounded-xl bg-industrial-900/90 border border-industrial-800">
+            <span class="text-base font-bold text-brand-400 font-mono block">{s.name}</span>
+            <span class="text-[11px] text-slate-400 mt-1 block leading-snug">{s.desc}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</BaseLayout>

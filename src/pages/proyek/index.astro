@@ -1,0 +1,141 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TrustPartnersStrip from '../../components/home/TrustPartnersStrip.astro';
+
+const projects = await getCollection('proyek');
+---
+
+<BaseLayout
+  title="Portofolio Proyek Rekayasa Teknik & Overhaul - PT Mesindo Tekninesia"
+  description="Studi kasus perbaikan generator 150MW PLTU, high speed balancing turbin uap petrokimia, rewinding motor 6.6kV pabrik semen, dan overhaul trafo daya PT Mesindo Tekninesia."
+>
+  <!-- Shopify Showcase Header -->
+  <div class="bg-industrial-950 text-white border-b border-industrial-800 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 font-sans relative overflow-hidden">
+    <div class="absolute inset-0 z-0 opacity-20">
+      <img
+        src="/images/hero-industrial.webp"
+        alt="Proyek Engineering Mesindo"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-industrial-950 via-industrial-950/90 to-industrial-950/70"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto">
+      <nav class="flex items-center gap-2 text-xs text-slate-400 mb-4" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Beranda</a>
+        <span>/</span>
+        <span class="text-brand-300 font-semibold">Studi Kasus &amp; Portofolio Proyek</span>
+      </nav>
+
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        <div class="max-w-3xl">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-500/20 text-brand-300 border border-brand-500/30 mb-3">
+            Verified Industrial Case Studies &bull; Sejak 1994
+          </span>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+            Pengalaman Rekayasa Lapangan &amp; Workshop
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed max-w-2xl">
+            Dokumentasi pelaksanaan rekondisi dan overhaul mesin-mesin pembangkit listrik, pabrik petrokimia, tambang, dan industri manufaktur strategis nasional.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <a
+            href="/layanan/"
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md"
+          >
+            <span>Katalog Layanan B2B</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust Certification Strip -->
+  <TrustPartnersStrip />
+
+  <!-- Projects List (Shopify B2B Case Showcase) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 font-sans space-y-12">
+    {projects.map((proj) => (
+      <article class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-2xs hover:shadow-lg hover:border-slate-300 transition-all p-6 sm:p-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <div class="lg:col-span-5 rounded-2xl overflow-hidden bg-slate-100 aspect-[4/3] border border-slate-200 relative">
+            <img
+              src={proj.data.coverImage}
+              alt={proj.data.title}
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-950/85 text-white backdrop-blur-xs">
+                {proj.data.sector}
+              </span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-5">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-50 text-brand-800 border border-brand-200/80">
+                Sektor: {proj.data.sector}
+              </span>
+              <span class="px-3 py-1 rounded-full text-[10px] font-medium bg-slate-100 text-slate-700">
+                Lokasi: {proj.data.location}
+              </span>
+            </div>
+
+            <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-950 leading-tight">
+              {proj.data.title}
+            </h2>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="font-bold text-slate-950 uppercase tracking-wider min-w-[130px] shrink-0">Equipment:</span>
+                <span class="font-medium text-slate-800">{proj.data.equipment}</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="font-bold text-slate-950 uppercase tracking-wider min-w-[130px] shrink-0">Lingkup Pengerjaan:</span>
+                <span class="text-slate-600 leading-relaxed">{proj.data.scope}</span>
+              </div>
+            </div>
+
+            {proj.data.metrics && (
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
+                {proj.data.metrics.map((m) => (
+                  <div class="p-3 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
+                    <span class="text-[10px] uppercase font-semibold text-slate-400 block">{m.label}</span>
+                    <span class="text-xs sm:text-sm font-extrabold text-slate-950 font-mono block mt-0.5">{m.value}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div class="pt-2 flex flex-wrap items-center gap-3">
+              <a
+                href={`/request-quotation/?equipment=${encodeURIComponent(proj.data.equipment)}`}
+                class="inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-slate-950 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-all"
+              >
+                <span>Minta Penawaran untuk Equipment Serupa</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+
+              <a
+                href={`https://wa.me/6285183002070?text=${encodeURIComponent(`Halo Tim Mesindo, saya tertarik dengan studi kasus *${proj.data.title}* (${proj.data.equipment}) dan ingin mendiskusikan kebutuhan equipment perusahaan kami.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-white border border-slate-300 hover:border-slate-400 text-slate-700 text-xs font-semibold transition-all"
+              >
+                <span>Diskusi via WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+    ))}
+  </div>
+</BaseLayout>

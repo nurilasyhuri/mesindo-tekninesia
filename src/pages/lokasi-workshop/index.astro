@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { COMPANY_INFO } from '../../data/companyInfo';
+import { generateGeneralInquiryUrl } from '../../utils/whatsapp';
+---
+
+<BaseLayout
+  title="Jaringan Workshop & Area Operasional Nasional"
+  description="Daftar workshop operasional resmi PT Mesindo Tekninesia di Jakarta Utara, Jakarta Timur, Sidoarjo, Purwakarta, Demak, Pekanbaru, Makassar, dan Timika Papua."
+>
+  <!-- Page Header -->
+  <div class="bg-slate-50 border-b border-slate-200/80 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 font-sans">
+    <div class="max-w-7xl mx-auto">
+      <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block mb-2">
+        Jaringan Workshop &amp; Rekayasa Lapangan
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+        Workshop Operasional di Seluruh Indonesia
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-600 mt-3 max-w-3xl leading-relaxed">
+        Dengan jaringan workshop yang tersebar di sentra industri dan pertambangan utama Indonesia — dari Jawa, Sumatera, Sulawesi, hingga Papua — kami memberikan respon penanganan darurat yang cepat serta kemudahan logistik equipment berat.
+      </p>
+    </div>
+  </div>
+
+  <!-- 9 Workshops Directory -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 font-sans">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {COMPANY_INFO.workshops.map((w) => {
+        const branchWaUrl = generateGeneralInquiryUrl(`workshop-${w.id}`);
+        return (
+          <div
+            id={w.id}
+            class="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
+                  {w.region}
+                </span>
+                {w.isMainOffice && (
+                  <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-brand-100 text-brand-800">
+                    Kantor Pusat
+                  </span>
+                )}
+              </div>
+
+              <h2 class="text-lg font-bold text-slate-900 leading-snug">
+                {w.name}
+              </h2>
+
+              <div class="mt-3 text-xs text-slate-600 space-y-1">
+                <p class="font-medium text-slate-800 leading-relaxed">
+                  {w.address}
+                </p>
+                {w.postalCode && (
+                  <p class="text-[11px] text-slate-400">Kode Pos: {w.postalCode}</p>
+                )}
+                {w.area && (
+                  <p class="text-[11px] font-semibold text-brand-700 bg-brand-50/60 inline-block px-2 py-0.5 rounded border border-brand-200/50 mt-1">
+                    Luas Area: {w.area}
+                  </p>
+                )}
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-100">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
+                  Fasilitas &amp; Kemampuan:
+                </span>
+                <div class="flex flex-wrap gap-1.5">
+                  {w.capabilities.map((cap) => (
+                    <span class="px-2 py-1 rounded-md text-[11px] bg-slate-50 border border-slate-200 text-slate-700 font-medium">
+                      {cap}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+              <a
+                href={branchWaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 hover:text-brand-800 transition-colors"
+              >
+                <span>Hubungi Workshop</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${w.name} ${w.address}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[11px] text-slate-400 hover:text-slate-700 underline"
+              >
+                Buka Peta
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- On-Site Engineering Callout -->
+    <div class="mt-12 p-8 rounded-3xl bg-slate-900 text-white flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="max-w-2xl">
+        <h3 class="text-xl font-bold text-white leading-snug">Equipment Tidak Dapat Dipindahkan ke Workshop?</h3>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1.5 leading-relaxed">
+          Kami menyediakan tim on-site field service lengkap dengan portable dynamic balancing, vibration analyzer, diagnostic test bench, dan peralatan machining in-situ untuk penanganan langsung di plant site Anda.
+        </p>
+      </div>
+      <a
+        href="/request-quotation/"
+        class="px-6 py-3 rounded-full bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs uppercase tracking-wider shrink-0 transition-colors"
+      >
+        <span>Ajukan On-Site Service &rarr;</span>
+      </a>
+    </div>
+
+  </div>
+</BaseLayout>

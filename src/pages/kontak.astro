@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { COMPANY_INFO } from '../data/companyInfo';
+import { generateGeneralInquiryUrl } from '../utils/whatsapp';
+
+const waContactUrl = generateGeneralInquiryUrl('page-kontak');
+---
+
+<BaseLayout
+  title="Hubungi Kami & Kantor Pusat"
+  description="Kontak resmi PT Mesindo Tekninesia, kantor pusat Jakarta Utara, email engineering, serta layanan konsultasi teknisi darurat 24/7."
+>
+  <!-- Page Header -->
+  <div class="bg-slate-50 border-b border-slate-200/80 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 font-sans">
+    <div class="max-w-7xl mx-auto">
+      <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block mb-2">
+        Hubungi Tim Engineering
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+        Kontak &amp; Informasi Layanan
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-600 mt-3 max-w-3xl leading-relaxed">
+        Tim technical support PT Mesindo Tekninesia siap membantu kebutuhan audit kelistrikan, rekondisi darurat, hingga perencanaan overhaul equipment industri Anda.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 font-sans">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- Contact Details -->
+      <div class="space-y-6">
+        <div class="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-4">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider pb-3 border-b border-slate-100">
+            Kantor Pusat &amp; Workshop Utama
+          </h3>
+          <div class="text-xs text-slate-600 space-y-2 leading-relaxed">
+            <p class="font-bold text-slate-900">{COMPANY_INFO.name}</p>
+            <p>{COMPANY_INFO.workshops[0].address}</p>
+            <p>Kode Pos: {COMPANY_INFO.workshops[0].postalCode}</p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-3">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider pb-2 border-b border-slate-100">
+            Hotline &amp; Komunikasi
+          </h3>
+          <div class="space-y-2.5 text-xs">
+            <div>
+              <span class="text-slate-400 block text-[11px]">Telepon Kantor:</span>
+              <a href="tel:+6285183002070" class="text-slate-900 font-bold hover:text-brand-600 transition-colors">
+                {COMPANY_INFO.contact.phoneFormatted}
+              </a>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[11px]">Hotline / WhatsApp:</span>
+              <a href={waContactUrl} target="_blank" rel="noopener noreferrer" class="text-brand-700 font-bold text-sm hover:underline">
+                {COMPANY_INFO.contact.mobileFormatted}
+              </a>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[11px]">Manager Workshop:</span>
+              <span class="text-slate-800 font-bold">{COMPANY_INFO.contact.workshopManager}</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[11px]">Email Resmi:</span>
+              <div class="font-medium text-slate-800">{COMPANY_INFO.contact.email}</div>
+              <div class="font-medium text-slate-800">{COMPANY_INFO.contact.salesEmail}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-industrial-950 text-white space-y-3">
+          <h4 class="text-sm font-bold text-white">9 Cabang Workshop</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Butuh workshop terdekat dari lokasi pabrik Anda? Kunjungi halaman direktori 9 cabang kami.
+          </p>
+          <div class="pt-2">
+            <a
+              href="/lokasi-workshop/"
+              class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 transition-colors"
+            >
+              <span>Daftar 9 Workshop &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Inquiry Form Container -->
+      <div class="lg:col-span-2 p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-2xs">
+        <h3 class="text-xl font-bold text-slate-900 mb-2">Kirim Pesan Teknis</h3>
+        <p class="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed">
+          Atau jika Anda membutuhkan penawaran formal dengan spesifikasi detail (kW, Voltage, RPM), disarankan langsung mengisi formulir RFQ.
+        </p>
+
+        <div class="space-y-4">
+          <div class="p-5 rounded-xl bg-white border border-slate-200 space-y-3">
+            <h4 class="text-sm font-bold text-slate-900">Format Permohonan Resmi (RFQ):</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Gunakan formulir online kami untuk menyusun data nameplate mesin dengan rapi.
+            </p>
+            <a
+              href="/request-quotation/"
+              class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-slate-900 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-xs"
+            >
+              <span>Buka Formulir RFQ Online &rarr;</span>
+            </a>
+          </div>
+
+          <div class="p-5 rounded-xl bg-white border border-slate-200 space-y-3">
+            <h4 class="text-sm font-bold text-slate-900">Konsultasi WhatsApp Langsung:</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Hubungi tim teknisi kami secara instan untuk respon langsung terhadap kerusakan equipment yang mendesak.
+            </p>
+            <a
+              href={waContactUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-xs"
+            >
+              <span>Chat WhatsApp ({COMPANY_INFO.contact.phoneFormatted}) &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

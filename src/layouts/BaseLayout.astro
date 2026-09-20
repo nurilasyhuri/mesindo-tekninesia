@@ -1,0 +1,58 @@
+---
+import SeoHead from '../components/common/SeoHead.astro';
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+import MobileStickyBar from '../components/common/MobileStickyBar.astro';
+import RfqCartDrawer from '../components/common/RfqCartDrawer.astro';
+import FloatingWhatsApp from '../components/common/FloatingWhatsApp.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  jsonLd?: Record<string, any> | Array<Record<string, any>>;
+  hideMobileStickyBar?: boolean;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image,
+  type,
+  jsonLd,
+  hideMobileStickyBar = false,
+  noindex = false,
+} = Astro.props;
+
+const isHomePage = Astro.url.pathname === '/' || Astro.url.pathname === '';
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <SeoHead
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+      type={type}
+      jsonLd={jsonLd}
+      noindex={noindex}
+    />
+  </head>
+  <body class="bg-white text-slate-900 antialiased selection:bg-brand-100 selection:text-brand-900 font-sans flex flex-col min-h-screen">
+    <Header isHomePage={isHomePage} />
+    <main class="flex-1 pb-20 md:pb-0">
+      <slot />
+    </main>
+    <Footer />
+    {!hideMobileStickyBar && <MobileStickyBar />}
+    <RfqCartDrawer />
+    <FloatingWhatsApp />
+  </body>
+</html>
