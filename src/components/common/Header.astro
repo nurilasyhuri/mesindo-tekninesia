@@ -91,7 +91,7 @@ const searchItems = [
     </div>
     
     <div class="hidden md:flex items-center text-slate-300 text-center font-normal">
-      <span>Layanan Rekayasa &amp; Overhaul Seluruh Indonesia • Hotline: <strong class="font-mono text-white font-medium">{COMPANY_INFO.contact.phoneFormatted}</strong></span>
+      <span>Layanan Rekayasa &amp; Overhaul Seluruh Indonesia • Hotline: <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="font-mono text-emerald-400 hover:text-emerald-300 font-semibold underline underline-offset-2 transition-colors ml-1" title="Chat WhatsApp Langsung">{COMPANY_INFO.contact.phoneFormatted}</a></span>
     </div>
 
     <div class="flex items-center gap-2">
@@ -255,6 +255,20 @@ const searchItems = [
             0
           </span>
         </button>
+
+        <!-- WhatsApp Direct Action (Pill Button) -->
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold tracking-tight transition-all shadow-xs cursor-pointer select-none"
+          title="Chat WhatsApp Engineering"
+        >
+          <svg class="w-3.5 h-3.5 text-white shrink-0" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/>
+          </svg>
+          <span>WhatsApp</span>
+        </a>
 
         <!-- Primary RFQ Action (Pill Button) -->
         <a

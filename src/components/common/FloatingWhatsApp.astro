@@ -5,23 +5,23 @@ import { generateGeneralInquiryUrl } from '../../utils/whatsapp';
 const waCsUrl = generateGeneralInquiryUrl('floating-cs-button');
 ---
 
-<!-- Floating WhatsApp CS Button (Bottom Right) -->
+<!-- Floating WhatsApp CS Button (Sitewide Quick Action) -->
 <aside
-  class="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-50 select-none print:hidden"
-  aria-label="Hubungi WhatsApp CS Engineering PT Mesindo Teknisia"
+  class="fixed bottom-20 sm:bottom-6 right-3 sm:right-6 z-40 select-none print:hidden font-sans"
+  aria-label="Hubungi WhatsApp Engineering PT Mesindo Teknisia"
 >
   <a
     href={waCsUrl}
     target="_blank"
     rel="noopener noreferrer"
     aria-label={`Chat WhatsApp CS PT Mesindo Teknisia (${COMPANY_INFO.contact.whatsappFormatted})`}
-    class="group flex items-center gap-2.5 pl-3.5 pr-4 py-2.5 md:py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white shadow-[0_8px_24px_rgba(5,150,105,0.35)] hover:shadow-[0_12px_28px_rgba(5,150,105,0.5)] transition-all duration-300 transform hover:-translate-y-1 focus:outline-hidden focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
+    class="group flex items-center gap-2 sm:gap-2.5 pl-2.5 pr-3.5 sm:pl-3.5 sm:pr-4 py-2 sm:py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white shadow-[0_8px_24px_rgba(5,150,105,0.4)] hover:shadow-[0_12px_28px_rgba(5,150,105,0.55)] transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 cursor-pointer border border-emerald-400/30"
   >
     <!-- Pulse Ring & WhatsApp Icon -->
     <div class="relative flex items-center justify-center shrink-0">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-60"></span>
-      <div class="relative w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+      <div class="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 flex items-center justify-center">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/>
         </svg>
       </div>
@@ -31,12 +31,13 @@ const waCsUrl = generateGeneralInquiryUrl('floating-cs-button');
 
     <!-- CS Badge & Text -->
     <div class="flex flex-col text-left">
-      <div class="flex items-center gap-1 text-[10px] uppercase font-bold tracking-wider text-emerald-100 leading-none">
+      <div class="flex items-center gap-1 text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-emerald-100 leading-none">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span>
-        <span>CS Aktif</span>
+        <span>Online 24/7</span>
       </div>
-      <span class="text-xs font-extrabold tracking-tight text-white leading-tight mt-0.5">
-        Chat CS WhatsApp
+      <span class="text-xs font-bold tracking-tight text-white leading-tight mt-0.5 whitespace-nowrap">
+        <span class="inline sm:hidden">WhatsApp</span>
+        <span class="hidden sm:inline">Chat CS WhatsApp</span>
       </span>
     </div>
   </a>
