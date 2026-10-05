@@ -15,4 +15,4 @@ metrics:
     value: "Class H / VPI Epoxy"
 ---
 
-Motor penggerak utama ball mill mengalami *ground fault* akibat kontaminasi debu semen dan kelembaban tinggi. Tim PT Mesindo Tekninesia melakukan pembongkaran, pembersihan inti besi, fabrikasi kumparan form-wound coil baru berinsulasi mica tape, dan proses VPI dengan resin epoksi tanpa pelarut. Pengujian withstand voltage 14.2 kV berhasil dilewati dengan hasil isolasi sempurna.
+Motor penggerak utama ball mill mengalami *ground fault* akibat kontaminasi debu semen dan kelembaban tinggi. Tim MESINDO TEKNISIA melakukan pembongkaran, pembersihan inti besi, fabrikasi kumparan form-wound coil baru berinsulasi mica tape, dan proses VPI dengan resin epoksi tanpa pelarut. Pengujian withstand voltage 14.2 kV berhasil dilewati dengan hasil isolasi sempurna.

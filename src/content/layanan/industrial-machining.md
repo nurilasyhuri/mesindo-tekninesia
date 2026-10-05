@@ -34,7 +34,7 @@ applicableIndustries:
 
 ## Permesinan Presisi Komponen Mesin Industri Berukuran Ekstra Besar
 
-Salah satu keunggulan teknis paling menonjol dari PT Mesindo Tekninesia adalah kelengkapan mesin bubut vertikal dan horisontal berkapasitas sangat besar di workshop kami di Jakarta Timur dan cabang utama lainnya.
+Salah satu keunggulan teknis paling menonjol dari MESINDO TEKNISIA adalah kelengkapan mesin bubut vertikal dan horisontal berkapasitas sangat besar di workshop kami di Jakarta Timur dan cabang utama lainnya.
 
 Kami mampu menangani benda kerja yang tidak dapat dikerjakan oleh kebanyakan bengkel bubut biasa karena keterbatasan dimensi swing atau bobot tonase.
 

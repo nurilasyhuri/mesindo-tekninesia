@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { generateWhatsAppRFQUrl } from '../../utils/whatsapp';
+import SparepartsCatalogGrid from '../../components/spareparts/SparepartsCatalogGrid.astro';
 
 export async function getStaticPaths() {
   const services = await getCollection('layanan');
@@ -36,46 +37,68 @@ const waServiceUrl = generateWhatsAppRFQUrl({
   source: `shopify-pdp-${service.slug}`,
 });
 
+const SEO_TITLE_MAP: Record<string, string> = {
+  'electro-motor': 'Rewinding & Repair Motor Listrik LV/HV - MESINDO TEKNISIA',
+  'generator': 'Overhaul & Rewinding Generator Industri - MESINDO TEKNISIA',
+  'high-speed-balancing': 'Jasa High Speed Balancing Rotor 150 Ton - MESINDO TEKNISIA',
+  'transformer': 'Overhaul Transformator & Purifikasi Oli - MESINDO TEKNISIA',
+  'industrial-machining': 'Bubut Vertikal 6.7m & Machining Presisi - MESINDO TEKNISIA',
+  'mechanical-services': 'Mechanical Overhaul Pompa & Kompresor - MESINDO TEKNISIA',
+  'testing-assessment': 'Uji Diagnostik Motor & Generator 13.8kV - MESINDO TEKNISIA',
+  'coil-manufacturing': 'Pabrikasi Kumparan Stator Coil HV Mesin - MESINDO TEKNISIA',
+  'sparepart-motor-listrik': 'Katalog Sparepart Motor Listrik Industri - MESINDO TEKNISIA',
+};
+
+const SEO_DESC_MAP: Record<string, string> = {
+  'electro-motor': 'Jasa rewinding, overhaul, dan testing motor listrik LV/HV berstandar EASA AR100 & IEEE 1068 dengan oven VPI Class H untuk pabrik & maritim.',
+  'generator': 'Layanan overhaul, rewinding stator & rotor, re-insulasi, dan asesmen turbogenerator PLTU/PLTG serta generator industri berstandar global.',
+  'high-speed-balancing': 'Fasilitas high speed dynamic balancing tunnel 150 ton dengan diameter swing 4.2m toleransi vibrasi ISO 1940 Grade G2.5/G1.0 turbin & rotor.',
+  'transformer': 'Overhaul trafo daya, rewinding, pengujian kelistrikan, purifikasi minyak trafo, dan perbaikan OLTC berstandar IEC & IEEE terverifikasi.',
+  'industrial-machining': 'Pemesinan presisi komponen berat: Vertical Lathe 6.7m x 8m, Horizontal Lathe 15m, dan metal spraying rekondisi shaft rotor industri.',
+  'mechanical-services': 'Overhaul pompa industri, boiler feed pump, kompresor gas, turbocharger maritim, dan valve dengan pengujian hidrostatis & balancing dinamis.',
+  'testing-assessment': 'Pengujian diagnostik kelistrikan 13.8kV: EL CID test, Partial Discharge, Tan Delta, dan analisis vibrasi rotating apparatus industri.',
+  'coil-manufacturing': 'Pabrikasi kumparan presisi (formed coil), re-insulasi bar stator generator, fabrikasi slip ring, dan komutator motor DC berspesifikasi EASA.',
+  'sparepart-motor-listrik': 'Katalog komponen & material overhaul motor listrik: bearing SKF/NSK, oil seal, kawat tembaga Class H, isolasi Nomex, dan terminal block resmi.',
+};
+
+const pageTitle = SEO_TITLE_MAP[service.slug] || `${service.data.title} - MESINDO TEKNISIA`;
+const pageDesc = SEO_DESC_MAP[service.slug] || service.data.description;
+
 const serviceJsonLd = {
   '@type': ['Service', 'Product'],
-  '@id': `https://mesindotekninesia.com/layanan/${service.slug}/#service`,
+  '@id': `https://mesindoteknisia.com/layanan/${service.slug}/#service`,
   name: service.data.title,
-  description: service.data.description,
+  description: pageDesc,
   sku: skuCode,
-  image: `https://mesindotekninesia.com${service.data.heroImage}`,
+  image: `https://mesindoteknisia.com${service.data.heroImage}`,
   category: service.data.categoryLabel,
   provider: {
-    '@id': 'https://mesindotekninesia.com/#organization',
+    '@id': 'https://mesindoteknisia.com/#organization',
   },
   brand: {
     '@type': 'Brand',
-    name: 'PT Mesindo Tekninesia',
+    name: 'MESINDO TEKNISIA',
   },
-  areaServed: {
-    '@type': 'Country',
-    name: 'Indonesia',
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5.0',
-    reviewCount: '48',
-    bestRating: '5',
-  },
+  areaServed: [
+    { '@type': 'Country', name: 'Indonesia' },
+    { '@type': 'AdministrativeArea', name: 'Southeast Asia' },
+    { '@type': 'Service', name: 'Marine & Offshore Industrial Equipment' },
+  ],
   offers: {
     '@type': 'Offer',
     priceCurrency: 'IDR',
     price: '0',
     priceValidUntil: '2026-12-31',
     availability: 'https://schema.org/InStock',
-    description: 'Inquiry by Nameplate (Request for Quotation / RFQ)',
-    url: `https://mesindotekninesia.com/layanan/${service.slug}/`,
+    description: 'Inquiry by Nameplate (Request for Quotation / RFQ Terms)',
+    url: `https://mesindoteknisia.com/layanan/${service.slug}/`,
   },
 };
 ---
 
 <BaseLayout
-  title={`${service.data.title} - Layanan Engineering & Rekondisi`}
-  description={service.data.description}
+  title={pageTitle}
+  description={pageDesc}
   image={service.data.heroImage}
   jsonLd={serviceJsonLd}
 >
@@ -131,7 +154,7 @@ const serviceJsonLd = {
           <!-- Bottom Image Label -->
           <div class="absolute bottom-3 right-3 pointer-events-none">
             <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-black/60 text-white backdrop-blur-xs">
-              PT Mesindo Tekninesia Workshop Facility
+              MESINDO TEKNISIA Workshop Facility
             </span>
           </div>
         </div>
@@ -196,7 +219,7 @@ const serviceJsonLd = {
         <!-- Vendor, Title & Rating -->
         <div>
           <div class="flex items-center justify-between text-[11px] font-bold text-brand-700 uppercase tracking-wider mb-2">
-            <span>PT MESINDO TEKNINESIA</span>
+            <span>MESINDO TEKNISIA</span>
             <span class="text-slate-400 font-normal">EASA &bull; AEMT MEMBER</span>
           </div>
 
@@ -456,6 +479,10 @@ const serviceJsonLd = {
 
     </div>
 
+    {service.slug === 'sparepart-motor-listrik' && (
+      <SparepartsCatalogGrid />
+    )}
+
     <!-- Long-Form Engineering Guide & Scope Content -->
     <div class="mt-16 pt-12 border-t border-slate-200 max-w-4xl">
       <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block mb-2">
@@ -674,9 +701,9 @@ const serviceJsonLd = {
     // Dynamic WhatsApp URL generator reflecting active variants
     function updateWhatsAppUrl() {
       if (!waConsultBtn) return;
-      const message = `*KONSULTASI TEKNIS / RFQ - PT MESINDO TEKNINESIA*\n` +
+      const message = `*KONSULTASI TEKNIS / RFQ - MESINDO TEKNISIA*\n` +
         `----------------------------------------\n` +
-        `Halo Tim Engineering PT Mesindo Tekninesia, saya ingin mengajukan penawaran untuk:\n` +
+        `Halo Tim Engineering MESINDO TEKNISIA, saya ingin mengajukan penawaran untuk:\n` +
         `• *Layanan:* ${serviceTitle}\n` +
         `• *Jumlah:* ${currentQty} Unit\n` +
         `• *Kelas Tegangan:* ${selectedVoltage}\n` +

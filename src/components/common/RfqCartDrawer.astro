@@ -5,32 +5,32 @@
 <!-- RFQ Drawer Backdrop -->
 <div
   id="rfq-drawer-backdrop"
-  class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden opacity-0 transition-opacity duration-300"
+  class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300"
   aria-hidden="true"
 ></div>
 
-<!-- RFQ Slide-Over Drawer (Shopify Ajax Cart Equivalent for B2B) -->
+<!-- RFQ Slide-Over Drawer -->
 <aside
   id="rfq-drawer"
-  class="fixed inset-y-0 right-0 w-full max-w-md bg-white z-50 shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col font-sans"
+  class="fixed inset-y-0 right-0 w-full max-w-md bg-white/95 backdrop-blur-2xl z-50 shadow-2xl border-l border-black/[0.06] transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col font-sans"
   role="dialog"
   aria-modal="true"
   aria-label="Keranjang Permintaan Penawaran RFQ"
 >
   <!-- Drawer Header -->
-  <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50/80">
-    <div class="flex items-center gap-2.5">
+  <div class="px-6 py-4 border-b border-black/[0.05] flex items-center justify-between">
+    <div class="flex items-center gap-3">
       <div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
         </svg>
       </div>
       <div>
-        <h2 class="text-sm font-bold text-slate-900 leading-none">
-          Daftar Permintaan Penawaran (RFQ)
+        <h2 class="text-sm font-semibold text-slate-950 tracking-tight leading-none">
+          Daftar RFQ
         </h2>
         <span class="text-[11px] text-slate-500 mt-0.5 block">
-          <span id="rfq-drawer-count">0</span> item equipment dipilih
+          <span id="rfq-drawer-count">0</span> item terpilih
         </span>
       </div>
     </div>
@@ -39,37 +39,37 @@
       id="close-rfq-drawer-btn"
       type="button"
       aria-label="Tutup Keranjang RFQ"
-      class="p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-200/60 rounded-full transition-colors cursor-pointer"
+      class="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
     >
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
   </div>
 
   <!-- Drawer Body -->
-  <div class="flex-1 overflow-y-auto p-5">
+  <div class="flex-1 overflow-y-auto p-6 space-y-4">
     
     <!-- Empty State -->
-    <div id="rfq-empty-state" class="py-12 text-center space-y-4">
-      <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 mx-auto flex items-center justify-center">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+    <div id="rfq-empty-state" class="py-16 text-center space-y-4">
+      <div class="w-14 h-14 rounded-full bg-slate-100 text-slate-400 mx-auto flex items-center justify-center">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
         </svg>
       </div>
       <div class="max-w-xs mx-auto">
-        <h3 class="text-sm font-bold text-slate-900">Belum Ada Equipment Dipilih</h3>
+        <h3 class="text-sm font-semibold text-slate-900 tracking-tight">Belum Ada Item Terpilih</h3>
         <p class="text-xs text-slate-500 mt-1 leading-relaxed">
-          Pilih layanan atau fasilitas di katalog kami dan klik <span class="font-semibold text-slate-700">"Minta Penawaran"</span> untuk menambahkan ke daftar ini.
+          Pilih layanan atau sparepart di katalog dan tambahkan ke RFQ bag untuk permintaan penawaran resmi.
         </p>
       </div>
       <div class="pt-2">
         <a
-          href="/#katalog-layanan"
+          href="/sparepart/"
           id="rfq-browse-btn"
-          class="inline-flex items-center justify-center px-4 py-2 rounded-full bg-slate-900 hover:bg-brand-600 text-white text-xs font-semibold uppercase tracking-wider transition-colors"
+          class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-medium tracking-tight transition-all"
         >
-          Lihat Katalog Layanan
+          <span>Eksplor Katalog Sparepart &rarr;</span>
         </a>
       </div>
     </div>
@@ -81,34 +81,34 @@
 
   </div>
 
-  <!-- Drawer Footer (Shopify Checkout Equivalent) -->
-  <div id="rfq-drawer-footer" class="p-5 border-t border-slate-200 bg-slate-50/90 space-y-3 hidden">
+  <!-- Drawer Footer -->
+  <div id="rfq-drawer-footer" class="p-6 border-t border-black/[0.05] bg-white space-y-3 hidden">
     <div class="flex items-center justify-between text-xs pb-1">
-      <span class="text-slate-500">Estimasi Respon Tim Teknis:</span>
-      <span class="font-bold text-slate-900">&lt; 2 Jam Kerja</span>
+      <span class="text-slate-500">Estimasi Respon Engineering:</span>
+      <span class="font-medium text-slate-900">&le; 2 Jam Kerja</span>
     </div>
     
-    <button
-      id="rfq-submit-wa-btn"
-      type="button"
-      class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all cursor-pointer select-none"
-    >
-      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/>
-      </svg>
-      <span>Kirim Permintaan via WhatsApp</span>
-    </button>
-
     <a
       href="/request-quotation/"
       id="rfq-submit-form-btn"
-      class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold text-xs tracking-wide transition-all"
+      class="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-slate-900 hover:bg-black text-white font-medium text-xs tracking-tight transition-all cursor-pointer shadow-sm"
     >
-      <span>Lengkapi Formulir Nameplate Formal &rarr;</span>
+      <span>Lengkapi Formulir RFQ Formal &rarr;</span>
     </a>
 
+    <button
+      id="rfq-submit-wa-btn"
+      type="button"
+      class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-5 rounded-full bg-[#f5f5f7] hover:bg-[#e8e8ed] text-slate-800 font-medium text-xs tracking-tight transition-all cursor-pointer select-none"
+    >
+      <svg class="w-3.5 h-3.5 text-slate-700" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/>
+      </svg>
+      <span>Kirim Ringkasan via WhatsApp</span>
+    </button>
+
     <p class="text-[10px] text-slate-400 text-center leading-snug">
-      PT Mesindo Tekninesia • Standar Mutu ISO 9001:2015 &bull; EASA &amp; IEEE Compliant
+      PT Mesindo Teknisia &bull; ISO 9001:2015 &bull; EASA &amp; IEEE Standard
     </p>
   </div>
 </aside>
@@ -211,22 +211,22 @@
           itemsList.classList.remove('hidden');
           footer.classList.remove('hidden');
 
-          // Render cards (Shopify B2B Cart Row)
+          // Render cards (Apple style cart row)
           itemsList.innerHTML = cart.map(item => `
-            <div class="p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition-all flex flex-col gap-2.5 shadow-2xs">
+            <div class="p-4 rounded-2xl border border-black/[0.05] bg-[#f5f5f7]/60 hover:bg-[#f5f5f7] transition-all flex flex-col gap-2.5">
               <div class="flex items-start justify-between gap-3">
                 <div class="flex items-start gap-3">
                   ${item.image ? `
-                    <div class="w-12 h-12 rounded-lg bg-slate-100 border border-slate-200 overflow-hidden shrink-0">
+                    <div class="w-12 h-12 rounded-xl bg-white border border-black/[0.05] overflow-hidden shrink-0">
                       <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover" />
                     </div>
                   ` : ''}
-                  <div class="space-y-1">
-                    <span class="inline-block px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-brand-50 text-brand-700 border border-brand-200/60">
+                  <div class="space-y-0.5">
+                    <span class="inline-block text-[10px] font-medium text-sky-600 tracking-tight">
                       ${item.category}
                     </span>
-                    <h4 class="text-xs font-bold text-slate-950 leading-snug">${item.title}</h4>
-                    ${item.variant ? `<p class="text-[10px] font-medium text-brand-700 bg-slate-50 px-2 py-0.5 rounded inline-block border border-slate-200/60">${item.variant}</p>` : ''}
+                    <h4 class="text-xs font-semibold text-slate-950 leading-snug">${item.title}</h4>
+                    ${item.variant ? `<p class="text-[10px] font-medium text-slate-600 bg-white/80 px-2 py-0.5 rounded-full inline-block border border-black/[0.04]">${item.variant}</p>` : ''}
                     <p class="text-[11px] text-slate-500 leading-relaxed line-clamp-1">${item.spec}</p>
                   </div>
                 </div>
@@ -234,33 +234,33 @@
                 <button
                   type="button"
                   onclick="window.removeEquipmentFromRfq('${item.id}', '${(item.variant || '').replace(/'/g, "\\'")}')"
-                  class="p-1 text-slate-400 hover:text-red-600 rounded-md hover:bg-slate-100 transition-colors cursor-pointer shrink-0"
+                  class="p-1 text-slate-400 hover:text-slate-900 rounded-full hover:bg-black/5 transition-colors cursor-pointer shrink-0"
                   title="Hapus item"
                 >
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
 
               <!-- Quantity & Price Note -->
-              <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                <div class="flex items-center border border-slate-200 rounded-lg overflow-hidden bg-slate-50">
+              <div class="flex items-center justify-between pt-2 border-t border-black/[0.04] text-xs">
+                <div class="flex items-center border border-black/[0.06] rounded-full overflow-hidden bg-white">
                   <button
                     type="button"
                     onclick="window.updateRfqItemQty('${item.id}', '${(item.variant || '').replace(/'/g, "\\'")}', -1)"
-                    class="px-2.5 py-1 text-slate-600 hover:bg-slate-200 transition-colors font-bold"
+                    class="px-2.5 py-1 text-slate-600 hover:bg-slate-100 transition-colors font-medium"
                     title="Kurang Qty"
                   >-</button>
-                  <span class="px-2.5 py-1 text-slate-900 font-bold font-mono text-[11px]">${item.quantity || 1} Unit</span>
+                  <span class="px-2.5 py-1 text-slate-900 font-medium text-[11px]">${item.quantity || 1} Unit</span>
                   <button
                     type="button"
                     onclick="window.updateRfqItemQty('${item.id}', '${(item.variant || '').replace(/'/g, "\\'")}', 1)"
-                    class="px-2.5 py-1 text-slate-600 hover:bg-slate-200 transition-colors font-bold"
+                    class="px-2.5 py-1 text-slate-600 hover:bg-slate-100 transition-colors font-medium"
                     title="Tambah Qty"
                   >+</button>
                 </div>
-                <span class="text-[11px] font-semibold text-slate-500">Estimasi: Inquire RFQ</span>
+                <span class="text-[11px] font-medium text-slate-500">Estimasi: Inquire RFQ</span>
               </div>
             </div>
           `).join('');
@@ -312,13 +312,13 @@
           return `${idx + 1}. *${it.title}* (Qty: ${qty} Unit${varText})\n   • Scope/Spec: ${it.spec}`;
         }).join('\n\n');
 
-        const message = `*PERMINTAAN PENAWARAN TEKNIS (RFQ) - PT MESINDO TEKNINESIA*\n` +
+        const message = `*PERMINTAAN PENAWARAN TEKNIS (RFQ) - MESINDO TEKNISIA*\n` +
           `----------------------------------------\n` +
-          `Halo Tim Engineering PT Mesindo Tekninesia, saya ingin mengajukan penawaran resmi untuk item equipment berikut:\n\n` +
+          `Halo Tim Engineering PT Mesindo Teknisia, saya ingin mengajukan penawaran resmi untuk item equipment berikut:\n\n` +
           itemsText + `\n\n` +
           `----------------------------------------\n` +
           `Mohon informasi estimasi biaya, jadwal workshop/on-site, dan ketersediaan tim teknisi.\n` +
-          `[Sumber: Shopify B2B Storefront PT Mesindo Tekninesia]`;
+          `[Sumber: B2B Engineering Portal MESINDO TEKNISIA]`;
 
         const waUrl = `https://wa.me/6285183002070?text=${encodeURIComponent(message)}`;
         window.open(waUrl, '_blank', 'noopener,noreferrer');

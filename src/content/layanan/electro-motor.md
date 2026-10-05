@@ -35,7 +35,7 @@ applicableIndustries:
 
 ## Solusi Pemeliharaan & Rekondisi Electro Motor Industri
 
-PT Mesindo Tekninesia menyediakan fasilitas workshop modern dan tim teknisi berpengalaman untuk menangani berbagai permasalahan motor listrik industri. Mulai dari kerusakan isolasi stator, bearing failure, getaran abnormal (vibration), hingga kebutuhan rewinding total dengan spesifikasi kawat tembaga murni bersertifikat.
+MESINDO TEKNISIA menyediakan fasilitas workshop modern dan tim teknisi berpengalaman untuk menangani berbagai permasalahan motor listrik industri. Mulai dari kerusakan isolasi stator, bearing failure, getaran abnormal (vibration), hingga kebutuhan rewinding total dengan spesifikasi kawat tembaga murni bersertifikat.
 
 ### Ruang Lingkup Layanan:
 

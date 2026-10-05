@@ -1,0 +1,391 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TrustPartnersStrip from '../../components/home/TrustPartnersStrip.astro';
+import { SPAREPARTS_CATALOG } from '../../data/spareparts';
+
+const categories = [
+  { id: 'all', label: 'Semua Komponen', count: SPAREPARTS_CATALOG.length },
+  { id: 'Mekanis', label: 'Mekanis & Seal', count: SPAREPARTS_CATALOG.filter(i => i.category === 'Mekanis').length },
+  { id: 'Rewinding & Isolasi', label: 'Rewinding & Isolasi', count: SPAREPARTS_CATALOG.filter(i => i.category === 'Rewinding & Isolasi').length },
+  { id: 'Terminal & Baut', label: 'Terminal & Baut', count: SPAREPARTS_CATALOG.filter(i => i.category === 'Terminal & Baut').length },
+  { id: 'Pelumas & Kimia', label: 'Pelumas & Grease', count: SPAREPARTS_CATALOG.filter(i => i.category === 'Pelumas & Kimia').length },
+];
+
+const sparepartJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'OfferCatalog',
+  '@id': 'https://mesindoteknisia.com/sparepart/#catalog',
+  name: 'Katalog Sparepart dan Material Overhaul Motor Listrik Industri - MESINDO TEKNISIA',
+  description: 'Penyedia sparepart dan material overhaul motor listrik AC 3 fasa: bearing SKF/NSK, oil seal, kawat tembaga enamel Class H, isolasi Nomex, resin VPI, terminal block, tie rod, dan grease tahan panas.',
+  url: 'https://mesindoteknisia.com/sparepart/',
+  itemListElement: SPAREPARTS_CATALOG.map((item, index) => ({
+    '@type': 'Offer',
+    position: index + 1,
+    itemOffered: {
+      '@type': 'Product',
+      name: item.name,
+      description: item.description,
+      image: `https://mesindoteknisia.com${item.image}`,
+      category: item.category,
+      brand: {
+        '@type': 'Brand',
+        name: 'MESINDO TEKNISIA',
+      },
+    },
+    priceCurrency: 'IDR',
+    price: '0',
+    availability: 'https://schema.org/InStock',
+    url: `https://mesindoteknisia.com/layanan/sparepart-motor-listrik/#${item.id}`,
+  })),
+};
+---
+
+<BaseLayout
+  title="Katalog Sparepart Motor Listrik Industri - MESINDO TEKNISIA"
+  description="Daftar 15 komponen overhaul motor listrik: bearing SKF/NSK, oil seal, kawat tembaga Class H, isolasi Nomex, dan terminal block berstandar EASA."
+  jsonLd={sparepartJsonLd}
+>
+  <!-- Page Header (Apple Pro Dark Banner) -->
+  <div class="bg-black text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 font-sans select-none">
+    <div class="max-w-7xl mx-auto">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-slate-400 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Beranda</a>
+        <span>/</span>
+        <a href="/layanan/" class="hover:text-white transition-colors">Layanan</a>
+        <span>/</span>
+        <span class="text-slate-200">Sparepart Motor Listrik</span>
+      </nav>
+
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+        <div class="max-w-3xl">
+          <span class="text-xs font-semibold uppercase tracking-[0.15em] text-sky-400 block mb-3">
+            Katalog Resmi B2B
+          </span>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-tight">
+            Sparepart &amp; Material Overhaul.
+          </h1>
+          <p class="text-base sm:text-lg text-slate-400 mt-4 leading-relaxed max-w-2xl">
+            {SPAREPARTS_CATALOG.length} komponen mekanis presisi, kawat tembaga murni Class H 200°C, isolasi Nomex/Mylar, resin VPI, dan pelumas tahan panas berstandar EASA &amp; IEEE.
+          </p>
+        </div>
+
+        <!-- Header Actions (Apple Pill Buttons) -->
+        <div class="flex flex-wrap items-center gap-3 shrink-0">
+          <button
+            type="button"
+            onclick="window.openRfqDrawer ? window.openRfqDrawer() : null"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-slate-200 text-slate-950 font-medium text-xs tracking-tight transition-all cursor-pointer shadow-md"
+          >
+            <svg class="w-4 h-4 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            <span>Keranjang RFQ</span>
+            <span class="rfq-cart-count hidden px-1.5 py-0.5 rounded-full bg-slate-950 text-white text-[9px] font-mono font-bold leading-none">0</span>
+          </button>
+
+          <a
+            href="/request-quotation/"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] hover:bg-white/[0.14] text-white border border-white/[0.12] font-medium text-xs tracking-tight transition-all"
+          >
+            <span>Form Permohonan RFQ</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+
+          <a
+            href="/layanan/sparepart-motor-listrik/"
+            class="inline-flex items-center gap-1.5 px-4 py-2.5 text-slate-400 hover:text-white font-normal text-xs transition-colors"
+          >
+            <span>Panduan Teknis Overhaul &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Credibility Strip -->
+  <TrustPartnersStrip />
+
+  <!-- Catalog Section (Apple Store Bento Grid) -->
+  <section class="py-16 sm:py-24 bg-[#f5f5f7] font-sans select-none">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Filter Bar & Search (Apple Pill Segmented Control) -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+        <!-- Category Filter Tabs -->
+        <div class="inline-flex p-1 rounded-full bg-white border border-slate-200/60 overflow-x-auto max-w-full no-scrollbar shadow-xs" role="tablist" aria-label="Filter Kategori Sparepart">
+          {categories.map((cat, idx) => (
+            <button
+              type="button"
+              data-sparepart-filter={cat.id}
+              class:list={[
+                'sparepart-filter-btn px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all cursor-pointer select-none',
+                idx === 0
+                  ? 'bg-slate-900 text-white shadow-xs font-semibold'
+                  : 'text-slate-600 hover:text-slate-950'
+              ]}
+            >
+              <span>{cat.label}</span>
+              <span class="ml-1 opacity-50 text-[11px] font-mono">({cat.count})</span>
+            </button>
+          ))}
+        </div>
+
+        <!-- Apple Style Rounded Search Input -->
+        <div class="relative w-full md:w-80 shrink-0">
+          <input
+            id="sparepart-search-input"
+            type="search"
+            placeholder="Cari bearing, kawat, seal, wedge..."
+            class="w-full pl-10 pr-4 py-2 rounded-full bg-white border border-slate-200/80 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-900 focus:border-slate-900 shadow-xs transition-all"
+          />
+          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.34-4.34"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Spareparts Cards Grid -->
+      <!-- Spareparts Cards Grid (Apple Store Bento Style) -->
+      <div id="spareparts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {SPAREPARTS_CATALOG.map((item, index) => {
+          const skuCode = `SP-MT-${String(index + 1).padStart(2, '0')}`;
+
+          return (
+            <article
+              id={item.id}
+              data-category={item.category}
+              data-name={item.name.toLowerCase()}
+              data-keywords={item.keywords.join(' ').toLowerCase()}
+              class="sparepart-card bg-white rounded-2xl border border-slate-200/70 overflow-hidden hover:border-slate-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            >
+              <div>
+                <!-- Image Header (Apple Store Accessory Style) -->
+                <div class="relative aspect-[16/10] overflow-hidden bg-[#fbfbfd] flex items-center justify-center p-4">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+                    loading="lazy"
+                  />
+                  <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                    <span class="px-2.5 py-1 rounded-full text-[10px] font-medium bg-black/60 text-white backdrop-blur-md">
+                      {item.category}
+                    </span>
+                    <span class="px-2.5 py-1 rounded-full text-[10px] font-medium bg-emerald-950/80 text-emerald-300 border border-emerald-500/30">
+                      Ready Stock
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Content Body -->
+                <div class="p-6">
+                  <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-1.5">
+                    <span>{skuCode}</span>
+                    <span>Standar Pabrikan</span>
+                  </div>
+
+                  <h3 class="text-lg font-semibold text-slate-950 group-hover:text-sky-600 transition-colors leading-snug tracking-tight">
+                    <a href={`/layanan/sparepart-motor-listrik/#${item.id}`}>
+                      {item.name}
+                    </a>
+                  </h3>
+
+                  <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed line-clamp-3">
+                    {item.description}
+                  </p>
+
+                  <!-- Technical Specs Matrix -->
+                  <div class="mt-5 pt-4 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
+                    {item.specs.slice(0, 3).map((sp) => (
+                      <div class="flex items-start gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-1.5 shrink-0"></span>
+                        <span class="line-clamp-1 text-slate-600">{sp}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card Action Bar in Apple Store Style -->
+              <div class="p-6 pt-0 border-t border-slate-100/60 mt-2 flex flex-col gap-2.5">
+                <button
+                  type="button"
+                  data-add-rfq
+                  data-rfq-id={item.id}
+                  data-rfq-title={item.name}
+                  data-rfq-category={`Sparepart: ${item.category}`}
+                  data-rfq-spec={item.specs[0] || 'Spesifikasi Nameplate'}
+                  data-rfq-image={item.image}
+                  data-rfq-qty="1"
+                  class="w-full py-2.5 px-4 rounded-full bg-slate-900 hover:bg-black text-white font-medium text-xs text-center transition-all cursor-pointer shadow-xs"
+                  title="Tambah ke Keranjang RFQ"
+                >
+                  + Tambah ke Keranjang RFQ
+                </button>
+
+                <div class="text-center">
+                  <a
+                    href={`/layanan/sparepart-motor-listrik/#${item.id}`}
+                    class="text-xs font-medium text-slate-500 hover:text-slate-900 transition-colors"
+                  >
+                    Detail Spesifikasi Teknis &rarr;
+                  </a>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <!-- No Match State -->
+      <div id="spareparts-no-match" class="hidden py-16 text-center space-y-3">
+        <h4 class="text-base font-semibold text-slate-900">Komponen tidak ditemukan</h4>
+        <p class="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto">
+          Silakan masukkan spesifikasi atau nomor khusus yang Anda cari melalui form Permohonan RFQ resmi.
+        </p>
+        <div class="pt-3">
+          <a
+            href="/request-quotation/"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-medium tracking-tight transition-all"
+          >
+            <span>Input Permohonan RFQ Online</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Technical Overhaul Guide Section (SEO Long Form Content) -->
+  <section class="py-20 sm:py-28 bg-white font-sans select-none">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-12">
+        <span class="text-xs font-semibold uppercase tracking-[0.15em] text-sky-600 block mb-2">
+          Standar Rekayasa &amp; Inspeksi
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-semibold text-slate-950 tracking-tight leading-tight">
+          Panduan Pemilihan Sparepart &amp; Overhaul Motor Listrik AC 3 Fasa.
+        </h2>
+        <p class="text-sm sm:text-base text-slate-500 mt-3 leading-relaxed">
+          Parameter inspeksi teknis sebelum penggantian komponen motor listrik di lingkungan pabrik dan industri manufaktur.
+        </p>
+      </div>
+
+      <div class="prose prose-slate max-w-none text-xs sm:text-sm leading-relaxed space-y-8 text-slate-700">
+        <div>
+          <h3 class="text-base sm:text-lg font-semibold text-slate-900 mb-2 tracking-tight">
+            1. Parameter Wajib Sebelum Membeli Sparepart Motor Listrik
+          </h3>
+          <p>
+            Sebelum mengganti bearing, kawat winding, seal, maupun material insulasi, lakukan pemeriksaan menyeluruh terhadap <strong>nameplate motor</strong>. Parameter krusial yang harus dicatat mencakup:
+          </p>
+          <ul class="list-disc pl-5 mt-2 space-y-1.5 text-slate-600">
+            <li>Kapasitas daya motor dalam <strong>kW</strong> atau <strong>HP</strong></li>
+            <li>Tegangan operasional (Voltage: 380V, 400V, 660V, hingga 6.600V) dan Frekuensi (50 Hz / 60 Hz)</li>
+            <li>Arus kerja normal (Full Load Current / Ampere)</li>
+            <li>Kecepatan putaran poros (RPM) dan jumlah kutub (Pole)</li>
+            <li>Standar ukuran rangka motor (Frame Size IEC / NEMA)</li>
+            <li>Kelas isolasi motor (Insulation Class F 155°C atau Class H 180°C)</li>
+            <li>Nomor dan tipe bearing Drive End (DE) dan Non-Drive End (NDE)</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-base sm:text-lg font-semibold text-slate-900 mb-2 tracking-tight">
+            2. Pentingnya Menyesuaikan Insulation Class (Class F vs Class H)
+          </h3>
+          <p>
+            Pada motor industri yang bekerja kontinu di lingkungan bersuhu tinggi, kawat tembaga enamel dan material isolasi slot (Nomex / Mylar) wajib memenuhi kelas termal yang setara atau lebih tinggi dari nameplate asli pabrikan. Menggunakan material Class B pada motor Class F akan menyebabkan insulasi leleh dini dan gulungan terbakar dalam hitungan bulan.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-base sm:text-lg font-semibold text-slate-900 mb-2 tracking-tight">
+            3. Jangan Langsung Mengganti Komponen Sebelum Inspeksi Komprehensif
+          </h3>
+          <p>
+            Gejala kerusakan motor seperti dengung abnormal, getaran tinggi (vibration), temperatur berlebih (overheating), atau motor trip sering kali berakar dari kombinasi masalah mekanis dan kelistrikan. Sebagai contoh, getaran tinggi bisa disebabkan oleh unbalance rotor, ketidaksejajaran poros (misalignment), bearing oblak, atau short circuit antar-lilitan. MESINDO TEKNISIA menyediakan fasilitas pengujian NDT lengkap (Surge Test, Tan Delta, EL CID, FFT Vibration Analysis, dan Dynamic Balancing) untuk memastikan akar permasalahan teratasi secara tuntas.
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Box (Apple Rounded Card) -->
+      <div class="mt-12 p-8 rounded-2xl bg-[#f5f5f7] border border-slate-200/70 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <h4 class="text-base font-semibold text-slate-900 tracking-tight">Butuh Jasa Repair &amp; Overhaul Lengkap?</h4>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">Kami melayani pengerjaan overhaul total di workshop maupun inspeksi on-site di pabrik Anda.</p>
+        </div>
+        <a
+          href="/layanan/sparepart-motor-listrik/"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-medium tracking-tight shrink-0 transition-all shadow-xs"
+        >
+          <span>Baca Panduan Lengkap</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    const filterBtns = document.querySelectorAll('.sparepart-filter-btn');
+    const searchInput = document.getElementById('sparepart-search-input');
+    const cards = document.querySelectorAll('.sparepart-card');
+    const noMatch = document.getElementById('spareparts-no-match');
+
+    let currentCategory = 'all';
+
+    function applyFilters() {
+      const q = searchInput ? searchInput.value.trim().toLowerCase() : '';
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const cardCategory = card.dataset.category || '';
+        const cardName = card.dataset.name || '';
+        const cardKeywords = card.dataset.keywords || '';
+
+        const matchesCategory = currentCategory === 'all' || cardCategory === currentCategory;
+        const matchesSearch = !q || cardName.includes(q) || cardKeywords.includes(q);
+
+        if (matchesCategory && matchesSearch) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (noMatch) {
+        if (visibleCount === 0) {
+          noMatch.classList.remove('hidden');
+        } else {
+          noMatch.classList.add('hidden');
+        }
+      }
+    }
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach((b) => {
+          b.classList.remove('bg-slate-900', 'text-white', 'shadow-xs', 'font-semibold');
+          b.classList.add('text-slate-600');
+        });
+        btn.classList.add('bg-slate-900', 'text-white', 'shadow-xs', 'font-semibold');
+        btn.classList.remove('text-slate-600');
+
+        currentCategory = btn.dataset.sparepartFilter || 'all';
+        applyFilters();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', applyFilters);
+    }
+  })();
+</script>

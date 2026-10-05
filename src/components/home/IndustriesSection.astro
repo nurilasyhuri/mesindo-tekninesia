@@ -2,45 +2,71 @@
 import { COMPANY_INFO } from '../../data/companyInfo';
 ---
 
-<section class="py-16 sm:py-24 bg-slate-50 font-sans border-b border-slate-200">
+<section class="py-20 sm:py-28 bg-[#f5f5f7] font-sans select-none">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-slate-200/80 gap-4">
-      <div class="max-w-2xl">
-        <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block mb-1">
-          Industri yang Kami Layani
-        </span>
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
-          Pengalaman di Berbagai Sektor Strategis Nasional
-        </h2>
-        <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-          Kemampuan rekayasa teknik PT Mesindo Tekninesia dipercaya oleh operator industri dengan tuntutan keselamatan, uptime, dan keandalan operasional tertinggi.
-        </p>
-      </div>
+    <!-- Section Header (Apple Style) -->
+    <div class="max-w-3xl mb-12">
+      <span class="text-xs font-semibold uppercase tracking-[0.15em] text-sky-600 block mb-2">
+        Sektor Industri Strategis
+      </span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-950 tracking-tight leading-tight">
+        Solusi Rekayasa &amp; Overhaul Industri Berat.
+      </h2>
+      <p class="text-sm sm:text-base text-slate-500 mt-3 leading-relaxed">
+        Kemampuan rekayasa teknik MESINDO TEKNISIA memenuhi standar keandalan dan uptime tertinggi untuk pembangkit listrik, petrokimia, migas, pabrik kelapa sawit, semen, pertambangan, dan industri maritim nasional.
+      </p>
     </div>
 
-    <!-- 5 Industries Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <!-- 5 Industries Grid in Apple Bento Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {COMPANY_INFO.industries.map((ind) => (
-        <div class="p-6 rounded-2xl bg-white border border-slate-200/80 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between">
+        <div class="p-8 rounded-2xl bg-white border border-slate-200/70 hover:border-slate-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
           <div>
-            <div class="w-10 h-10 rounded-xl bg-brand-50 border border-brand-100 text-brand-700 flex items-center justify-center mb-4 font-bold text-sm">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-              </svg>
+            <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200/60 text-slate-800 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300">
+              {ind.id === 'power-generation' && (
+                <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              )}
+              {ind.id === 'petrochemical' && (
+                <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+              )}
+              {ind.id === 'oil-and-gas' && (
+                <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.341A8 8 0 014.572 15.341 8 8 0 0112 4c2.8 3.5 7.428 7.841 7.428 11.341z" />
+                </svg>
+              )}
+              {ind.id === 'manufacturing' && (
+                <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              )}
+              {ind.id === 'railway' && (
+                <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                  <rect x="4" y="3" width="16" height="15" rx="3" stroke-linecap="round" stroke-linejoin="round"></rect>
+                  <line x1="8" y1="8" x2="16" y2="8" stroke-linecap="round" stroke-linejoin="round"></line>
+                  <circle cx="8.5" cy="14.5" r="1.5" fill="currentColor"></circle>
+                  <circle cx="15.5" cy="14.5" r="1.5" fill="currentColor"></circle>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 18l-3 3m13-3l3 3" />
+                </svg>
+              )}
             </div>
             
-            <h3 class="text-base font-bold text-slate-900 mb-2">
+            <h3 class="text-xl font-semibold text-slate-950 mb-2 tracking-tight group-hover:text-sky-600 transition-colors">
               {ind.title}
             </h3>
 
-            <p class="text-xs text-slate-600 leading-relaxed">
+            <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
               {ind.desc}
             </p>
           </div>
 
-          <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-brand-700">
-            Total Engineering Support
+          <div class="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between text-xs font-medium text-slate-500">
+            <span>Standar EASA &amp; IEC</span>
+            <span class="text-slate-400 group-hover:text-black transition-colors">&rarr;</span>
           </div>
         </div>
       ))}

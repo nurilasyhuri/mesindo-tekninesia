@@ -32,7 +32,7 @@ applicableIndustries:
 
 ## Manufaktur Kumparan Presisi & Rekondisi Komutator Mesin Elektrik
 
-PT Mesindo Tekninesia memiliki lini produksi internal (*in-house fabrication*) untuk memproduksi kumparan stator kaku (*form-wound coils*) dan batangan stator (*stator bars*) generator dengan toleransi dimensi yang sangat ketat. Kemandirian fasilitas ini memungkinkan waktu perbaikan (*lead time*) yang jauh lebih singkat dibandingkan harus mengimpor kumparan dari luar negeri.
+MESINDO TEKNISIA memiliki lini produksi internal (*in-house fabrication*) untuk memproduksi kumparan stator kaku (*form-wound coils*) dan batangan stator (*stator bars*) generator dengan toleransi dimensi yang sangat ketat. Kemandirian fasilitas ini memungkinkan waktu perbaikan (*lead time*) yang jauh lebih singkat dibandingkan harus mengimpor kumparan dari luar negeri.
 
 ### Keunggulan Fabrikasi Kumparan Kami:
 

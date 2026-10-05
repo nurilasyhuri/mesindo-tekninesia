@@ -15,4 +15,4 @@ specs:
   "Standar Toleransi": "ISO 1940 / ISO 11342 Grade G1.0 & G2.5"
 ---
 
-Fasilitas High Speed Balancing PT Mesindo Tekninesia dirancang khusus untuk memverifikasi dan memperbaiki kondisi ketidakseimbangan rotor fleksibel (*flexible rotor*) berbobot hingga 150 ton pada kecepatan putar kerja aslinya. Pengujian dilakukan di dalam ruang hampa kedap ledakan untuk meminimalkan beban gesekan udara dan memungkinkan pengukuran vibrasi secara presisi mutlak.
+Fasilitas High Speed Balancing MESINDO TEKNISIA dirancang khusus untuk memverifikasi dan memperbaiki kondisi ketidakseimbangan rotor fleksibel (*flexible rotor*) berbobot hingga 150 ton pada kecepatan putar kerja aslinya. Pengujian dilakukan di dalam ruang hampa kedap ledakan untuk meminimalkan beban gesekan udara dan memungkinkan pengukuran vibrasi secara presisi mutlak.

@@ -82,7 +82,7 @@ export default function RfqForm() {
           Request Quotation (RFQ) Equipment Industri
         </h3>
         <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed">
-          Isi spesifikasi dasar mesin Anda. Format ini akan otomatis tersusun rapi untuk dikirimkan langsung ke tim engineering PT Mesindo Tekninesia via WhatsApp atau disalin ke dokumen RFQ perusahaan Anda.
+          Isi spesifikasi dasar mesin Anda. Format ini akan otomatis tersusun rapi untuk dikirimkan langsung ke tim engineering MESINDO TEKNISIA via WhatsApp atau disalin ke dokumen RFQ perusahaan Anda.
         </p>
       </div>
 

@@ -1,82 +1,98 @@
 ---
 const currentPath = Astro.url.pathname;
 
-const isLayananActive = currentPath.startsWith('/layanan');
-const isFasilitasActive = currentPath.startsWith('/fasilitas');
+const isLayananActive = currentPath.startsWith('/layanan') && !currentPath.includes('/sparepart');
+const isSparepartActive = currentPath.startsWith('/sparepart');
 const isWorkshopActive = currentPath.startsWith('/lokasi-workshop');
 const isRfqActive = currentPath.startsWith('/request-quotation');
 ---
 
+<!-- Apple iOS Tab Bar Navigation -->
 <aside
-  class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-slate-200/90 shadow-lg safe-area-pb select-none font-sans"
-  aria-label="Aksi Cepat Mobile"
+  class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/85 backdrop-blur-2xl border-t border-black/[0.06] safe-area-pb select-none font-sans"
+  aria-label="Navigasi Mobile"
 >
-  <div class="grid grid-cols-4 gap-1 max-w-lg mx-auto px-2 py-1.5 items-center">
+  <div class="grid grid-cols-5 gap-1 max-w-md mx-auto px-2 py-1.5 items-center text-center">
     
-    <!-- Action 1: Layanan -->
+    <!-- 1: Layanan -->
     <a
-      href="/layanan/electro-motor/"
+      href="/layanan/"
       class:list={[
-        'flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-colors touch-target',
-        isLayananActive
-          ? 'bg-slate-100 text-slate-950 font-semibold'
-          : 'text-slate-500 hover:text-slate-900',
+        'flex flex-col items-center justify-center py-1 rounded-xl transition-colors touch-target',
+        isLayananActive ? 'text-slate-950 font-semibold' : 'text-slate-500 hover:text-slate-900',
       ]}
     >
-      <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
         <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
       </svg>
-      <span class="text-[10px] leading-tight font-medium">Layanan</span>
+      <span class="text-[10px] leading-tight tracking-tight">Layanan</span>
     </a>
 
-    <!-- Action 2: Fasilitas Mesin -->
+    <!-- 2: Sparepart (Toko B2B) -->
     <a
-      href="/fasilitas/"
+      href="/sparepart/"
       class:list={[
-        'flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-colors touch-target',
-        isFasilitasActive
-          ? 'bg-slate-100 text-slate-950 font-semibold'
-          : 'text-slate-500 hover:text-slate-900',
+        'flex flex-col items-center justify-center py-1 rounded-xl transition-colors touch-target',
+        isSparepartActive ? 'text-slate-950 font-semibold' : 'text-slate-500 hover:text-slate-900',
       ]}
     >
-      <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="3"></circle>
-        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+        <line x1="12" y1="22.08" x2="12" y2="12"></line>
       </svg>
-      <span class="text-[10px] leading-tight font-medium">Fasilitas</span>
+      <span class="text-[10px] leading-tight tracking-tight">Sparepart</span>
     </a>
 
-    <!-- Action 3: 9 Workshop -->
+    <!-- 3: 10 Workshop -->
     <a
       href="/lokasi-workshop/"
       class:list={[
-        'flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-colors touch-target',
-        isWorkshopActive
-          ? 'bg-slate-100 text-slate-950 font-semibold'
-          : 'text-slate-500 hover:text-slate-900',
+        'flex flex-col items-center justify-center py-1 rounded-xl transition-colors touch-target',
+        isWorkshopActive ? 'text-slate-950 font-semibold' : 'text-slate-500 hover:text-slate-900',
       ]}
     >
-      <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
         <circle cx="12" cy="10" r="3"></circle>
       </svg>
-      <span class="text-[10px] leading-tight font-medium">Workshop</span>
+      <span class="text-[10px] leading-tight tracking-tight">Workshop</span>
     </a>
 
-    <!-- Action 4: Request Quotation / RFQ (Highlight Button) -->
+    <!-- 4: Keranjang RFQ (Apple Bag Trigger) -->
+    <button
+      type="button"
+      onclick="window.openRfqDrawer ? window.openRfqDrawer() : null"
+      class="relative flex flex-col items-center justify-center py-1 rounded-xl text-slate-500 hover:text-slate-950 transition-colors touch-target cursor-pointer"
+      aria-label="Keranjang RFQ"
+    >
+      <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+      </svg>
+      <span class="text-[10px] leading-tight tracking-tight">Keranjang</span>
+      <span class="rfq-cart-count absolute top-0.5 right-2 inline-flex items-center justify-center min-w-[15px] h-[15px] px-1 rounded-full bg-slate-950 text-white text-[8px] font-bold font-mono leading-none hidden">
+        0
+      </span>
+    </button>
+
+    <!-- 5: Minta RFQ Online Form (Authorised direct tool action) -->
     <a
       href="/request-quotation/"
       class:list={[
-        'flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-white font-medium transition-colors touch-target shadow-2xs',
-        isRfqActive ? 'bg-slate-900 ring-2 ring-brand-500' : 'bg-brand-600 active:bg-brand-700'
+        'flex flex-col items-center justify-center py-1 rounded-xl transition-colors touch-target',
+        isRfqActive ? 'text-slate-950 font-semibold' : 'text-slate-500 hover:text-slate-900',
       ]}
-      aria-label="Request Quotation RFQ"
+      aria-label="Minta RFQ"
     >
-      <svg class="w-5 h-5 mb-0.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+      <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+        <polyline points="10 9 9 9 8 9"></polyline>
       </svg>
-      <span class="text-[10px] leading-tight font-semibold">Minta RFQ</span>
+      <span class="text-[10px] leading-tight tracking-tight">Minta RFQ</span>
     </a>
 
   </div>

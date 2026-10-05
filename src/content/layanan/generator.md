@@ -34,7 +34,7 @@ applicableIndustries:
 
 ## Keandalan Maksimal Generator Pembangkit & Pabrik Industri
 
-Generator merupakan aset paling kritikal dalam sistem pasokan daya pembangkit dan industri proses. PT Mesindo Tekninesia berpengalaman menangani perbaikan menyeluruh baik di fasilitas workshop berkapasitas crane besar maupun pekerjaan langsung di site (on-site power plant).
+Generator merupakan aset paling kritikal dalam sistem pasokan daya pembangkit dan industri proses. MESINDO TEKNISIA berpengalaman menangani perbaikan menyeluruh baik di fasilitas workshop berkapasitas crane besar maupun pekerjaan langsung di site (on-site power plant).
 
 ### Cakupan Layanan Generator:
 

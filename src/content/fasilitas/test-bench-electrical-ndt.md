@@ -12,4 +12,4 @@ specs:
   "Standar Akurasi": "Kalibrasi Standar Internasional IEEE, IEC & EASA"
 ---
 
-Seluruh equipment yang selesai direkondisi di workshop PT Mesindo Tekninesia wajib melalui pengujian ketat di test bench untuk menjamin performa sebelum dikirim kembali ke fasilitas klien.
+Seluruh equipment yang selesai direkondisi di workshop MESINDO TEKNISIA wajib melalui pengujian ketat di test bench untuk menjamin performa sebelum dikirim kembali ke fasilitas klien.

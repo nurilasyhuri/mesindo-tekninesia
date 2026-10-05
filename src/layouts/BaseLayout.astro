@@ -4,7 +4,6 @@ import Header from '../components/common/Header.astro';
 import Footer from '../components/common/Footer.astro';
 import MobileStickyBar from '../components/common/MobileStickyBar.astro';
 import RfqCartDrawer from '../components/common/RfqCartDrawer.astro';
-import FloatingWhatsApp from '../components/common/FloatingWhatsApp.astro';
 import '../styles/global.css';
 
 export interface Props {
@@ -53,6 +52,5 @@ const isHomePage = Astro.url.pathname === '/' || Astro.url.pathname === '';
     <Footer />
     {!hideMobileStickyBar && <MobileStickyBar />}
     <RfqCartDrawer />
-    <FloatingWhatsApp />
   </body>
 </html>

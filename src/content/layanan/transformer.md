@@ -34,7 +34,7 @@ applicableIndustries:
 
 ## Pemeliharaan & Rekondisi Transformator Daya & Distribusi
 
-Kesehatan transformator bergantung pada keutuhan dielektrik minyak insulasi dan kekuatan mekanis belitan kawat tembaga. PT Mesindo Tekninesia memberikan dukungan teknis komprehensif untuk menjaga transformator Anda tetap beroperasi stabil pada batas kenaikan suhu nominal.
+Kesehatan transformator bergantung pada keutuhan dielektrik minyak insulasi dan kekuatan mekanis belitan kawat tembaga. MESINDO TEKNISIA memberikan dukungan teknis komprehensif untuk menjaga transformator Anda tetap beroperasi stabil pada batas kenaikan suhu nominal.
 
 ### Cakupan Layanan Transformator:
 

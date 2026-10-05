@@ -10,10 +10,13 @@ export interface WorkshopBranch {
 }
 
 export const COMPANY_INFO = {
-  name: 'PT Mesindo Tekninesia',
-  legalName: 'PT Mesindo Tekninesia',
-  shortName: 'Mesindo Tekninesia',
-  tagline: 'Jasa Repair, Rewinding & Engineering Equipment Industri di Indonesia',
+  name: 'MESINDO TEKNISIA',
+  legalName: 'PT Mesindo Teknisia',
+  shortName: 'Mesindo Teknisia',
+  brandName: 'MESINDO TEKNISIA',
+  domain: 'mesindoteknisia.com',
+  siteUrl: 'https://mesindoteknisia.com',
+  tagline: 'Jasa Repair, Rewinding & Overhaul Motor Listrik Industri di Indonesia',
   establishedYear: 1994,
   corePillars: [
     'Repair',
@@ -38,8 +41,8 @@ export const COMPANY_INFO = {
     phoneFormatted: '+62 851-8300-2070',
     mobile: '0851-8300-2070',
     mobileFormatted: '+62 851-8300-2070',
-    email: 'mesindo@mesindotekninesia.com',
-    salesEmail: 'ramli.adiputra@mesindotekninesia.com',
+    email: 'mesindo@mesindoteknisia.com',
+    salesEmail: 'sales@mesindoteknisia.com',
     whatsapp: '6285183002070',
     whatsappFormatted: '0851-8300-2070',
     workshopManager: 'Ir. Ramli Adi Putra, S.T., M.T.',
@@ -60,7 +63,7 @@ export const COMPANY_INFO = {
     { value: '30+ Tahun', label: 'Pengalaman Sejak 1994' },
     { value: '25.000 M²', label: 'Total Area Workshop' },
     { value: '150 Ton', label: 'High Speed Balancing 20k RPM' },
-    { value: '8 Cabang', label: 'Workshop Nasional' },
+    { value: '10 Lokasi', label: 'Jaringan Workshop Nasional' },
   ],
   workshops: [
     {
@@ -81,6 +84,13 @@ export const COMPANY_INFO = {
       postalCode: '13910',
       isMainOffice: false,
       capabilities: ['Industrial Machining', 'Horizontal Lathe 15m (Dia 2m)', 'Vertical Lathe 6.7m (Tinggi 8m)', 'Mechanical Repair'],
+    },
+    {
+      id: 'bekasi',
+      name: 'Workshop & Machining Support Bekasi',
+      region: 'Jawa Barat',
+      address: 'Jl. Banjir Kanal Timur, Bekasi',
+      capabilities: ['Industrial Machining Support', 'Shaft & Component Balancing', 'Mechanical Repair Pabrik'],
     },
     {
       id: 'sidoarjo',
@@ -112,6 +122,13 @@ export const COMPANY_INFO = {
       address: 'Jl. Raya Panjang Okura, Tebing Tinggi, Okura, Kec. Rumbai Pesisir, Kota Pekanbaru',
       postalCode: '28262',
       capabilities: ['Oil & Gas Upstream/Downstream Support', 'Petrochemical Equipment Maintenance', 'On-Site Field Assessment & Alignment Laser'],
+    },
+    {
+      id: 'sumatera-selatan',
+      name: 'Workshop Sumatera Selatan (OKI)',
+      region: 'Sumatera Selatan',
+      address: 'Jl. Sungai Batang, Air Sugihan, Ogan Komering Ilir, Sumatera Selatan',
+      capabilities: ['Pulp & Paper Industrial Service', 'Heavy Rotating Equipment Overhaul', 'On-Site Engineering Support'],
     },
     {
       id: 'makassar',

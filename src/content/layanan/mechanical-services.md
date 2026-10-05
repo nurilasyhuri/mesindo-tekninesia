@@ -4,8 +4,8 @@ shortTitle: "Mechanical"
 description: "Layanan perbaikan, rekondisi, overhaul, dan balancing untuk pompa industri, kompresor, turbocharger, valve, diesel engine, sistem perpipaan, hingga sand blasting."
 category: "mechanical"
 categoryLabel: "Mechanical Equipment"
-heroImage: "/images/service-mechanical.webp"
-thumbnail: "/images/service-mechanical.webp"
+heroImage: "/images/facility-metalspray-real.webp"
+thumbnail: "/images/facility-metalspray-real.webp"
 featured: false
 orderPriority: 6
 keySpecs:
@@ -35,7 +35,7 @@ applicableIndustries:
 
 ## Rekondisi & Pemeliharaan Mekanikal Mesin Industri
 
-Selain keahlian terdepan pada mesin listrik berputar, PT Mesindo Tekninesia juga dilengkapi divisi mekanikal khusus untuk menangani peralatan fluida, transfer daya, dan mesin pembakaran industri.
+Selain keahlian terdepan pada mesin listrik berputar, MESINDO TEKNISIA juga dilengkapi divisi mekanikal khusus untuk menangani peralatan fluida, transfer daya, dan mesin pembakaran industri.
 
 ### Lingkup Layanan Mekanikal:
 

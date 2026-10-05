@@ -21,7 +21,7 @@ const {
   noindex = false,
 } = Astro.props;
 
-const siteUrl = 'https://mesindotekninesia.com';
+const siteUrl = 'https://mesindoteknisia.com';
 
 // Ensure canonical URL is always production domain with clean trailing slash
 let pathname = Astro.url.pathname;
@@ -35,7 +35,9 @@ const resolvedImage = image.startsWith('http') ? image : `${siteUrl}${image.star
 
 const fullTitle = title.includes(COMPANY_INFO.name) 
   ? title 
-  : `${title} | ${COMPANY_INFO.name}`;
+  : `${title} - ${COMPANY_INFO.name}`;
+
+const isHomePage = pathname === '/' || pathname === '';
 
 // Build BreadcrumbList Schema dynamically from pathname
 const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
@@ -61,22 +63,29 @@ const breadcrumbItems = [
   }),
 ];
 
-// Rich Organization / LocalBusiness Schema
+// Rich Organization & EngineeringService Schema (Bilingual & International Ready)
 const organizationSchema = {
-  '@type': 'LocalBusiness',
+  '@type': ['LocalBusiness', 'EngineeringService'],
   '@id': `${siteUrl}/#organization`,
   name: COMPANY_INFO.name,
   legalName: COMPANY_INFO.legalName,
+  alternateName: [
+    'Mesindo Engineering',
+    'PT Mesindo Teknisia',
+    'MESINDO TEKNISIA',
+    'Mesindo Workshop Indonesia',
+    'Mesindo Heavy Electrical & Mechanical Engineering',
+  ],
   url: siteUrl,
   logo: `${siteUrl}/images/hero-industrial.webp`,
   image: resolvedImage,
-  description: COMPANY_INFO.tagline,
+  description: 'Specialist in heavy electrical & mechanical engineering: 150-ton dynamic balancing, motor rewinding LV/HV, turbogenerator overhaul, and precision machining compliant with EASA AR100 and ISO 9001:2015.',
   telephone: COMPANY_INFO.contact.phoneFormatted,
   email: COMPANY_INFO.contact.email,
   foundingDate: `${COMPANY_INFO.establishedYear}`,
   priceRange: '$$$$',
-  currenciesAccepted: 'IDR, USD',
-  paymentAccepted: 'Bank Transfer, Official Invoice / RFQ Terms',
+  currenciesAccepted: 'IDR, USD, SGD, EUR',
+  paymentAccepted: 'Bank Transfer, Corporate Invoice / RFQ Terms, Letter of Credit (L/C)',
   address: {
     '@type': 'PostalAddress',
     streetAddress: COMPANY_INFO.workshops[0].address,
@@ -92,23 +101,54 @@ const organizationSchema = {
   },
   areaServed: [
     { '@type': 'Country', name: 'Indonesia' },
+    { '@type': 'AdministrativeArea', name: 'Southeast Asia' },
+    { '@type': 'Service', name: 'Global Maritime Fleet & Offshore Facilities' },
+  ],
+  knowsAbout: [
+    'EASA AR100 Recommended Practice for Electrical Apparatus Repair',
+    'IEEE 1068 Standard for Motor Repair and Rewinding',
+    'ISO 9001:2015 Certified Quality Management',
+    'ISO 1940-1 Dynamic Balancing Grades G2.5 and G1.0',
+    'High Speed Dynamic Balancing Tunnel up to 150 Ton',
+    'Vacuum Pressure Impregnation (VPI) Class H 180°C - 200°C',
+    'Turbogenerator & Hydrogenerator Stator Overhaul',
+    'High Voltage Induction & Synchronous Motor Rewinding 13.8kV',
+    'Heavy Machining Vertical Lathe 6.7m and Horizontal Lathe 15m',
+    'Marine Alternator and Propulsion Motor Reconditioning',
+  ],
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: COMPANY_INFO.contact.phoneFormatted,
+      contactType: 'customer service',
+      areaServed: 'ID',
+      availableLanguage: ['Indonesian', 'English'],
+    },
+    {
+      '@type': 'ContactPoint',
+      telephone: '+62-21-4393-1627',
+      contactType: 'technical support',
+      areaServed: ['ID', 'SG', 'MY', 'AU', 'Global'],
+      availableLanguage: ['Indonesian', 'English'],
+    },
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Layanan Engineering & Rekondisi Industri',
+    name: 'Industrial Engineering, Overhaul & Spare Parts Catalog',
     itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Electro Motor Repair & Rewinding LV/HV' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Generator Stator & Rotor Services' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Transformer Overhaul & Oil Purification' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'High Speed Dynamic Balancing hingga 150 Ton' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Vertical Lathe 6.7m & Machining Industri' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Mechanical Overhaul Pompa, Kompresor & Valve' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Testing & Condition Assessment EL CID & PD' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Coil Manufacturing & Slip Ring Fabrication' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Electro Motor Repair & Rewinding LV/HV (EASA AR100)' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Turbogenerator Stator & Rotor Overhaul' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Power Transformer Overhaul & Oil Purification' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '150-Ton High Speed Dynamic Balancing (ISO 1940)' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Heavy Industrial Machining & 6.7m Vertical Lathe' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Mechanical Overhaul Pompa, Kompresor & Turbocharger' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Electrical Testing & Condition Assessment 13.8kV (EL CID & PD)' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Stator Coil Manufacturing & High Voltage Insulation' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Electric Motor Overhaul Spare Parts & Class H Materials' } },
     ],
   },
   sameAs: [
-    'https://mesindotekninesia.com',
+    'https://mesindoteknisia.com',
   ],
 };
 
@@ -117,11 +157,12 @@ const websiteSchema = {
   '@id': `${siteUrl}/#website`,
   url: siteUrl,
   name: COMPANY_INFO.name,
+  alternateName: 'Mesindo Engineering Indonesia',
   description: COMPANY_INFO.tagline,
   publisher: {
     '@id': `${siteUrl}/#organization`,
   },
-  inLanguage: 'id-ID',
+  inLanguage: ['id-ID', 'en-US'],
   potentialAction: {
     '@type': 'SearchAction',
     target: {
@@ -138,6 +179,54 @@ const breadcrumbsSchema = {
   itemListElement: breadcrumbItems,
 };
 
+// Strategic FAQ Schema for Google Search, AI Overviews, SearchGPT, and Perplexity
+const globalFaqSchema = {
+  '@type': 'FAQPage',
+  '@id': `${canonicalUrl}#faq`,
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Apa saja spesialisasi engineering di PT Mesindo Teknisia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'PT Mesindo Teknisia menyediakan total engineering services: repair & rewinding electro motor LV/HV, overhaul turbogenerator & hydrogenerator, overhaul transformator daya, high-speed dynamic balancing hingga 150 ton, pemesinan bubut vertikal 6.7 meter, mechanical service pompa & kompresor, uji diagnostik 13.8kV (EL CID & PD Test), serta pasokan komponen sparepart motor listrik.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Berapa kapasitas fasilitas dynamic balancing di workshop Mesindo?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Workshop Mesindo mengoperasikan balancing tunnel berkapasitas rotor hingga 150 ton dengan diameter swing 4.2 meter dan panjang 15 meter, mengacu standar toleransi vibrasi ISO 1940-1 Grade G2.5 dan G1.0 untuk turbin uap, turbin gas, dan generator pembangkit listrik.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Apakah PT Mesindo Teknisia melayani kapal internasional dan industri maritim?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ya, Mesindo secara reguler menangani armada kapal niaga internasional, tanker, kapal kontainer, dan offshore rig yang bersandar di Pelabuhan Tanjung Priok, Batam, Surabaya, dan Balikpapan untuk perbaikan marine alternator, electric motor propulsi, balancing rotor turbin, dan overhaul pompa cargo.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Standar engineering apa yang diterapkan dalam overhaul dan rewinding?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Seluruh pengerjaan mengacu pada standar global EASA AR100, IEEE 1068, IEC 60034, dan sistem manajemen mutu ISO 9001:2015, didukung tangki Vacuum Pressure Impregnation (VPI) dan oven curing terkontrol untuk isolasi Kelas H (180°C - 200°C).',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Bagaimana prosedur permohonan penawaran teknis resmi (RFQ)?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Pelanggan dapat mengajukan RFQ melalui formulir nameplate di website mesindoteknisia.com/request-quotation/, menambahkan item ke Keranjang RFQ, atau mengirimkan nameplate equipment via email engineering resmi atau hotline teknis kami.',
+      },
+    },
+  ],
+};
+
 // Build complete graph
 const pageSchemas = Array.isArray(jsonLd) 
   ? jsonLd 
@@ -149,6 +238,7 @@ const structuredDataGraph = {
     organizationSchema,
     websiteSchema,
     breadcrumbsSchema,
+    ...(isHomePage ? [globalFaqSchema] : []),
     ...pageSchemas,
   ],
 };
@@ -160,7 +250,7 @@ const structuredDataGraph = {
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalUrl} />
 
-<!-- Robots Indexing Directives -->
+<!-- Robots Indexing & AI Preview Directives -->
 <meta 
   name="robots" 
   content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} 
@@ -168,9 +258,19 @@ const structuredDataGraph = {
 <meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
 <meta name="bingbot" content={noindex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large"} />
 
-<!-- Author and Technical Directives -->
+<!-- Author, Publisher and Technical Directives -->
 <meta name="author" content={COMPANY_INFO.name} />
+<meta name="publisher" content={COMPANY_INFO.name} />
 <meta name="format-detection" content="telephone=yes" />
+
+<!-- Geotargeting & Regional Identity (Indonesia & International Marine Port) -->
+<meta name="geo.region" content="ID-JK" />
+<meta name="geo.placename" content="Jakarta Utara" />
+<meta name="geo.position" content="-6.1084;106.8837" />
+<meta name="ICBM" content="-6.1084, 106.8837" />
+
+<!-- Multi-Engine Keywords for B2B Industrial & International Procurement -->
+<meta name="keywords" content="jasa rewinding motor listrik, repair generator industri, high speed balancing 150 ton, overhaul transformator daya, bengkel bubut vertikal 6.7m, electric motor repair indonesia, turbogenerator overhaul southeast asia, dynamic balancing workshop jakarta, sparepart motor listrik, kawat tembaga class h, EASA AR100 workshop indonesia, marine alternator repair tanjung priok" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
@@ -181,6 +281,7 @@ const structuredDataGraph = {
 <meta property="og:image:alt" content={title} />
 <meta property="og:site_name" content={COMPANY_INFO.name} />
 <meta property="og:locale" content="id_ID" />
+<meta property="og:locale:alternate" content="en_US" />
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -198,3 +299,4 @@ const structuredDataGraph = {
 
 <!-- JSON-LD Comprehensive Schema Graph -->
 <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredDataGraph)} />
+

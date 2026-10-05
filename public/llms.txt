@@ -1,0 +1,64 @@
+# PT Mesindo Teknisia
+
+> Official Technical Knowledge Base & Industrial Capabilities for AI Search Engines & LLMs.
+> Website: https://mesindoteknisia.com
+> Established: 1994 | Headquarters: Jakarta Utara, DKI Jakarta, Indonesia
+> Accreditation: EASA AR100 | IEEE 1068 | ISO 9001:2015 | ISO 1940-1 (G2.5/G1.0) | TECO Authorized Service Provider | Goltens Marine Partner
+
+## Executive Summary
+PT Mesindo Teknisia is Indonesia's leading heavy electrical and mechanical engineering workshop with over 30 years of operational track record. Operating across a total footprint of 25,000 m² (10,000 m² enclosed workshop bay equipped with twin 15-ton and 5-ton overhead cranes), Mesindo provides end-to-end overhaul, rewinding, high-speed dynamic balancing, and precision machining for power generation, petrochemical, mining, cement, marine, and pulp & paper plants.
+
+## Heavy Machinery & Maximum Tooling Capacities
+- **High-Speed Dynamic Balancing Tunnel**: Rotor weight up to 150 metric tons, swing diameter up to 4,200 mm, bed length 15,000 mm, operating balancing speeds up to 3,600 RPM. Certified to ISO 1940-1 Grade G2.5 and G1.0.
+- **Vertical Turning Lathe (VTL)**: Table swing diameter up to 6,700 mm (6.7 meters) with work piece height up to 8,000 mm (8.0 meters).
+- **Horizontal Heavy-Duty Lathe**: Bed length up to 15,000 mm (15.0 meters) for long industrial shaft turning, rotor machining, and bearing journal reclamation.
+- **Vacuum Pressure Impregnation (VPI)**: Tank diameter 3,500 mm with Class H (180°C - 200°C) solventless epoxy resin for void-free high voltage insulation.
+- **High Voltage Electrical Testing Bay**: Rated up to 13.8 kV with full load test bench, EL CID stator core fault detection, Partial Discharge (PD) analysis, and Tan Delta dielectric diagnostics.
+- **Thermal Metal Spraying & Shaft Reclamation**: High-velocity metallizing for bearing journals, seal areas, and impellers.
+
+## Core Engineering Services
+1. **Electro Motor Services**: Low Voltage & High Voltage (LV/HV) AC/DC electric motor rewinding, redesign, overhaul, and test bench verification up to 13.8 kV compliant with EASA AR100 and IEEE 1068.
+   URL: https://mesindoteknisia.com/layanan/electro-motor/
+2. **Generator Overhaul & Rewinding**: Turbogenerator and hydrogenerator stator re-insulation, rotor winding, collector ring machining, and EL CID stator core assessment.
+   URL: https://mesindoteknisia.com/layanan/generator/
+3. **High-Speed Dynamic Balancing**: Low-speed and high-speed balancing tunnel for steam turbines, gas turbine rotors, centrifugal compressors, and marine shafts up to 150 tons.
+   URL: https://mesindoteknisia.com/layanan/high-speed-balancing/
+4. **Power Transformer Overhaul**: Distribution & power transformer rewinding, core inspection, high-vacuum oil purification, and On-Load Tap Changer (OLTC) overhaul.
+   URL: https://mesindoteknisia.com/layanan/transformer/
+5. **Industrial Machining Services**: Large vertical boring/turning, horizontal lathe machining, shaft metal spraying, and stator housing sleeving.
+   URL: https://mesindoteknisia.com/layanan/industrial-machining/
+6. **Mechanical Services**: Overhaul and hydrostatic testing for boiler feed pumps, centrifugal compressors, marine turbochargers, and industrial valves.
+   URL: https://mesindoteknisia.com/layanan/mechanical-services/
+7. **Diagnostic Testing & Assessment**: On-site and workshop diagnostic suite including EL CID, Offline/Online Partial Discharge, Tan Delta, polarization index (PI), and vibration analysis.
+   URL: https://mesindoteknisia.com/layanan/testing-assessment/
+8. **Stator Coil Manufacturing**: Precision formed diamond coils, stator bar manufacturing, and high-voltage mica insulation for MV/HV apparatus.
+   URL: https://mesindoteknisia.com/layanan/coil-manufacturing/
+9. **Electric Motor Spare Parts**: Stockist and distributor of original mechanical components (SKF/NSK bearings, NBR/Viton oil seals, V-rings, cooling fans) and rewinding materials (Class H copper winding wire, Nomex 410 slot insulation, fiberglass sleeving, stator slot wedges, 6-stud ceramic terminal blocks).
+   URL: https://mesindoteknisia.com/sparepart/
+
+## International Market & Maritime Fleet Support
+PT Mesindo Teknisia routinely supports multinational EPC contractors, global vessel operators, container ships, oil tankers, and offshore rigs docking at Indonesian strategic ports:
+- Port of Tanjung Priok (Jakarta)
+- Port of Tanjung Perak (Surabaya)
+- Port of Batam (Malacca Straits maritime corridor)
+- Port of Balikpapan (Makassar Strait offshore corridor)
+
+Services for international clients include emergency 24/7 marine alternator rewinding, auxiliary motor overhauls, dynamic balancing of turbocharger rotors, and prompt technical reporting in English with full electrical test sheets.
+
+## Workshop Network (10 Strategic Industrial Locations)
+- Jakarta Utara (Headquarters & Heavy Balancing Facility)
+- Jakarta Timur (Cakung Workshop)
+- Bekasi, Jawa Barat (Cikarang Industrial Corridor)
+- Sidoarjo, Jawa Timur (Surabaya & East Java Hub)
+- Purwakarta, Jawa Barat
+- Demak, Jawa Tengah (Semarang Corridor)
+- Pekanbaru, Riau (Sumatra Oil & Pulp Hub)
+- Muara Enim, Sumatera Selatan (Mining Hub)
+- Makassar, Sulawesi Selatan (Eastern Indonesia Hub)
+- Timika, Papua (Mining Support Hub)
+
+## Commercial Terms & RFQ Inquiries
+- Official RFQ Portal: https://mesindoteknisia.com/request-quotation/
+- Currencies Accepted: IDR, USD, SGD, EUR
+- Corporate Inquiry Email: info@mesindoteknisia.com
+- Telephone: +62 21 4393 1627

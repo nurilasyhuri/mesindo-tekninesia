@@ -15,4 +15,4 @@ metrics:
     value: "6 ppm (< 10 ppm Target)"
 ---
 
-Inspeksi on-site oleh tim spesialis diagnostik transformator PT Mesindo Tekninesia cabang Pekanbaru pada gardu induk kilang. Melakukan uji DGA untuk mengidentifikasi gas asetilena terlarut, dilanjutkan dengan sirkulasi purifikasi minyak bertekanan vakum 0.1 mbar selama 72 jam hingga tegangan tembus dielektrik meningkat dari 42 kV menjadi 78 kV / 2.5mm.
+Inspeksi on-site oleh tim spesialis diagnostik transformator MESINDO TEKNISIA cabang Pekanbaru pada gardu induk kilang. Melakukan uji DGA untuk mengidentifikasi gas asetilena terlarut, dilanjutkan dengan sirkulasi purifikasi minyak bertekanan vakum 0.1 mbar selama 72 jam hingga tegangan tembus dielektrik meningkat dari 42 kV menjadi 78 kV / 2.5mm.

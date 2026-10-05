@@ -34,7 +34,7 @@ applicableIndustries:
 
 ## Hilangkan Resonansi & Getaran dengan Fasilitas Balancing Modern
 
-Ketidakseimbangan massa (*unbalance*) pada rotor mesin berputar merupakan penyebab utama vibrasi berlebih, keausan dini pada bearing, dan kegagalan struktural mekanik. PT Mesindo Tekninesia memiliki keunggulan fasilitas **High Speed Balancing hingga 150 ton** yang langka di kawasan industri Indonesia.
+Ketidakseimbangan massa (*unbalance*) pada rotor mesin berputar merupakan penyebab utama vibrasi berlebih, keausan dini pada bearing, dan kegagalan struktural mekanik. MESINDO TEKNISIA memiliki keunggulan fasilitas **High Speed Balancing hingga 150 ton** yang langka di kawasan industri Indonesia.
 
 ### Mengapa High Speed Balancing Diperlukan?
 

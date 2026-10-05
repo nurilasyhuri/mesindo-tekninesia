@@ -3,7 +3,7 @@ title: "Vacuum Pressure Impregnation (VPI) System"
 category: "Insulation System"
 capacity: "Tangki Vakum Bertekanan Diameter 3.5 Meter"
 description: "Sistem perendaman resin bertekanan dan vakum tinggi untuk memastikan belitan motor dan generator bebas rongga udara dan tahan kelembaban ekstrem."
-coverImage: "/images/service-electro-motor.webp"
+coverImage: "/images/facility-oven-real.webp"
 orderPriority: 4
 featured: false
 specs:

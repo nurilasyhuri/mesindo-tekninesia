@@ -34,7 +34,7 @@ applicableIndustries:
 
 ## Deteksi Kerusakan Sejak Dini Melalui Pengujian Non-Destructive Testing
 
-Keandalan mesin berputar dan transformator membutuhkan pemantauan kondisi prediktif berbasis bukti pengujian (*condition-based assessment*). Tim engineering PT Mesindo Tekninesia dilengkapi alat uji berstandar laboratorium internasional untuk mengidentifikasi degradasi insulasi, kelemahan mekanis, atau retak struktural tanpa merusak equipment.
+Keandalan mesin berputar dan transformator membutuhkan pemantauan kondisi prediktif berbasis bukti pengujian (*condition-based assessment*). Tim engineering MESINDO TEKNISIA dilengkapi alat uji berstandar laboratorium internasional untuk mengidentifikasi degradasi insulasi, kelemahan mekanis, atau retak struktural tanpa merusak equipment.
 
 ### Metode Diagnostik yang Kami Sediakan:
 

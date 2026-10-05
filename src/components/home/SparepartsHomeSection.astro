@@ -1,0 +1,145 @@
+---
+import { SPAREPARTS_CATALOG } from '../../data/spareparts';
+
+// Feature the top 6 high-demand industrial spare parts & overhaul materials
+const featuredSpareparts = SPAREPARTS_CATALOG.slice(0, 6);
+---
+
+<section id="toko-sparepart" class="py-20 sm:py-28 bg-[#f5f5f7] font-sans select-none">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header (Apple Style) -->
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+      <div class="max-w-3xl">
+        <span class="text-xs font-semibold uppercase tracking-[0.15em] text-sky-600 block mb-2">
+          Distributor &amp; Toko Sparepart Motor Listrik Industri
+        </span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-950 tracking-tight leading-tight">
+          Katalog Sparepart &amp; Material Overhaul Motor AC 3 Fasa.
+        </h2>
+        <p class="text-sm sm:text-base text-slate-500 mt-3 leading-relaxed">
+          Penyedia kawat tembaga email rewinding Kelas H 200°C, isolasi slot Nomex 410, resin VPI epoksi, bearing insulasi SKF/NSK C3, oil seal Viton, cooling fan, dan terminal block keramik berstandar EASA.
+        </p>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="flex items-center gap-3 shrink-0">
+        <a
+          href="/sparepart/"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-medium tracking-tight transition-all"
+        >
+          <span>Buka Toko Sparepart ({SPAREPARTS_CATALOG.length} Item)</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Product Grid (6 Featured Items in Apple Store Bento Style) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {featuredSpareparts.map((item, idx) => {
+        const itemSku = `SP-MT-${String(idx + 1).padStart(2, '0')}`;
+
+        return (
+          <div
+            id={`home-${item.id}`}
+            class="bg-white rounded-2xl border border-slate-200/70 overflow-hidden hover:border-slate-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+          >
+            <div>
+              <!-- Media Frame (Apple Store Accessory Style) -->
+              <div class="relative aspect-[16/10] overflow-hidden bg-[#fbfbfd] flex items-center justify-center p-4">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+                  loading="lazy"
+                />
+                <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                  <span class="px-2.5 py-1 rounded-full text-[10px] font-medium bg-black/60 text-white backdrop-blur-md">
+                    {item.category}
+                  </span>
+                  <span class="px-2.5 py-1 rounded-full text-[10px] font-medium bg-emerald-950/80 text-emerald-300 border border-emerald-500/30">
+                    Ready Stock
+                  </span>
+                </div>
+              </div>
+
+              <!-- Content -->
+              <div class="p-6">
+                <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-1.5">
+                  <span>{itemSku}</span>
+                  <span>Standar EASA / IEEE</span>
+                </div>
+
+                <h3 class="text-lg font-semibold text-slate-950 group-hover:text-sky-600 transition-colors leading-snug tracking-tight">
+                  <a href={`/layanan/sparepart-motor-listrik/#${item.id}`}>
+                    {item.name}
+                  </a>
+                </h3>
+
+                <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed line-clamp-2">
+                  {item.shortDesc}
+                </p>
+
+                <!-- Technical Specs Snippet -->
+                <div class="mt-5 pt-4 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
+                  {item.specs.slice(0, 2).map((sp) => (
+                    <div class="flex items-start gap-2">
+                      <span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-1.5 shrink-0"></span>
+                      <span class="line-clamp-1 text-slate-600">{sp}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Actions (Clean Apple Store Interaction) -->
+            <div class="p-6 pt-0 border-t border-slate-100/60 mt-2 flex flex-col gap-2.5">
+              <button
+                type="button"
+                data-add-rfq
+                data-rfq-id={item.id}
+                data-rfq-title={item.name}
+                data-rfq-category={`Sparepart: ${item.category}`}
+                data-rfq-spec={item.specs[0] || 'Spesifikasi Nameplate'}
+                data-rfq-image={item.image}
+                data-rfq-qty="1"
+                class="w-full py-2.5 px-4 rounded-full bg-slate-900 hover:bg-black text-white font-medium text-xs text-center transition-all cursor-pointer shadow-xs"
+                title="Tambah ke Keranjang RFQ"
+              >
+                + Tambah ke Keranjang RFQ
+              </button>
+
+              <div class="text-center">
+                <a
+                  href={`/layanan/sparepart-motor-listrik/#${item.id}`}
+                  class="text-xs font-medium text-slate-500 hover:text-slate-900 transition-colors"
+                >
+                  Detail Spesifikasi Teknis &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Storefront Footer Strip (Clean Apple Notice) -->
+    <div class="mt-12 p-6 rounded-2xl bg-white border border-slate-200/70 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-xs sm:text-sm text-slate-600 text-center md:text-left">
+        <span class="font-semibold text-slate-900 block sm:inline">Punya nameplate motor spesifik?</span>
+        <span> Masukkan data nameplate pada form RFQ untuk verifikasi dimensi dan kesesuaian isolasi termal.</span>
+      </div>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <a
+          href="/request-quotation/"
+          class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-medium transition-colors"
+        >
+          <span>Input Nameplate RFQ</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

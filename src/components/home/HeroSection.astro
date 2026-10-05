@@ -1,113 +1,108 @@
 ---
 import { COMPANY_INFO } from '../../data/companyInfo';
-import { generateGeneralInquiryUrl } from '../../utils/whatsapp';
-
-const waHeroUrl = generateGeneralInquiryUrl('hero-section');
 ---
 
-<section class="relative bg-industrial-950 text-white overflow-hidden font-sans border-b border-industrial-800 min-h-[calc(100vh-112px)] flex flex-col justify-center">
-  <!-- Background Image with Overlay -->
-  <div class="absolute inset-0 z-0">
+<section class="relative min-h-[92vh] flex items-center bg-[#07090e] text-white overflow-hidden font-sans select-none">
+  <!-- Cinematic Full Background Canvas -->
+  <div class="absolute inset-0 z-0 overflow-hidden">
     <img
-      src="/images/hero-industrial.webp"
-      alt="Heavy Industrial Engineering Facility PT Mesindo Tekninesia"
-      class="w-full h-full object-cover object-[75%_center] sm:object-center opacity-45 lg:opacity-55"
+      src="/images/hero-home-bg.webp"
+      alt="Fasilitas Rekayasa Workshop Berat MESINDO TEKNISIA - Stator Rewinding & Balancing Rotor"
+      class="w-full h-full object-cover object-center opacity-45 sm:opacity-50"
       loading="eager"
       decoding="async"
     />
-    <!-- Subtle gradient overlay: deep on the left for text contrast, open on the right for the crane hook & warm lights -->
-    <div class="absolute inset-0 bg-gradient-to-r from-industrial-950 via-industrial-950/80 to-industrial-950/30"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-industrial-950 via-transparent to-industrial-950/40"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(#0284c7_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
+    <!-- Deep Vignette & Contrast Control Gradients -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/55 to-[#07090e]/75"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#07090e]/80 via-transparent to-[#07090e]/80"></div>
   </div>
 
-  <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
-    <div class="max-w-3xl">
+  <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-16 sm:pb-24">
+    <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
       
-      <!-- Trust Badge -->
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-300 text-xs font-semibold mb-6">
-        <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
-        <span>PT Mesindo Tekninesia &bull; Berpengalaman Sejak 1994</span>
+      <!-- Apple Eyebrow Kicker with Pill Glow -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.08] border border-white/[0.15] backdrop-blur-md mb-6">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-slate-200">
+          {COMPANY_INFO.name} • Sejak {COMPANY_INFO.establishedYear} • Total Services
+        </span>
       </div>
 
-      <!-- Main Headline -->
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight uppercase">
-        Repair, Rewinding &amp; <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-cyan-200">Engineering</span> Equipment Industri.
+      <!-- Apple Keynote Headline with Primary SEO Intent -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-white leading-[1.08] text-balance drop-shadow-md">
+        Overhaul &amp; Rewinding Motor Listrik, Generator &amp; Balancing Industri.
       </h1>
 
-      <!-- Grounded Subtitle -->
-      <p class="text-sm sm:text-base lg:text-lg text-slate-300 font-normal leading-relaxed mt-5 max-w-2xl">
-        Mitra rekayasa teknik terpercaya untuk Electro Motor, Generator, Transformer, High Speed Balancing hingga 150 ton, dan Machining komponen ekstra besar dengan standar IEEE, IEC &amp; EASA.
+      <!-- Apple Subheadline with Rich Industrial Keywords -->
+      <p class="text-base sm:text-xl text-slate-300 font-normal leading-relaxed mt-6 max-w-3xl text-balance drop-shadow-sm">
+        Layanan terpadu bengkel rewinding motor LV/HV 13.8 kV, overhaul turbogenerator &amp; trafo, high speed dynamic balancing tunnel 150 ton ISO 1940, machining bubut vertikal 6.7M, serta toko sparepart motor listrik resmi.
       </p>
 
-      <!-- Action Buttons -->
-      <div class="flex flex-wrap items-center gap-3 sm:gap-4 mt-8">
+      <!-- Apple Action Pill Group -->
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-9">
+        <a
+          href="/request-quotation/"
+          class="inline-flex items-center justify-center px-6 sm:px-7 py-3.5 rounded-full bg-white text-slate-950 hover:bg-slate-100 font-semibold text-xs sm:text-sm tracking-tight transition-all shadow-[0_4px_24px_rgba(255,255,255,0.25)] hover:scale-102 active:scale-98"
+        >
+          <span>Minta Penawaran (RFQ)</span>
+        </a>
+
+        <a
+          href="/sparepart/"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/[0.12] hover:bg-white/[0.20] text-white border border-white/[0.22] font-semibold text-xs sm:text-sm tracking-tight transition-all backdrop-blur-xl hover:scale-102 active:scale-98"
+        >
+          <span>Katalog Toko Sparepart</span>
+          <span class="text-[10px] font-mono text-sky-300">15 Item &rarr;</span>
+        </a>
+
         <a
           href="/layanan/"
-          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-brand-900/30 transition-all select-none"
+          class="inline-flex items-center justify-center gap-1.5 px-4 py-3.5 text-slate-300 hover:text-white text-xs sm:text-sm font-medium transition-colors"
         >
-          <span>Katalog Layanan (Koleksi)</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
+          <span>Eksplorasi Layanan</span>
+          <span aria-hidden="true">&rarr;</span>
         </a>
-
-        <button
-          type="button"
-          onclick="window.openRfqDrawer ? window.openRfqDrawer() : null"
-          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-industrial-900/90 hover:bg-industrial-800 text-slate-200 border border-industrial-700 hover:border-slate-500 font-semibold text-xs sm:text-sm transition-all select-none cursor-pointer"
-        >
-          <svg class="w-4 h-4 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
-          <span>Buka Keranjang RFQ</span>
-          <span class="rfq-cart-count hidden px-1.5 py-0.5 rounded-full bg-brand-600 text-white text-[10px] font-mono font-bold leading-none">0</span>
-        </button>
-
-        <a
-          href={waHeroUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 px-4 py-3.5 rounded-full text-slate-400 hover:text-white text-xs font-semibold transition-colors"
-        >
-          <span>Konsultasi Hotline &rarr;</span>
-        </a>
-      </div>
-
-      <!-- Quick Collection Jump Tags (Shopify Hero Feature) -->
-      <div class="mt-8 flex flex-wrap items-center gap-2 text-xs">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-1">Koleksi Cepat:</span>
-        <a href="/layanan/electro-motor/" class="px-3 py-1.5 rounded-full bg-industrial-900/70 hover:bg-brand-600 text-slate-300 hover:text-white border border-industrial-800 hover:border-transparent transition-colors text-[11px] font-medium">
-          ⚡ Electro Motor
-        </a>
-        <a href="/layanan/high-speed-balancing/" class="px-3 py-1.5 rounded-full bg-industrial-900/70 hover:bg-brand-600 text-slate-300 hover:text-white border border-industrial-800 hover:border-transparent transition-colors text-[11px] font-medium">
-          🔄 Dynamic Balancing 150T
-        </a>
-        <a href="/layanan/industrial-machining/" class="px-3 py-1.5 rounded-full bg-industrial-900/70 hover:bg-brand-600 text-slate-300 hover:text-white border border-industrial-800 hover:border-transparent transition-colors text-[11px] font-medium">
-          ⚙️ Vertical Lathe 6.7m
-        </a>
-        <a href="/layanan/generator/" class="px-3 py-1.5 rounded-full bg-industrial-900/70 hover:bg-brand-600 text-slate-300 hover:text-white border border-industrial-800 hover:border-transparent transition-colors text-[11px] font-medium">
-          ⚡ Generator Stator
-        </a>
-        <a href="/layanan/transformer/" class="px-3 py-1.5 rounded-full bg-industrial-900/70 hover:bg-brand-600 text-slate-300 hover:text-white border border-industrial-800 hover:border-transparent transition-colors text-[11px] font-medium">
-          🔋 Trafo &amp; Oil Purify
-        </a>
-      </div>
-
-      <!-- Quick Metrics Grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-12 pt-8 border-t border-industrial-800/80">
-        {COMPANY_INFO.stats.map((stat) => (
-          <div class="p-3.5 rounded-xl bg-industrial-900/60 border border-industrial-800 backdrop-blur-xs">
-            <span class="text-xl sm:text-2xl font-extrabold text-white block font-mono">
-              {stat.value}
-            </span>
-            <span class="text-[11px] text-slate-400 block mt-0.5 leading-snug">
-              {stat.label}
-            </span>
-          </div>
-        ))}
       </div>
 
     </div>
+
+    <!-- Apple-style Floating Glass Specs Bento -->
+    <div class="mt-16 sm:mt-20 max-w-5xl mx-auto rounded-3xl bg-slate-950/65 border border-white/[0.12] backdrop-blur-2xl p-6 sm:p-8 shadow-[0_16px_40px_rgba(0,0,0,0.6)]">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-white/[0.08]">
+        <div class="pt-4 md:pt-0">
+          <span class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white block tracking-tight">
+            30+ Tahun
+          </span>
+          <span class="text-xs text-slate-400 block mt-1">
+            Pengalaman Rekayasa Teknik
+          </span>
+        </div>
+        <div class="pt-4 md:pt-0">
+          <span class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white block tracking-tight">
+            150 Ton
+          </span>
+          <span class="text-xs text-slate-400 block mt-1">
+            High Speed Balancing Tunnel
+          </span>
+        </div>
+        <div class="pt-4 md:pt-0">
+          <span class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white block tracking-tight">
+            13.8 kV
+          </span>
+          <span class="text-xs text-slate-400 block mt-1">
+            Full Load Voltage Test Bed
+          </span>
+        </div>
+        <div class="pt-4 md:pt-0">
+          <span class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white block tracking-tight">
+            10 Lokasi
+          </span>
+          <span class="text-xs text-slate-400 block mt-1">
+            Jaringan Workshop Nasional
+          </span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>

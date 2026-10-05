@@ -1,0 +1,119 @@
+---
+import { SPAREPARTS_CATALOG } from '../../data/spareparts';
+
+export interface Props {
+  showTitle?: boolean;
+}
+
+const { showTitle = true } = Astro.props;
+---
+
+
+<div class="mt-16 pt-8 font-sans select-none">
+  {showTitle && (
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
+      <div>
+        <span class="text-xs font-semibold uppercase tracking-[0.15em] text-sky-600 block mb-2">
+          Komponen &amp; Material
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-semibold text-slate-950 tracking-tight leading-tight">
+          Katalog Sparepart &amp; Material Motor Listrik.
+        </h2>
+        <p class="text-sm text-slate-500 mt-2 max-w-2xl leading-relaxed">
+          Daftar {SPAREPARTS_CATALOG.length} komponen mekanis dan material insulasi resmi. Tambahkan ke Keranjang RFQ untuk estimasi resmi kebutuhan pabrik Anda.
+        </p>
+      </div>
+      <a
+        href="/sparepart/"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-medium tracking-tight transition-all shrink-0"
+      >
+        <span>Buka Toko Sparepart &rarr;</span>
+      </a>
+    </div>
+  )}
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+    {SPAREPARTS_CATALOG.map((item, idx) => {
+      const itemSku = `SP-MT-${String(idx + 1).padStart(2, '0')}`;
+
+      return (
+        <div
+          id={item.id}
+          class="bg-white rounded-2xl border border-slate-200/70 overflow-hidden hover:border-slate-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+        >
+          <div>
+            <!-- Media Frame (Apple Store Accessory Style) -->
+            <div class="relative aspect-[16/10] overflow-hidden bg-[#fbfbfd] flex items-center justify-center p-4">
+              <img
+                src={item.image}
+                alt={item.name}
+                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+                loading="lazy"
+              />
+              <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                <span class="px-2.5 py-1 rounded-full text-[10px] font-medium bg-black/60 text-white backdrop-blur-md">
+                  {item.category}
+                </span>
+                <span class="px-2.5 py-1 rounded-full text-[10px] font-medium bg-emerald-950/80 text-emerald-300 border border-emerald-500/30">
+                  Ready Stock
+                </span>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-1.5">
+                <span>{itemSku}</span>
+                <span>Standar Industri</span>
+              </div>
+
+              <h3 class="text-lg font-semibold text-slate-950 group-hover:text-sky-600 transition-colors leading-snug tracking-tight">
+                {item.name}
+              </h3>
+
+              <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed line-clamp-3">
+                {item.description}
+              </p>
+
+              <!-- Technical Specs Snippet -->
+              <div class="mt-5 pt-4 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
+                {item.specs.slice(0, 2).map((sp) => (
+                  <div class="flex items-start gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-1.5 shrink-0"></span>
+                    <span class="line-clamp-1 text-slate-600">{sp}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Actions in Apple Store Style -->
+          <div class="p-6 pt-0 border-t border-slate-100/60 mt-2 flex flex-col gap-2.5">
+            <button
+              type="button"
+              data-add-rfq
+              data-rfq-id={item.id}
+              data-rfq-title={item.name}
+              data-rfq-category={`Sparepart: ${item.category}`}
+              data-rfq-spec={item.specs[0] || 'Spesifikasi Nameplate'}
+              data-rfq-image={item.image}
+              data-rfq-qty="1"
+              class="w-full py-2.5 px-4 rounded-full bg-slate-900 hover:bg-black text-white font-medium text-xs text-center transition-all cursor-pointer shadow-xs"
+              title="Tambah ke Keranjang RFQ"
+            >
+              + Tambah ke Keranjang RFQ
+            </button>
+
+            <div class="text-center">
+              <a
+                href={`/layanan/sparepart-motor-listrik/#${item.id}`}
+                class="text-xs font-medium text-slate-500 hover:text-slate-900 transition-colors"
+              >
+                Detail Spesifikasi Teknis &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</div>
