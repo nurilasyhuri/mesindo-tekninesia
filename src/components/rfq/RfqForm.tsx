@@ -130,7 +130,7 @@ export default function RfqForm() {
                 value={brand}
                 onInput={(e) => setBrand((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: Siemens, ABB, WEG, Toshiba"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
 
@@ -141,7 +141,7 @@ export default function RfqForm() {
                 value={model}
                 onInput={(e) => setModel((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: 1LA8, H-compact, dsb"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
 
@@ -152,7 +152,7 @@ export default function RfqForm() {
                 value={powerCapacity}
                 onInput={(e) => setPowerCapacity((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: 250 kW / 50 MW / 25 MVA"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
 
@@ -163,7 +163,7 @@ export default function RfqForm() {
                 value={voltage}
                 onInput={(e) => setVoltage((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: 380V (LV) / 6.6kV (HV) / 150kV"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
 
@@ -174,7 +174,7 @@ export default function RfqForm() {
                 value={rpm}
                 onInput={(e) => setRpm((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: 1500 RPM / 3000 RPM"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
 
@@ -183,7 +183,7 @@ export default function RfqForm() {
               <select
                 value={serviceNeeded}
                 onChange={(e) => setServiceNeeded((e.target as HTMLSelectElement).value)}
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 bg-white focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs bg-white focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               >
                 <option value="Overhaul & Rewinding">Overhaul &amp; Rewinding Total</option>
                 <option value="High Speed Balancing">High Speed / Dynamic Balancing</option>
@@ -211,7 +211,7 @@ export default function RfqForm() {
                 value={companyName}
                 onInput={(e) => setCompanyName((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: PT Pembangkit Nusantara / PT Pupuk ..."
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
 
@@ -222,7 +222,7 @@ export default function RfqForm() {
                 value={location}
                 onInput={(e) => setLocation((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: Cilegon, Gresik, Bontang, Pekanbaru"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
           </div>
@@ -236,7 +236,7 @@ export default function RfqForm() {
               value={issueDescription}
               onInput={(e) => setIssueDescription((e.target as HTMLTextAreaElement).value)}
               placeholder="Jelaskan anomali yang terjadi (misal: getaran tinggi di atas 8 mm/s, tripping pada relay diferensial, insulation megger drop di bawah 5 MOhm, bearing overheating, dsb)"
-              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
             />
           </div>
         </div>
