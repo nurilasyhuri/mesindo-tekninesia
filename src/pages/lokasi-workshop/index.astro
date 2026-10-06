@@ -53,9 +53,6 @@ import { generateGeneralInquiryUrl } from '../../utils/whatsapp';
                 <p class="font-medium text-slate-800 leading-relaxed">
                   {w.address}
                 </p>
-                {w.postalCode && (
-                  <p class="text-[11px] text-slate-400">Kode Pos: {w.postalCode}</p>
-                )}
                 {w.area && (
                   <p class="text-[11px] font-semibold text-brand-700 bg-brand-50/60 inline-block px-2 py-0.5 rounded border border-brand-200/50 mt-1">
                     Luas Area: {w.area}
@@ -86,14 +83,6 @@ import { generateGeneralInquiryUrl } from '../../utils/whatsapp';
               >
                 <span>Hubungi Workshop</span>
                 <span aria-hidden="true">&rarr;</span>
-              </a>
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${w.name} ${w.address}`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-[11px] text-slate-400 hover:text-slate-700 underline"
-              >
-                Buka Peta
               </a>
             </div>
           </div>
