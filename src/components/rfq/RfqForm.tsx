@@ -70,15 +70,15 @@ export default function RfqForm() {
   };
 
   return (
-    <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden font-sans">
+    <div class="bg-white border border-slate-200 shadow-2xs overflow-hidden font-sans">
       
       {/* Form Header */}
       <div class="p-6 sm:p-8 bg-slate-50 border-b border-slate-200">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-800 border border-brand-200">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-xs text-[11px] font-mono font-semibold bg-brand-50 text-brand-800 border border-brand-200">
           <span class="w-1.5 h-1.5 rounded-full bg-brand-600"></span>
           Formulir Permohonan Penawaran Teknis
         </span>
-        <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight mt-2">
+        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mt-2">
           Request Quotation (RFQ) Equipment Industri
         </h3>
         <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed">
@@ -91,8 +91,8 @@ export default function RfqForm() {
         
         {/* Step 1: Equipment Selection */}
         <div class="space-y-3">
-          <label class="text-xs sm:text-sm font-bold text-slate-900 block">
-            1. Pilih Kategori Equipment
+          <label class="text-xs sm:text-sm font-mono font-bold text-slate-900 block">
+            1. PILIH KATEGORI EQUIPMENT
           </label>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
             {EQUIPMENT_OPTIONS.map((item) => {
@@ -102,14 +102,14 @@ export default function RfqForm() {
                   type="button"
                   key={item.id}
                   onClick={() => setEquipmentType(item.label)}
-                  class={`p-3 rounded-xl border text-left transition-all cursor-pointer select-none ${
+                  class={`p-3 rounded-xs border text-left transition-all cursor-pointer select-none ${
                     isSelected
-                      ? 'bg-brand-50/80 border-brand-600 ring-1 ring-brand-600 text-slate-950'
+                      ? 'bg-brand-50/80 border-brand-600 ring-1 ring-brand-600 text-slate-950 font-semibold'
                       : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700'
                   }`}
                 >
                   <span class="block text-xs font-bold">{item.label}</span>
-                  <span class="block text-[10px] text-slate-500 mt-0.5">{item.badge}</span>
+                  <span class="block text-[10px] font-mono text-slate-500 mt-0.5">{item.badge}</span>
                 </button>
               );
             })}
@@ -118,8 +118,8 @@ export default function RfqForm() {
 
         {/* Step 2: Technical Specifications */}
         <div class="pt-5 border-t border-slate-200 space-y-4">
-          <label class="text-xs sm:text-sm font-bold text-slate-900 block">
-            2. Spesifikasi Teknis Mesin (Berdasarkan Nameplate)
+          <label class="text-xs sm:text-sm font-mono font-bold text-slate-900 block">
+            2. SPESIFIKASI TEKNIS MESIN (BERDASARKAN NAMEPLATE)
           </label>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
@@ -130,7 +130,7 @@ export default function RfqForm() {
                 value={brand}
                 onInput={(e) => setBrand((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: Siemens, ABB, WEG, Toshiba"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3 py-2 rounded-xs border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
 
@@ -141,7 +141,7 @@ export default function RfqForm() {
                 value={model}
                 onInput={(e) => setModel((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: 1LA8, H-compact, dsb"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3 py-2 rounded-xs border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
 
@@ -152,7 +152,7 @@ export default function RfqForm() {
                 value={powerCapacity}
                 onInput={(e) => setPowerCapacity((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: 250 kW / 50 MW / 25 MVA"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3 py-2 rounded-xs border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
 
@@ -163,7 +163,7 @@ export default function RfqForm() {
                 value={voltage}
                 onInput={(e) => setVoltage((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: 380V (LV) / 6.6kV (HV) / 150kV"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3 py-2 rounded-xs border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
 
@@ -174,7 +174,7 @@ export default function RfqForm() {
                 value={rpm}
                 onInput={(e) => setRpm((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: 1500 RPM / 3000 RPM"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3 py-2 rounded-xs border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
 
@@ -183,7 +183,7 @@ export default function RfqForm() {
               <select
                 value={serviceNeeded}
                 onChange={(e) => setServiceNeeded((e.target as HTMLSelectElement).value)}
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs bg-white focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3 py-2 rounded-xs border border-slate-200 text-slate-900 text-base sm:text-xs bg-white focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               >
                 <option value="Overhaul & Rewinding">Overhaul &amp; Rewinding Total</option>
                 <option value="High Speed Balancing">High Speed / Dynamic Balancing</option>
@@ -199,8 +199,8 @@ export default function RfqForm() {
 
         {/* Step 3: Issue Description & Location */}
         <div class="pt-5 border-t border-slate-200 space-y-4">
-          <label class="text-xs sm:text-sm font-bold text-slate-900 block">
-            3. Kerusakan, Lokasi &amp; Data Perusahaan
+          <label class="text-xs sm:text-sm font-mono font-bold text-slate-900 block">
+            3. KERUSAKAN, LOKASI &amp; DATA PERUSAHAAN
           </label>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
@@ -211,7 +211,7 @@ export default function RfqForm() {
                 value={companyName}
                 onInput={(e) => setCompanyName((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: PT Pembangkit Nusantara / PT Pupuk ..."
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3 py-2 rounded-xs border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
 
@@ -222,7 +222,7 @@ export default function RfqForm() {
                 value={location}
                 onInput={(e) => setLocation((e.target as HTMLInputElement).value)}
                 placeholder="Contoh: Cilegon, Gresik, Bontang, Pekanbaru"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                class="w-full px-3 py-2 rounded-xs border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
               />
             </div>
           </div>
@@ -236,7 +236,7 @@ export default function RfqForm() {
               value={issueDescription}
               onInput={(e) => setIssueDescription((e.target as HTMLTextAreaElement).value)}
               placeholder="Jelaskan anomali yang terjadi (misal: getaran tinggi di atas 8 mm/s, tripping pada relay diferensial, insulation megger drop di bawah 5 MOhm, bearing overheating, dsb)"
-              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+              class="w-full px-3 py-2 rounded-xs border border-slate-200 text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
             />
           </div>
         </div>
@@ -245,7 +245,7 @@ export default function RfqForm() {
         <div class="pt-5 border-t border-slate-200 flex flex-col sm:flex-row items-center gap-3">
           <button
             type="submit"
-            class="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-slate-900 hover:bg-brand-600 active:bg-brand-700 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-sm transition-all cursor-pointer"
+            class="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-sm bg-slate-900 hover:bg-brand-600 active:bg-brand-700 text-white font-semibold text-xs sm:text-sm uppercase tracking-wider shadow-xs transition-all cursor-pointer"
           >
             <span>Kirim RFQ via WhatsApp Resmi</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
@@ -256,7 +256,7 @@ export default function RfqForm() {
           <button
             type="button"
             onClick={handleCopySummary}
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-colors cursor-pointer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-sm bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs uppercase tracking-wide transition-colors cursor-pointer"
           >
             <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -266,7 +266,7 @@ export default function RfqForm() {
           </button>
         </div>
 
-        <p class="text-[11px] text-slate-400 text-center">
+        <p class="text-[11px] font-mono text-slate-400 text-center">
           Data teknis yang Anda kirimkan bersifat rahasia (Non-Disclosure Protection) dan hanya digunakan untuk penyusunan penawaran teknis resmi.
         </p>
 

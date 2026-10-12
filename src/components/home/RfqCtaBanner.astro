@@ -4,99 +4,100 @@ import { generateGeneralInquiryUrl } from '../../utils/whatsapp';
 const waUrl = generateGeneralInquiryUrl('home-rfq-banner');
 ---
 
-<section class="py-20 sm:py-28 bg-[#f5f5f7] font-sans select-none">
+<section class="py-20 sm:py-28 bg-[#090b10] text-white border-t border-slate-800/80 font-sans select-none">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="bg-[#161617] border border-white/[0.08] rounded-3xl p-8 sm:p-14 lg:p-16 shadow-2xl text-white">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
-        <!-- Left: Information Checklist (Apple Engineering Spec) -->
-        <div>
-          <span class="text-xs font-semibold uppercase tracking-[0.15em] text-sky-400 block mb-3">
-            Konsultasi &amp; Estimasi Teknis
-          </span>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight leading-tight">
-            Konsultasikan Equipment Industri Anda.
-          </h2>
-          <p class="text-sm sm:text-base text-slate-400 mt-4 leading-relaxed">
-            Sampaikan anomali atau kebutuhan perawatan motor, generator, transformer, atau balancing tunnel Anda. Tim engineer MESINDO TEKNISIA siap memberikan analisis awal dan estimasi penawaran teknis.
-          </p>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <!-- Left: Information Checklist (Apple Engineering Spec) -->
+      <div class="lg:col-span-7">
+        <span class="text-xs font-mono font-medium uppercase tracking-[0.2em] text-sky-400 block mb-3">
+          KONSULTASI &amp; ESTIMASI TEKNIS
+        </span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight leading-tight">
+          Konsultasikan Equipment Industri Anda.
+        </h2>
+        <p class="text-sm sm:text-base text-slate-400 mt-4 leading-relaxed max-w-2xl">
+          Sampaikan anomali atau kebutuhan perawatan motor, generator, transformer, atau balancing tunnel Anda. Tim engineer MESINDO TEKNISIA siap memberikan analisis awal dan estimasi penawaran teknis.
+        </p>
 
-          <!-- Information checklist required -->
-          <div class="mt-8 pt-6 border-t border-white/[0.08]">
-            <span class="text-[11px] font-medium uppercase tracking-[0.15em] text-slate-400 block mb-3">
-              Parameter pendukung untuk mempercepat estimasi:
-            </span>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-300">
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
-                <span>Foto Nameplate Motor / Generator</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
-                <span>Power (kW / HP / MW) &amp; RPM</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
-                <span>Tegangan Kerja (Voltage) &amp; Hz</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
-                <span>Keluhan (Vibrasi, Panas, Winding)</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
-                <span>Nomor / Tipe Bearing</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
-                <span>Lokasi Pabrik / Site Industri</span>
-              </div>
+        <!-- Information checklist required -->
+        <div class="mt-8 pt-6 border-t border-white/[0.1]">
+          <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-3">
+            Parameter pendukung untuk mempercepat estimasi teknis:
+          </span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-300">
+            <div class="flex items-center gap-2.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
+              <span>Foto Nameplate Motor / Generator</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
+              <span>Power (kW / HP / MW) &amp; RPM</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
+              <span>Tegangan Kerja (Voltage) &amp; Hz</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
+              <span>Keluhan (Vibrasi, Panas, Winding)</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
+              <span>Nomor / Tipe Bearing</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
+              <span>Lokasi Pabrik / Site Industri</span>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Right: Actions Box in Glass Style -->
-        <div class="bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl p-8 sm:p-10 rounded-2xl flex flex-col justify-between space-y-6">
-          <div>
-            <h3 class="text-xl font-semibold text-white tracking-tight leading-snug">
-              Permohonan Penawaran Harga (RFQ)
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-              Gunakan formulir resmi online untuk menginput rincian unit secara sistematis, atau hubungi hotline teknis kami untuk respon konsultasi cepat.
-            </p>
-          </div>
-
-          <div class="space-y-3 pt-4 border-t border-white/[0.08]">
-            <a
-              href="/request-quotation/"
-              class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-white hover:bg-slate-200 text-slate-950 font-semibold text-xs sm:text-sm tracking-tight transition-all shadow-md"
-            >
-              <span>Isi Formulir Request Quotation</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
-
-            <!-- Authorised Single WhatsApp CTA: Secondary style with monochrome icon per preferences.md -->
-            <a
-              href={waUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-slate-200 hover:text-white border border-white/[0.12] font-medium text-xs sm:text-sm tracking-tight transition-all"
-            >
-              <svg class="w-4 h-4 fill-current text-slate-300" viewBox="0 0 24 24">
-                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/>
-              </svg>
-              <span>Konsultasi Hotline WhatsApp</span>
-            </a>
-          </div>
-
-          <p class="text-[11px] text-slate-500 text-center">
-            Melayani pekerjaan workshop di 10 cabang serta pekerjaan on-site di seluruh Indonesia.
+      <!-- Right: Direct RFQ Action Panel (Zero Nested Card) -->
+      <div class="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-white/[0.1] lg:pl-12 pt-8 lg:pt-0 flex flex-col justify-between space-y-6">
+        <div>
+          <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
+            ESTIMASI PENAWARAN RESMI
+          </span>
+          <h3 class="text-xl font-semibold text-white tracking-tight leading-snug">
+            Permohonan Penawaran Harga (RFQ)
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+            Gunakan formulir online kami untuk menginput rincian unit secara terstruktur, atau hubungi hotline teknis kami untuk respon darurat 24/7.
           </p>
         </div>
 
+        <div class="space-y-3 pt-4 border-t border-white/[0.1]">
+          <a
+            href="/request-quotation/"
+            class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-white hover:bg-slate-200 text-slate-950 font-semibold text-xs sm:text-sm tracking-tight transition-all shadow-md"
+          >
+            <span>Isi Formulir Request Quotation</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+
+          <!-- Authorised Single WhatsApp CTA: Secondary style with monochrome icon per preferences.md -->
+          <a
+            href={waUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-slate-200 hover:text-white border border-white/[0.15] font-medium text-xs sm:text-sm tracking-tight transition-all"
+          >
+            <svg class="w-4 h-4 fill-current text-slate-300" viewBox="0 0 24 24">
+              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/>
+            </svg>
+            <span>Konsultasi Hotline WhatsApp</span>
+          </a>
+        </div>
+
+        <p class="text-[11px] font-mono text-slate-500">
+          Melayani pekerjaan workshop di 10 cabang serta pekerjaan on-site di seluruh Indonesia.
+        </p>
       </div>
+
     </div>
   </div>
 </section>

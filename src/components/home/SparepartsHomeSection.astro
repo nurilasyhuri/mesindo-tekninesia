@@ -34,54 +34,54 @@ const featuredSpareparts = SPAREPARTS_CATALOG.slice(0, 6);
       </div>
     </div>
 
-    <!-- Product Grid (6 Featured Items in Apple Store Bento Style) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Product Shelf Matrix (Kurangi Card: Shared Hairline Grid, Zero Bubbly Cards) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-slate-200 bg-white">
       {featuredSpareparts.map((item, idx) => {
         const itemSku = `SP-MT-${String(idx + 1).padStart(2, '0')}`;
 
         return (
           <div
             id={`home-${item.id}`}
-            class="bg-white rounded-2xl border border-slate-200/70 overflow-hidden hover:border-slate-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            class="border-r border-b border-slate-200 p-6 sm:p-7 flex flex-col justify-between hover:bg-slate-50/50 transition-colors group"
           >
             <div>
-              <!-- Media Frame (Apple Store Accessory Style) -->
-              <div class="relative aspect-[16/10] overflow-hidden bg-[#fbfbfd] flex items-center justify-center p-4">
+              <!-- Media Frame -->
+              <div class="relative aspect-[16/10] overflow-hidden bg-slate-100/70 flex items-center justify-center p-4 mb-5">
                 <img
                   src={item.image}
                   alt={item.name}
-                  class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+                  class="w-full h-full object-contain group-hover:scale-103 transition-transform duration-500 ease-out"
                   loading="lazy"
                 />
                 <div class="absolute top-3 left-3 flex items-center gap-1.5">
-                  <span class="px-2.5 py-1 rounded-full text-[10px] font-medium bg-black/60 text-white backdrop-blur-md">
+                  <span class="px-2 py-0.5 text-[9px] font-mono font-medium uppercase tracking-wider bg-slate-950/80 text-white backdrop-blur-xs">
                     {item.category}
                   </span>
-                  <span class="px-2.5 py-1 rounded-full text-[10px] font-medium bg-emerald-950/80 text-emerald-300 border border-emerald-500/30">
+                  <span class="px-2 py-0.5 text-[9px] font-mono font-medium uppercase tracking-wider bg-emerald-950/80 text-emerald-300 border border-emerald-500/30">
                     Ready Stock
                   </span>
                 </div>
               </div>
 
               <!-- Content -->
-              <div class="p-6">
+              <div>
                 <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-1.5">
                   <span>{itemSku}</span>
                   <span>Standar EASA / IEEE</span>
                 </div>
 
-                <h3 class="text-lg font-semibold text-slate-950 group-hover:text-sky-600 transition-colors leading-snug tracking-tight">
+                <h3 class="text-base font-semibold text-slate-950 group-hover:text-sky-700 transition-colors leading-snug tracking-tight">
                   <a href={`/layanan/sparepart-motor-listrik/#${item.id}`}>
                     {item.name}
                   </a>
                 </h3>
 
-                <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed line-clamp-2">
+                <p class="text-xs text-slate-500 mt-2 leading-relaxed line-clamp-2">
                   {item.shortDesc}
                 </p>
 
                 <!-- Technical Specs Snippet -->
-                <div class="mt-5 pt-4 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
+                <div class="mt-4 pt-3.5 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
                   {item.specs.slice(0, 2).map((sp) => (
                     <div class="flex items-start gap-2">
                       <span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-1.5 shrink-0"></span>
@@ -92,8 +92,8 @@ const featuredSpareparts = SPAREPARTS_CATALOG.slice(0, 6);
               </div>
             </div>
 
-            <!-- Card Actions (Clean Apple Store Interaction) -->
-            <div class="p-6 pt-0 border-t border-slate-100/60 mt-2 flex flex-col gap-2.5">
+            <!-- Actions -->
+            <div class="pt-5 mt-5 border-t border-slate-100 flex flex-col gap-2">
               <button
                 type="button"
                 data-add-rfq
@@ -112,9 +112,10 @@ const featuredSpareparts = SPAREPARTS_CATALOG.slice(0, 6);
               <div class="text-center">
                 <a
                   href={`/layanan/sparepart-motor-listrik/#${item.id}`}
-                  class="text-xs font-medium text-slate-500 hover:text-slate-900 transition-colors"
+                  class="text-[11px] font-medium text-slate-500 hover:text-slate-900 transition-colors inline-flex items-center gap-1"
                 >
-                  Detail Spesifikasi Teknis &rarr;
+                  <span>Detail Spesifikasi Teknis</span>
+                  <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
             </div>
@@ -123,8 +124,8 @@ const featuredSpareparts = SPAREPARTS_CATALOG.slice(0, 6);
       })}
     </div>
 
-    <!-- Storefront Footer Strip (Clean Apple Notice) -->
-    <div class="mt-12 p-6 rounded-2xl bg-white border border-slate-200/70 flex flex-col md:flex-row items-center justify-between gap-4">
+    <!-- Storefront Notice Strip (Seamless, No Floating Card) -->
+    <div class="mt-10 pt-6 border-t border-slate-200/80 flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="text-xs sm:text-sm text-slate-600 text-center md:text-left">
         <span class="font-semibold text-slate-900 block sm:inline">Punya nameplate motor spesifik?</span>
         <span> Masukkan data nameplate pada form RFQ untuk verifikasi dimensi dan kesesuaian isolasi termal.</span>
@@ -133,7 +134,7 @@ const featuredSpareparts = SPAREPARTS_CATALOG.slice(0, 6);
       <div class="flex items-center gap-3 shrink-0">
         <a
           href="/request-quotation/"
-          class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-medium transition-colors"
+          class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-medium transition-colors"
         >
           <span>Input Nameplate RFQ</span>
           <span aria-hidden="true">&rarr;</span>

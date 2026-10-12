@@ -26,101 +26,131 @@ const waContactUrl = generateGeneralInquiryUrl('page-kontak');
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 font-sans">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
-      <!-- Contact Details -->
-      <div class="space-y-6">
-        <div class="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-4">
-          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider pb-3 border-b border-slate-100">
-            Kantor Pusat &amp; Workshop Utama
+      <!-- Contact Details Dossier (Left Column) -->
+      <div class="lg:col-span-5 border border-slate-200 bg-white divide-y divide-slate-200">
+        <div class="p-6 sm:p-8 space-y-3">
+          <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400 block">Headquarters &amp; Main Facility</span>
+          <h3 class="text-base font-bold text-slate-900">
+            {COMPANY_INFO.name}
           </h3>
-          <div class="text-xs text-slate-600 space-y-2 leading-relaxed">
-            <p class="font-bold text-slate-900">{COMPANY_INFO.name}</p>
-            <p>{COMPANY_INFO.workshops[0].address}</p>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            {COMPANY_INFO.workshops[0].address}
+          </p>
+          <div class="pt-2">
+            <span class="text-[11px] font-mono text-brand-700 bg-brand-50 inline-block px-2 py-0.5 border border-brand-200">
+              Lahan Workshop: 25.000 m² (10.000 m² Indoor)
+            </span>
           </div>
         </div>
 
-        <div class="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-3">
-          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider pb-2 border-b border-slate-100">
-            Hotline &amp; Komunikasi
-          </h3>
-          <div class="space-y-2.5 text-xs">
-            <div>
-              <span class="text-slate-400 block text-[11px]">Telepon Kantor:</span>
-              <a href="tel:+6285183002070" class="text-slate-900 font-bold hover:text-brand-600 transition-colors">
+        <div class="p-6 sm:p-8 space-y-4">
+          <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400 block">Direct Lines &amp; Support</span>
+          <div class="space-y-3 text-xs">
+            <div class="flex items-start justify-between gap-4 pb-2.5 border-b border-slate-100">
+              <span class="text-slate-500 font-mono">Telepon Kantor</span>
+              <a href="tel:+6285183002070" class="text-slate-900 font-bold hover:text-brand-600 transition-colors font-mono">
                 {COMPANY_INFO.contact.phoneFormatted}
               </a>
             </div>
-            <div>
-              <span class="text-slate-400 block text-[11px]">Hotline / WhatsApp:</span>
-              <a href={waContactUrl} target="_blank" rel="noopener noreferrer" class="text-brand-700 font-bold text-sm hover:underline">
+            <div class="flex items-start justify-between gap-4 pb-2.5 border-b border-slate-100">
+              <span class="text-slate-500 font-mono">Emergency Hotline</span>
+              <a href={waContactUrl} target="_blank" rel="noopener noreferrer" class="text-brand-700 font-bold hover:underline font-mono">
                 {COMPANY_INFO.contact.mobileFormatted}
               </a>
             </div>
-            <div>
-              <span class="text-slate-400 block text-[11px]">Manager Workshop:</span>
-              <span class="text-slate-800 font-bold">{COMPANY_INFO.contact.workshopManager}</span>
+            <div class="flex items-start justify-between gap-4 pb-2.5 border-b border-slate-100">
+              <span class="text-slate-500 font-mono">Workshop Manager</span>
+              <span class="text-slate-800 font-semibold">{COMPANY_INFO.contact.workshopManager}</span>
             </div>
-            <div>
-              <span class="text-slate-400 block text-[11px]">Email Resmi:</span>
-              <div class="font-medium text-slate-800">{COMPANY_INFO.contact.email}</div>
-              <div class="font-medium text-slate-800">{COMPANY_INFO.contact.salesEmail}</div>
+            <div class="flex items-start justify-between gap-4">
+              <span class="text-slate-500 font-mono">Email Resmi</span>
+              <div class="text-right">
+                <div class="font-mono text-slate-800">{COMPANY_INFO.contact.email}</div>
+                <div class="font-mono text-slate-500 text-[11px]">{COMPANY_INFO.contact.salesEmail}</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="p-6 rounded-2xl bg-industrial-950 text-white space-y-3">
-          <h4 class="text-sm font-bold text-white">10 Cabang Workshop</h4>
+        <div class="p-6 sm:p-8 bg-slate-900 text-white space-y-2">
+          <div class="flex items-center justify-between">
+            <h4 class="text-sm font-bold text-white">Jaringan 10 Workshop Nasional</h4>
+            <span class="text-[10px] font-mono text-brand-400 uppercase">Coverage</span>
+          </div>
           <p class="text-xs text-slate-400 leading-relaxed">
-            Butuh workshop terdekat dari lokasi pabrik Anda? Kunjungi halaman direktori 10 cabang kami.
+            Dari Jawa, Sumatera, Sulawesi hingga Papua untuk mobilisasi peralatan berat dan on-site testing.
           </p>
           <div class="pt-2">
             <a
               href="/lokasi-workshop/"
-              class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 transition-colors"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors"
             >
-              <span>Daftar 10 Workshop &rarr;</span>
+              <span>Lihat Seluruh 10 Cabang &rarr;</span>
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Quick Inquiry Form Container -->
-      <div class="lg:col-span-2 p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-2xs">
-        <h3 class="text-xl font-bold text-slate-900 mb-2">Kirim Pesan Teknis</h3>
-        <p class="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed">
-          Atau jika Anda membutuhkan penawaran formal dengan spesifikasi detail (kW, Voltage, RPM), disarankan langsung mengisi formulir RFQ.
-        </p>
+      <!-- Quick Inquiry / RFQ Console (Right Column) -->
+      <div class="lg:col-span-7 border border-slate-200 bg-white p-8 sm:p-10 space-y-8">
+        <div>
+          <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-1">Technical Inquiry Desk</span>
+          <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Kanal Permohonan Penawaran &amp; Konsultasi</h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+            Untuk permintaan penawaran harga resmi (Quotation), verifikasi nameplate motor/trafo, atau koordinasi penanganan darurat (emergency breakdown).
+          </p>
+        </div>
 
-        <div class="space-y-4">
-          <div class="p-5 rounded-xl bg-white border border-slate-200 space-y-3">
-            <h4 class="text-sm font-bold text-slate-900">Format Permohonan Resmi (RFQ):</h4>
+        <div class="space-y-6">
+          <!-- Option A: Formal RFQ -->
+          <div class="border-t border-slate-200 pt-6 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold text-brand-700">KANAL 01 • FORMULIR RESMI</span>
+              <span class="text-[10px] font-mono text-slate-400 uppercase">Multi-Item RFQ</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900">Permohonan RFQ Online (Nameplate &amp; Scope)</h3>
             <p class="text-xs text-slate-600 leading-relaxed">
-              Gunakan formulir online kami untuk menyusun data nameplate mesin dengan rapi.
+              Direkomendasikan untuk pengadaan B2B yang membutuhkan estimasi formal. Lengkapi spesifikasi daya (kW/HP), tegangan (Volt), putaran (RPM), dan scope kerusakan.
             </p>
-            <a
-              href="/request-quotation/"
-              class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-slate-900 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-xs"
-            >
-              <span>Buka Formulir RFQ Online &rarr;</span>
-            </a>
+            <div class="pt-1">
+              <a
+                href="/request-quotation/"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-slate-900 hover:bg-brand-600 text-white font-semibold text-xs tracking-wide transition-all shadow-xs"
+              >
+                <span>Buka Formulir RFQ Online</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
           </div>
 
-          <div class="p-5 rounded-xl bg-white border border-slate-200 space-y-3">
-            <h4 class="text-sm font-bold text-slate-900">Konsultasi WhatsApp Langsung:</h4>
+          <!-- Option B: Direct WhatsApp Desk -->
+          <div class="border-t border-slate-200 pt-6 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold text-emerald-700">KANAL 02 • DISPATCH DARURAT</span>
+              <span class="text-[10px] font-mono text-slate-400 uppercase">Emergency Support</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900">Hotline Teknis &amp; Verifikasi Cepat WhatsApp</h3>
             <p class="text-xs text-slate-600 leading-relaxed">
-              Hubungi tim teknisi kami secara instan untuk respon langsung terhadap kerusakan equipment yang mendesak.
+              Kirimkan foto nameplate, audio getaran tidak wajar, atau foto kerusakan equipment langsung ke teknisi jaga untuk penanganan awal.
             </p>
-            <a
-              href={waContactUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-xs"
-            >
-              <span>Chat WhatsApp ({COMPANY_INFO.contact.phoneFormatted}) &rarr;</span>
-            </a>
+            <div class="pt-1">
+              <a
+                href={waContactUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs tracking-wide transition-all shadow-xs"
+              >
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/>
+                </svg>
+                <span>Chat Technical Support ({COMPANY_INFO.contact.phoneFormatted})</span>
+              </a>
+            </div>
           </div>
         </div>
+
       </div>
 
     </div>

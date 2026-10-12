@@ -28,51 +28,63 @@ import { COMPANY_INFO } from '../../data/companyInfo';
       </a>
     </div>
 
-    <!-- 10 Workshops Grid in Apple Bento Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-      {COMPANY_INFO.workshops.map((w) => (
-        <div class="p-5 sm:p-8 rounded-2xl bg-[#fbfbfd] border border-slate-200/70 hover:border-slate-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-4">
-              <span class="text-[10px] font-medium uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-slate-200/60 text-slate-700">
+    <!-- National Corridor Directory Table (Kurangi Card: 10 Cards Replaced with High-Density Enterprise Directory) -->
+    <div class="border-t border-b border-slate-200 divide-y divide-slate-200 bg-white">
+      {COMPANY_INFO.workshops.map((w, idx) => (
+        <div class="py-5 sm:py-6 px-4 sm:px-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6 hover:bg-slate-50/70 transition-colors group">
+          
+          <!-- Column 1: Identity & Region -->
+          <div class="lg:w-1/3 min-w-0">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">
+                LOC-{String(idx + 1).padStart(2, '0')}
+              </span>
+              <span class="text-[10px] font-mono uppercase tracking-wider px-2 py-0.2 bg-slate-100 text-slate-700">
                 {w.region}
               </span>
               {w.isMainOffice && (
-                <span class="text-[10px] font-medium uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-700 border border-sky-200/60">
+                <span class="text-[10px] font-mono uppercase tracking-wider px-2 py-0.2 bg-slate-950 text-white font-semibold">
                   Headquarters
                 </span>
               )}
             </div>
 
-            <h3 class="text-lg font-semibold text-slate-950 leading-snug tracking-tight group-hover:text-sky-600 transition-colors">
-              {w.name}
+            <h3 class="text-base font-semibold text-slate-950 group-hover:text-sky-700 transition-colors tracking-tight">
+              <a href={`/lokasi-workshop/#${w.id}`}>
+                {w.name}
+              </a>
             </h3>
 
-            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
-              {w.address}
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+              {w.address} {w.area ? `• Luas Area: ${w.area}` : ''}
             </p>
+          </div>
 
-            <div class="mt-5 pt-4 border-t border-slate-200/60">
-              <span class="text-[10px] font-medium uppercase tracking-wider text-slate-400 block mb-2">Kapabilitas:</span>
-              <div class="flex flex-wrap gap-1.5">
-                {w.capabilities.map((cap) => (
-                  <span class="px-2.5 py-0.5 rounded-full text-[10px] bg-white border border-slate-200 text-slate-600 font-medium">
-                    {cap}
-                  </span>
-                ))}
-              </div>
+          <!-- Column 2: Engineering Capabilities -->
+          <div class="lg:w-1/2 min-w-0">
+            <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1.5">
+              Fasilitas &amp; Ruang Lingkup Layanan:
+            </span>
+            <div class="flex flex-wrap gap-1.5">
+              {w.capabilities.map((cap) => (
+                <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-50 border border-slate-200/80 text-slate-700">
+                  {cap}
+                </span>
+              ))}
             </div>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-slate-200/60">
+          <!-- Column 3: Quick Action -->
+          <div class="lg:w-auto shrink-0 flex items-center lg:justify-end pt-2 lg:pt-0">
             <a
               href={`/lokasi-workshop/#${w.id}`}
-              class="text-xs font-medium text-slate-600 hover:text-black inline-flex items-center gap-1 transition-colors"
+              class="text-xs font-semibold text-slate-800 group-hover:text-black inline-flex items-center gap-1.5 hover:underline underline-offset-4 transition-all"
             >
-              <span>Detail &amp; Kontak Cabang</span>
-              <span>&rarr;</span>
+              <span>Detail Workshop</span>
+              <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
+
         </div>
       ))}
     </div>

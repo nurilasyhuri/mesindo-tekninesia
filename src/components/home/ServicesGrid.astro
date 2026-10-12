@@ -64,8 +64,8 @@ const filterTabs = [
       </div>
     </div>
 
-    <!-- Services Grid (Apple Bento Cards) -->
-    <div id="services-collection-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    <!-- Services Architectural Grid (Kurangi Card: Shared Hairline Grid, Zero Bubbly Cards) -->
+    <div id="services-collection-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-slate-200">
       {services.map((service) => {
         const firstSpec = service.data.keySpecs[0] || 'Standar IEEE & IEC';
         const secondSpec = service.data.keySpecs[1] || 'Workshop & On-Site Ready';
@@ -77,42 +77,42 @@ const filterTabs = [
         return (
           <article
             data-category={filterGroup}
-            class="service-card bg-[#fbfbfd] rounded-2xl border border-slate-200/70 overflow-hidden hover:border-slate-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            class="service-card border-r border-b border-slate-200 p-6 sm:p-8 bg-white hover:bg-slate-50/60 transition-colors flex flex-col justify-between group"
           >
             <div>
-              <!-- Image Frame -->
-              <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
+              <!-- Image Frame (Crisp Industrial Ratio) -->
+              <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 mb-6">
                 <img
                   src={service.data.heroImage}
                   alt={service.data.title}
-                  class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 ease-out"
+                  class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 ease-out"
                   loading="lazy"
                   decoding="async"
                 />
                 <div class="absolute top-3 left-3">
-                  <span class="px-2.5 py-1 rounded-full text-[10px] font-medium bg-black/60 text-white backdrop-blur-md">
+                  <span class="px-2.5 py-1 text-[10px] font-mono font-medium uppercase tracking-wider bg-slate-950/80 text-white backdrop-blur-xs">
                     {service.data.categoryLabel}
                   </span>
                 </div>
               </div>
 
               <!-- Content -->
-              <div class="p-5 sm:p-6">
-                <h3 class="text-lg font-semibold text-slate-950 group-hover:text-sky-600 transition-colors leading-snug tracking-tight">
+              <div>
+                <h3 class="text-lg font-semibold text-slate-950 group-hover:text-sky-700 transition-colors leading-snug tracking-tight">
                   <a href={`/layanan/${service.slug}/`}>
                     {service.data.title}
                   </a>
                 </h3>
 
-                <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed line-clamp-2">
+                <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed line-clamp-2">
                   {service.data.description}
                 </p>
 
                 <!-- Technical Specs Snippet -->
-                <div class="mt-5 pt-4 border-t border-slate-200/60 space-y-1.5 text-xs text-slate-600">
+                <div class="mt-5 pt-4 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
                   <div class="flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
-                    <span class="line-clamp-1 font-medium text-slate-700">{firstSpec}</span>
+                    <span class="line-clamp-1 font-medium text-slate-800">{firstSpec}</span>
                   </div>
                   <div class="flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
@@ -122,14 +122,14 @@ const filterTabs = [
               </div>
             </div>
 
-            <!-- Card Actions -->
-            <div class="p-5 sm:p-6 pt-0 border-t border-slate-100 mt-2 flex items-center justify-between gap-3">
+            <!-- Action Bar -->
+            <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between gap-3">
               <a
                 href={`/layanan/${service.slug}/`}
-                class="text-xs font-medium text-slate-600 hover:text-black inline-flex items-center gap-1 transition-colors"
+                class="text-xs font-semibold text-slate-700 hover:text-black inline-flex items-center gap-1 transition-colors"
               >
                 <span>Pelajari Layanan</span>
-                <span>&rarr;</span>
+                <span aria-hidden="true">&rarr;</span>
               </a>
 
               <button
@@ -141,7 +141,7 @@ const filterTabs = [
                 data-rfq-spec={firstSpec}
                 data-rfq-image={service.data.heroImage}
                 data-rfq-qty="1"
-                class="px-3.5 py-1.5 rounded-full bg-white hover:bg-slate-950 hover:text-white text-slate-900 border border-slate-200 text-xs font-medium transition-all shadow-xs cursor-pointer"
+                class="px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-950 hover:text-white text-slate-900 border border-slate-200 text-xs font-medium transition-all cursor-pointer"
                 title="Tambah ke Keranjang RFQ"
               >
                 + Tambah ke RFQ

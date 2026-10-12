@@ -33,49 +33,116 @@ facilities.sort((a, b) => a.data.orderPriority - b.data.orderPriority);
       </div>
     </div>
 
-    <!-- Facility Cards Grid (Apple Bento Cards) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {facilities.slice(0, 3).map((item) => (
-        <div class="p-8 rounded-2xl bg-[#fbfbfd] border border-slate-200/70 hover:border-slate-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-          <div>
-            <div class="flex items-center justify-between text-xs text-slate-400 mb-4">
-              <span class="font-medium text-slate-500 uppercase tracking-wider text-[10px]">{item.data.category}</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-900 font-mono text-[11px] font-semibold">
-                Kapasitas: {item.data.capacity}
+    <!-- Heavy Machinery Dossier (Kurangi Card: Split Architectural Showcase, Zero Floating Cards) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
+      
+      <!-- Left: Flagship Infrastructure Visual & Telemetry (5 Cols) -->
+      <div class="lg:col-span-5 bg-slate-950 text-white border border-slate-800 p-6 sm:p-8 flex flex-col justify-between">
+        <div>
+          <!-- Visual Image -->
+          <div class="relative aspect-[16/10] overflow-hidden bg-slate-900 mb-6">
+            <img
+              src="/images/service-balancing.webp"
+              alt="High Speed Balancing Tunnel 150 Ton MESINDO TEKNISIA"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute top-3 left-3 flex items-center gap-1.5">
+              <span class="px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider bg-slate-950/90 text-sky-300 border border-sky-400/30">
+                Flagship Infrastructure
+              </span>
+              <span class="px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider bg-black/80 text-white">
+                ISO 1940 G1.0/G2.5
               </span>
             </div>
-
-            <h3 class="text-xl font-semibold text-slate-950 leading-snug tracking-tight group-hover:text-sky-600 transition-colors">
-              {item.data.title}
-            </h3>
-
-            <p class="text-xs sm:text-sm text-slate-500 mt-3 leading-relaxed">
-              {item.data.description}
-            </p>
-
-            {item.data.specs && (
-              <div class="mt-6 pt-5 border-t border-slate-200/60 space-y-2 text-xs">
-                {Object.entries(item.data.specs).slice(0, 3).map(([k, v]) => (
-                  <div class="flex justify-between items-center py-0.5">
-                    <span class="text-slate-400">{k}:</span>
-                    <span class="font-medium text-slate-800 text-right font-mono">{v}</span>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
 
-          <div class="pt-6 mt-6 border-t border-slate-200/60">
-            <a
-              href="/fasilitas/"
-              class="text-xs font-medium text-slate-700 hover:text-black inline-flex items-center gap-1 transition-colors"
-            >
-              <span>Spesifikasi Lengkap &amp; Sertifikat Uji</span>
-              <span>&rarr;</span>
-            </a>
+          <div class="text-[11px] font-mono text-sky-400 uppercase tracking-widest mb-1">
+            Dynamic Balancing &bull; 150 Ton
+          </div>
+          <h3 class="text-xl sm:text-2xl font-semibold text-white tracking-tight leading-snug">
+            Terowongan Balancing Kecepatan Operasi Penuh
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-400 mt-3 leading-relaxed">
+            Pengujian getaran dinamis rotor fleksibel turbin uap, turbin gas, dan generator hingga 3.600 RPM di dalam ruang hampa udara (vacuum chamber) untuk meminimalkan beban gesekan dan memastikan stabilitas vibrasi mutlak.
+          </p>
+
+          <!-- Precision Metrics -->
+          <div class="mt-6 pt-5 border-t border-slate-800 grid grid-cols-2 gap-4 text-xs font-mono">
+            <div>
+              <span class="text-slate-500 block text-[10px] uppercase">Kapasitas Rotor</span>
+              <span class="text-white font-semibold text-sm">150.000 kg</span>
+            </div>
+            <div>
+              <span class="text-slate-500 block text-[10px] uppercase">Kecepatan Uji</span>
+              <span class="text-white font-semibold text-sm">3.600 RPM</span>
+            </div>
           </div>
         </div>
-      ))}
+
+        <div class="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between">
+          <span class="text-[11px] text-slate-400">Standar Uji: ISO 11342</span>
+          <a
+            href="/fasilitas/"
+            class="text-xs font-semibold text-sky-400 hover:text-sky-300 transition-colors inline-flex items-center gap-1"
+          >
+            <span>Data Teknis</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Machinery & Tooling Roster (7 Cols) -->
+      <div class="lg:col-span-7">
+        <div class="border-t border-slate-200 divide-y divide-slate-200">
+          {facilities.map((fac, idx) => (
+            <div class="py-5 sm:py-6 flex flex-col sm:flex-row sm:items-start justify-between gap-4 group hover:bg-slate-50/50 transition-colors px-2">
+              <div class="max-w-xl">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-[10px] font-mono font-medium uppercase tracking-wider text-slate-400">
+                    {String(idx + 1).padStart(2, '0')} &bull; {fac.data.category}
+                  </span>
+                  <span class="text-[11px] font-mono font-semibold text-slate-800 bg-slate-100 px-2 py-0.2">
+                    {fac.data.capacity}
+                  </span>
+                </div>
+
+                <h4 class="text-base font-semibold text-slate-950 group-hover:text-sky-700 transition-colors leading-snug">
+                  <a href="/fasilitas/">
+                    {fac.data.title}
+                  </a>
+                </h4>
+
+                <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                  {fac.data.description}
+                </p>
+
+                {fac.data.specs && (
+                  <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] font-mono text-slate-600">
+                    {Object.entries(fac.data.specs).slice(0, 2).map(([k, v]) => (
+                      <span>
+                        <strong class="font-medium text-slate-700">{k}:</strong> {v}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div class="shrink-0 sm:pt-1">
+                <a
+                  href="/fasilitas/"
+                  class="text-xs font-semibold text-slate-600 hover:text-black inline-flex items-center gap-1 transition-colors"
+                >
+                  <span>Spesifikasi</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
 
   </div>

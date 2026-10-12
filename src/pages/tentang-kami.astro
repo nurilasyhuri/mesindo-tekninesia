@@ -25,20 +25,20 @@ import { COMPANY_INFO } from '../data/companyInfo';
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 font-sans space-y-16">
     
     <!-- Partner & Certification Strip -->
-    <div class="p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200/90 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xs">
-      <div class="max-w-xl">
-        <span class="text-[10px] font-bold uppercase tracking-wider text-brand-700 block mb-1">
+    <div class="border border-slate-200 bg-slate-50 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="max-w-xl space-y-1">
+        <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-brand-700 block">
           Kredensial &amp; Sertifikasi Resmi
         </span>
-        <h3 class="text-lg font-bold text-slate-900 leading-snug">
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-snug">
           Authorized Partner TECO &amp; Goltens • EASA &amp; AEMT Member
         </h3>
-        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+        <p class="text-xs text-slate-600 leading-relaxed">
           Tersertifikasi ISO 9001:2015 (Mutu), ISO 14001:2015 (Lingkungan), dan ISO 45001:2018 (K3). Memiliki joint facility dengan Powertech Lab. Inc. dan Volts Industry Inc. di Kanada untuk asesmen kegagalan equipment berteknologi tinggi.
         </p>
       </div>
 
-      <div class="p-3 bg-white rounded-2xl border border-slate-200 shadow-2xs shrink-0">
+      <div class="p-4 bg-white border border-slate-200 shrink-0">
         <img
           src="/images/partners-certifications.webp"
           alt="Sertifikasi & Partner MESINDO TEKNISIA"
@@ -51,7 +51,7 @@ import { COMPANY_INFO } from '../data/companyInfo';
     <!-- Concept of Total Services -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
       <div class="lg:col-span-6 space-y-4">
-        <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block">
+        <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-brand-700 block">
           Konsep Total Services
         </span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
@@ -61,7 +61,7 @@ import { COMPANY_INFO } from '../data/companyInfo';
           Ruang lingkup layanan MESINDO TEKNISIA dirancang terintegrasi agar pemilik aset tidak perlu membagi pekerjaan ke berbagai kontraktor terpisah. Kami mengombinasikan keahlian elektrikal tingkat tinggi, presisi permesinan bubut, dan pengujian non-destruktif berstandar internasional.
         </p>
 
-        <div class="grid grid-cols-2 gap-2.5 pt-3">
+        <div class="grid grid-cols-2 gap-2 pt-2">
           {[
             'Design & Engineering',
             'Installation & Erection',
@@ -76,15 +76,15 @@ import { COMPANY_INFO } from '../data/companyInfo';
             'Dynamic Balancing hingga 150T',
             'On-Site Field Engineering',
           ].map((scope) => (
-            <div class="flex items-center gap-2 text-xs text-slate-700 p-2 rounded-lg bg-slate-50 border border-slate-200/60">
+            <div class="flex items-center gap-2 text-xs text-slate-700 p-2 bg-slate-50 border border-slate-200">
               <span class="w-1.5 h-1.5 rounded-full bg-brand-600 shrink-0"></span>
-              <span class="font-medium truncate">{scope}</span>
+              <span class="font-medium truncate font-mono text-[11px]">{scope}</span>
             </div>
           ))}
         </div>
       </div>
 
-      <div class="lg:col-span-6 rounded-3xl overflow-hidden border border-slate-200 bg-slate-100 shadow-sm h-80 sm:h-96">
+      <div class="lg:col-span-6 border border-slate-200 bg-slate-100 overflow-hidden h-80 sm:h-96">
         <img
           src="/images/facility-lathe-real.webp"
           alt="Workshop Heavy Machining MESINDO TEKNISIA"
@@ -94,12 +94,12 @@ import { COMPANY_INFO } from '../data/companyInfo';
       </div>
     </div>
 
-    <!-- Visi, Misi & Kebijakan Mutu Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Visi, Misi & Kebijakan Mutu Hairline Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200 bg-white">
       
-      <!-- Visi & Misi Card -->
-      <div class="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-2xs space-y-4">
-        <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block">
+      <!-- Visi & Misi -->
+      <div class="p-8 sm:p-10 border-r border-b border-slate-200 space-y-4">
+        <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-brand-700 block">
           Arah Perusahaan
         </span>
         <h3 class="text-xl font-bold text-slate-900">Visi &amp; Misi</h3>
@@ -120,9 +120,9 @@ import { COMPANY_INFO } from '../data/companyInfo';
         </div>
       </div>
 
-      <!-- Kebijakan Mutu Card -->
-      <div class="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-2xs space-y-4">
-        <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block">
+      <!-- Kebijakan Mutu -->
+      <div class="p-8 sm:p-10 border-r border-b border-slate-200 space-y-4">
+        <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-brand-700 block">
           Komitmen Kualitas
         </span>
         <h3 class="text-xl font-bold text-slate-900">Kebijakan Mutu</h3>
@@ -150,12 +150,12 @@ import { COMPANY_INFO } from '../data/companyInfo';
     </div>
 
     <!-- Standards Section -->
-    <div class="p-8 sm:p-12 rounded-3xl bg-industrial-950 text-white space-y-6">
+    <div class="p-8 sm:p-12 border border-slate-800 bg-[#090b10] text-white space-y-6">
       <div class="max-w-3xl">
-        <span class="text-xs font-bold text-brand-400 uppercase tracking-wider block mb-2">
+        <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-brand-400 block mb-2">
           Komitmen Standar Kualitas Internasional
         </span>
-        <h3 class="text-xl sm:text-3xl font-black text-white leading-tight">
+        <h3 class="text-xl sm:text-3xl font-extrabold text-white leading-tight">
           Mengacu pada Standar Teknik Global
         </h3>
         <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
@@ -163,10 +163,10 @@ import { COMPANY_INFO } from '../data/companyInfo';
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-slate-800 bg-industrial-950/60 pt-0">
         {COMPANY_INFO.standards.map((s) => (
-          <div class="p-4 rounded-xl bg-industrial-900/90 border border-industrial-800">
-            <span class="text-base font-bold text-brand-400 font-mono block">{s.name}</span>
+          <div class="p-4 border-r border-b border-slate-800">
+            <span class="text-sm font-bold text-brand-400 font-mono block">{s.name}</span>
             <span class="text-[11px] text-slate-400 mt-1 block leading-snug">{s.desc}</span>
           </div>
         ))}
