@@ -50,7 +50,7 @@ const searchItems = [
   // 10 Workshops
   ...COMPANY_INFO.workshops.map((w) => ({
     title: w.name,
-    desc: `${w.address}. Melayani: ${w.capabilities.join(', ')}.`,
+    desc: `Wilayah: ${w.region}. Melayani: ${w.capabilities.join(', ')}.`,
     url: `/lokasi-workshop/#${w.id}`,
     category: 'Workshop',
     badge: w.region,

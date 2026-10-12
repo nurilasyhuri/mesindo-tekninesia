@@ -55,8 +55,8 @@ import { COMPANY_INFO } from '../../data/companyInfo';
               </a>
             </h3>
 
-            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
-              {w.address} {w.area ? `• Luas Area: ${w.area}` : ''}
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed font-mono text-[11px]">
+              Lokasi: <span class="font-semibold text-slate-700">{w.region}</span>{w.area ? ` • Luas: ${w.area}` : ''}
             </p>
           </div>
 
