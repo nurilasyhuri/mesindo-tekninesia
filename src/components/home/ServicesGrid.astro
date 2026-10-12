@@ -17,16 +17,13 @@ const filterTabs = [
 <section id="katalog-layanan" class="py-20 sm:py-28 bg-white font-sans select-none">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <!-- Section Header (Apple Style) -->
+    <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
       <div class="max-w-2xl">
-        <span class="text-xs font-semibold uppercase tracking-[0.15em] text-sky-600 block mb-2">
-          Jasa Rekayasa Workshop &amp; On-Site Nasional
-        </span>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-950 tracking-tight leading-tight">
-          Layanan Bengkel Overhaul &amp; Rewinding Presisi.
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-950 tracking-tight leading-tight">
+          Layanan Bengkel Overhaul &amp; Rewinding Presisi
         </h2>
-        <p class="text-sm sm:text-base text-slate-500 mt-3 leading-relaxed">
+        <p class="text-sm sm:text-base text-slate-600 mt-3 leading-relaxed">
           Penyedia jasa rewinding motor listrik LV/HV 13.8kV, overhaul generator &amp; turbin, dynamic balancing rotor 150 ton ISO 1940, bubut vertikal 6.7m, serta pengujian diagnostik NDT di seluruh Indonesia.
         </p>
       </div>
@@ -35,7 +32,7 @@ const filterTabs = [
       <div class="flex items-center gap-3 shrink-0">
         <a
           href="/request-quotation/"
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-medium tracking-tight transition-all"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-slate-900 hover:bg-black text-white text-xs font-semibold uppercase tracking-wider transition-all"
         >
           <span>Form RFQ Resmi</span>
           <span aria-hidden="true">&rarr;</span>
@@ -43,22 +40,22 @@ const filterTabs = [
       </div>
     </div>
 
-    <!-- Category Filter Tabs (Apple Pill Segmented Control) -->
+    <!-- Category Filter Tabs -->
     <div class="flex items-center overflow-x-auto pb-4 mb-10 no-scrollbar" role="tablist" aria-label="Filter Kategori Layanan">
-      <div class="inline-flex p-1 rounded-full bg-slate-100 border border-slate-200/60 gap-1">
+      <div class="inline-flex p-1 rounded-sm bg-slate-100 border border-slate-200 gap-1">
         {filterTabs.map((tab, idx) => (
           <button
             type="button"
             data-filter-tab={tab.id}
             class:list={[
-              'collection-filter-tab px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all cursor-pointer select-none',
+              'collection-filter-tab px-3.5 py-1.5 rounded-xs text-xs font-mono uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer select-none',
               idx === 0
                 ? 'bg-white text-slate-950 shadow-xs font-semibold'
                 : 'text-slate-600 hover:text-slate-950'
             ]}
           >
             <span>{tab.label}</span>
-            <span class="ml-1 opacity-50 text-[11px] font-mono">({tab.count})</span>
+            <span class="ml-1 opacity-50 text-[10px]">({tab.count})</span>
           </button>
         ))}
       </div>

@@ -20,35 +20,34 @@ import { COMPANY_INFO } from '../../data/companyInfo';
   <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-16 sm:pb-24">
     <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
       
-      <!-- Industrial Eyebrow (No pill badge) -->
-      <div class="inline-flex items-center gap-2 mb-6 text-[11px] sm:text-xs font-mono font-medium uppercase tracking-[0.2em] text-slate-300">
-        <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-        <span>{COMPANY_INFO.name} • EST. {COMPANY_INFO.establishedYear} • ENGINEERING &amp; OVERHAUL</span>
+      <!-- Industrial Header -->
+      <div class="mb-5 text-[11px] sm:text-xs font-mono font-medium uppercase tracking-[0.2em] text-slate-400">
+        {COMPANY_INFO.name} &bull; EST. {COMPANY_INFO.establishedYear} &bull; ENGINEERING &amp; OVERHAUL
       </div>
 
-      <!-- Apple Keynote Headline with Primary SEO Intent -->
-      <h1 class="text-3xl sm:text-5xl lg:text-7xl font-semibold tracking-tight text-white leading-[1.12] sm:leading-[1.08] text-balance drop-shadow-md">
-        Overhaul &amp; Rewinding Motor Listrik, Generator &amp; Balancing Industri.
+      <!-- Headline with Primary SEO Intent (No AI trailing period) -->
+      <h1 class="text-3xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-white leading-[1.12] sm:leading-[1.08] text-balance">
+        Overhaul &amp; Rewinding Motor Listrik, Generator &amp; Balancing Industri
       </h1>
 
-      <!-- Apple Subheadline with Rich Industrial Keywords -->
-      <p class="text-sm sm:text-lg lg:text-xl text-slate-300 font-normal leading-relaxed mt-5 sm:mt-6 max-w-3xl text-balance drop-shadow-sm">
-        Layanan terpadu bengkel rewinding motor LV/HV 13.8 kV, overhaul turbogenerator &amp; trafo, high speed dynamic balancing tunnel 150 ton ISO 1940, machining bubut vertikal 6.7M, serta toko sparepart motor listrik resmi.
+      <!-- Subheadline -->
+      <p class="text-sm sm:text-lg text-slate-300 font-normal leading-relaxed mt-5 sm:mt-6 max-w-3xl text-balance">
+        Layanan bengkel rewinding motor LV/HV 13.8 kV, overhaul turbogenerator &amp; trafo, high speed dynamic balancing tunnel 150 ton ISO 1940, machining bubut vertikal 6.7M, serta penyediaan komponen motor listrik industri.
       </p>
 
       <!-- Action Group -->
       <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-9 w-full sm:w-auto">
         <a
           href="/sparepart/"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/[0.12] hover:bg-white/[0.20] text-white border border-white/[0.22] font-semibold text-xs sm:text-sm tracking-tight transition-all backdrop-blur-xl"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs sm:text-sm uppercase tracking-wider shadow-xs transition-all"
         >
-          <span>Katalog Toko Sparepart</span>
-          <span class="text-[10px] font-mono text-sky-300">15 Item &rarr;</span>
+          <span>Katalog Sparepart</span>
+          <span class="text-[10px] font-mono opacity-80">(15 Item) &rarr;</span>
         </a>
 
         <a
           href="/layanan/"
-          class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 sm:py-3.5 text-slate-300 hover:text-white text-xs sm:text-sm font-medium transition-colors"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3.5 rounded-sm bg-white/[0.08] hover:bg-white/[0.14] text-white border border-white/[0.15] text-xs sm:text-sm font-semibold tracking-wide transition-colors"
         >
           <span>Eksplorasi Layanan</span>
           <span aria-hidden="true">&rarr;</span>

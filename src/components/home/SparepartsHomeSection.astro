@@ -8,14 +8,14 @@ const featuredSpareparts = SPAREPARTS_CATALOG.slice(0, 6);
 <section id="toko-sparepart" class="py-20 sm:py-28 bg-[#f5f5f7] font-sans select-none">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <!-- Section Header (Apple Style) -->
+    <!-- Section Header -->
     <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
       <div class="max-w-3xl">
-        <span class="text-xs font-semibold uppercase tracking-[0.15em] text-sky-600 block mb-2">
+        <p class="text-xs font-mono uppercase tracking-wider text-slate-500 mb-2">
           Distributor &amp; Toko Sparepart Motor Listrik Industri
-        </span>
+        </p>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-950 tracking-tight leading-tight">
-          Katalog Sparepart &amp; Material Overhaul Motor AC 3 Fasa.
+          Katalog Sparepart &amp; Material Overhaul Motor AC 3 Fasa
         </h2>
         <p class="text-sm sm:text-base text-slate-500 mt-3 leading-relaxed">
           Penyedia kawat tembaga email rewinding Kelas H 200°C, isolasi slot Nomex 410, resin VPI epoksi, bearing insulasi SKF/NSK C3, oil seal Viton, cooling fan, dan terminal block keramik berstandar EASA.
@@ -26,7 +26,7 @@ const featuredSpareparts = SPAREPARTS_CATALOG.slice(0, 6);
       <div class="flex items-center gap-3 shrink-0">
         <a
           href="/sparepart/"
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-medium tracking-tight transition-all"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-slate-900 hover:bg-black text-white text-xs font-medium tracking-tight transition-all"
         >
           <span>Buka Toko Sparepart ({SPAREPARTS_CATALOG.length} Item)</span>
           <span aria-hidden="true">&rarr;</span>
@@ -36,8 +36,7 @@ const featuredSpareparts = SPAREPARTS_CATALOG.slice(0, 6);
 
     <!-- Product Shelf Matrix (Kurangi Card: Shared Hairline Grid, Zero Bubbly Cards) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-slate-200 bg-white">
-      {featuredSpareparts.map((item, idx) => {
-        const itemSku = `SP-MT-${String(idx + 1).padStart(2, '0')}`;
+      {featuredSpareparts.map((item) => {
 
         return (
           <div
@@ -66,7 +65,7 @@ const featuredSpareparts = SPAREPARTS_CATALOG.slice(0, 6);
               <!-- Content -->
               <div>
                 <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-1.5">
-                  <span>{itemSku}</span>
+                  <span class="text-slate-500 font-medium">{item.category}</span>
                   <span>Standar EASA / IEEE</span>
                 </div>
 
@@ -103,7 +102,7 @@ const featuredSpareparts = SPAREPARTS_CATALOG.slice(0, 6);
                 data-rfq-spec={item.specs[0] || 'Spesifikasi Nameplate'}
                 data-rfq-image={item.image}
                 data-rfq-qty="1"
-                class="w-full py-2.5 px-4 rounded-full bg-slate-900 hover:bg-black text-white font-medium text-xs text-center transition-all cursor-pointer shadow-xs"
+                class="w-full py-2.5 px-4 rounded-sm bg-slate-900 hover:bg-black text-white font-medium text-xs text-center transition-all cursor-pointer shadow-xs"
                 title="Tambah ke Keranjang RFQ"
               >
                 + Tambah ke Keranjang RFQ
@@ -134,7 +133,7 @@ const featuredSpareparts = SPAREPARTS_CATALOG.slice(0, 6);
       <div class="flex items-center gap-3 shrink-0">
         <a
           href="/request-quotation/"
-          class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-medium transition-colors"
+          class="inline-flex items-center gap-1.5 px-4 py-2 rounded-sm bg-slate-900 hover:bg-black text-white text-xs font-medium transition-colors"
         >
           <span>Input Nameplate RFQ</span>
           <span aria-hidden="true">&rarr;</span>

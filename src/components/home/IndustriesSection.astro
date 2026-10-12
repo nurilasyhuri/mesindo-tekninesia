@@ -5,28 +5,22 @@ import { COMPANY_INFO } from '../../data/companyInfo';
 <section class="py-20 sm:py-28 bg-[#f5f5f7] font-sans select-none">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <!-- Section Header (Apple Style) -->
+    <!-- Section Header -->
     <div class="max-w-3xl mb-12">
-      <span class="text-xs font-semibold uppercase tracking-[0.15em] text-sky-600 block mb-2">
-        Sektor Industri Strategis
-      </span>
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-950 tracking-tight leading-tight">
-        Solusi Rekayasa &amp; Overhaul Industri Berat.
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-950 tracking-tight leading-tight">
+        Rekayasa &amp; Overhaul Sektor Industri Berat
       </h2>
-      <p class="text-sm sm:text-base text-slate-500 mt-3 leading-relaxed">
-        Kemampuan rekayasa teknik MESINDO TEKNISIA memenuhi standar keandalan dan uptime tertinggi untuk pembangkit listrik, petrokimia, migas, pabrik kelapa sawit, semen, pertambangan, dan industri maritim nasional.
+      <p class="text-sm sm:text-base text-slate-600 mt-3 leading-relaxed">
+        Kemampuan rekayasa teknik MESINDO TEKNISIA memenuhi standar keandalan operasional untuk pembangkit listrik, petrokimia, migas, pabrik kelapa sawit, semen, pertambangan, dan industri maritim nasional.
       </p>
     </div>
 
-    <!-- 5 Industries Matrix (Kurangi Card: Shared Hairline Grid, Zero Bubbly Cards) -->
+    <!-- Industries Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-slate-200 bg-white">
-      {COMPANY_INFO.industries.map((ind, idx) => (
+      {COMPANY_INFO.industries.map((ind) => (
         <div class="border-r border-b border-slate-200 p-8 flex flex-col justify-between hover:bg-slate-50/50 transition-colors group">
           <div>
             <div class="flex items-center justify-between mb-6">
-              <span class="text-xs font-mono font-bold text-slate-400 group-hover:text-slate-900 transition-colors">
-                SECTOR {String(idx + 1).padStart(2, '0')}
-              </span>
               <div class="w-10 h-10 border border-slate-200 bg-slate-50 text-slate-800 flex items-center justify-center">
                 {ind.id === 'power-generation' && (
                   <svg class="w-5 h-5 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">

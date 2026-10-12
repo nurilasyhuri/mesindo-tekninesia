@@ -30,9 +30,9 @@ const projects = await getCollection('proyek');
 
       <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
         <div class="max-w-3xl">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-500/20 text-brand-300 border border-brand-500/30 mb-3">
+          <p class="text-xs font-mono uppercase tracking-wider text-brand-300 mb-3">
             Verified Industrial Case Studies &bull; Sejak 1994
-          </span>
+          </p>
           <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
             Pengalaman Rekayasa Lapangan &amp; Workshop
           </h1>
@@ -44,7 +44,7 @@ const projects = await getCollection('proyek');
         <div class="flex items-center gap-3 shrink-0">
           <a
             href="/layanan/"
-            class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md"
           >
             <span>Katalog Layanan B2B</span>
             <span aria-hidden="true">&rarr;</span>
@@ -57,13 +57,13 @@ const projects = await getCollection('proyek');
   <!-- Trust Certification Strip -->
   <TrustPartnersStrip />
 
-  <!-- Projects List (Shopify B2B Case Showcase) -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 font-sans space-y-12">
+  <!-- Projects List -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 font-sans divide-y divide-slate-200">
     {projects.map((proj) => (
-      <article class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-2xs hover:shadow-lg hover:border-slate-300 transition-all p-6 sm:p-10">
+      <article class="py-12 sm:py-16 first:pt-0 last:pb-0">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          <div class="lg:col-span-5 rounded-2xl overflow-hidden bg-slate-100 aspect-[4/3] border border-slate-200 relative">
+          <div class="lg:col-span-5 rounded-sm overflow-hidden bg-slate-100 aspect-[4/3] border border-slate-200 relative">
             <img
               src={proj.data.coverImage}
               alt={proj.data.title}
@@ -72,7 +72,7 @@ const projects = await getCollection('proyek');
               decoding="async"
             />
             <div class="absolute top-3 left-3">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-950/85 text-white backdrop-blur-xs">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm text-[10px] font-mono uppercase tracking-wider bg-slate-950/85 text-white backdrop-blur-xs">
                 {proj.data.sector}
               </span>
             </div>
@@ -80,10 +80,10 @@ const projects = await getCollection('proyek');
 
           <div class="lg:col-span-7 space-y-5">
             <div class="flex flex-wrap items-center gap-2">
-              <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-50 text-brand-800 border border-brand-200/80">
+              <span class="px-2.5 py-1 rounded-sm text-[10px] font-mono uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200">
                 Sektor: {proj.data.sector}
               </span>
-              <span class="px-3 py-1 rounded-full text-[10px] font-medium bg-slate-100 text-slate-700">
+              <span class="px-2.5 py-1 rounded-sm text-[10px] font-mono uppercase tracking-wider bg-slate-100 text-slate-700">
                 Lokasi: {proj.data.location}
               </span>
             </div>
@@ -92,7 +92,7 @@ const projects = await getCollection('proyek');
               {proj.data.title}
             </h2>
 
-            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 space-y-2">
+            <div class="p-4 rounded-sm bg-slate-50 border border-slate-200/80 text-xs text-slate-700 space-y-2">
               <div class="flex items-start gap-2">
                 <span class="font-bold text-slate-950 uppercase tracking-wider min-w-[130px] shrink-0">Equipment:</span>
                 <span class="font-medium text-slate-800">{proj.data.equipment}</span>
@@ -106,9 +106,9 @@ const projects = await getCollection('proyek');
             {proj.data.metrics && (
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
                 {proj.data.metrics.map((m) => (
-                  <div class="p-3 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
-                    <span class="text-[10px] uppercase font-semibold text-slate-400 block">{m.label}</span>
-                    <span class="text-xs sm:text-sm font-extrabold text-slate-950 font-mono block mt-0.5">{m.value}</span>
+                  <div class="p-3 rounded-sm bg-slate-50 border border-slate-200/80">
+                    <span class="text-[10px] uppercase font-mono text-slate-400 block">{m.label}</span>
+                    <span class="text-xs sm:text-sm font-semibold text-slate-950 font-mono block mt-0.5">{m.value}</span>
                   </div>
                 ))}
               </div>
@@ -117,7 +117,7 @@ const projects = await getCollection('proyek');
             <div class="pt-2 flex flex-wrap items-center gap-3">
               <a
                 href={`/request-quotation/?equipment=${encodeURIComponent(proj.data.equipment)}`}
-                class="inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-slate-950 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-all"
+                class="inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-sm bg-slate-950 hover:bg-black text-white font-medium text-xs tracking-tight transition-all"
               >
                 <span>Minta Penawaran untuk Equipment Serupa</span>
                 <span aria-hidden="true">&rarr;</span>
