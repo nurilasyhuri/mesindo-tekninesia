@@ -51,8 +51,24 @@ const proyekCollection = defineCollection({
   }),
 });
 
+const artikelCollection = defineCollection({
+  type: 'content',
+  schema: () => z.object({
+    title: z.string(),
+    description: z.string(),
+    publishDate: z.string(),
+    updatedDate: z.string().optional(),
+    author: z.string().default('Tim Engineering Mesindo Teknisia'),
+    category: z.string(),
+    tags: z.array(z.string()),
+    heroImage: z.string(),
+    featured: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   layanan: layananCollection,
   fasilitas: fasilitasCollection,
   proyek: proyekCollection,
+  artikel: artikelCollection,
 };

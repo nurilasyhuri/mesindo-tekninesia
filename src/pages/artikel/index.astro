@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const rawArticles = await getCollection('artikel');
+const articles = rawArticles.sort(
+  (a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+
+const title = 'Pusat Informasi, Panduan & Edukasi Teknik Mesin Industri - Mesindo Teknisia';
+const description = 'Kumpulan artikel teknis praktisi permesinan: panduan bubut CNC presisi, dynamic balancing rotor ISO 1940, rewinding motor listrik HV, in-situ line boring, dan overhaul gearbox pabrik.';
+---
+
+<BaseLayout title={title} description={description} canonical="https://mesindoteknisia.com/artikel/">
+  <!-- Hero Banner -->
+  <section class="bg-industrial-950 text-white border-b border-industrial-800 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div class="relative z-10 max-w-7xl mx-auto">
+      <nav class="flex items-center gap-2 text-xs text-slate-400 mb-4" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Beranda</a>
+        <span>/</span>
+        <span class="text-brand-300 font-semibold">Artikel &amp; Panduan Teknis</span>
+      </nav>
+
+      <div class="max-w-3xl space-y-4">
+        <p class="text-xs font-mono uppercase tracking-wider text-brand-300">
+          Field Engineering Knowledge Hub &bull; Mesindo Teknisia
+        </p>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+          Pusat Panduan &amp; Analisis Teknik Mesin Industri
+        </h1>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          Kumpulan rujukan teknis lapangan yang disusun oleh tim insinyur permesinan Mesindo Teknisia untuk membantu manajer pabrik, praktisi maintenance, dan tim procurement memahami standar ISO, pencegahan kegagalan mekanikal, dan efisiensi lini produksi.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles List -->
+  <section class="bg-slate-50 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {articles.map((art) => (
+          <article class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col">
+            <div class="aspect-16/10 bg-slate-100 overflow-hidden relative">
+              <img
+                src={art.data.heroImage}
+                alt={art.data.title}
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+              <span class="absolute top-3 left-3 bg-industrial-950/80 backdrop-blur-xs text-brand-300 text-[11px] font-semibold px-2.5 py-1 rounded-md border border-industrial-800">
+                {art.data.category}
+              </span>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <div class="text-[11px] text-slate-400 flex items-center gap-2">
+                  <span>{art.data.publishDate}</span>
+                  <span>&bull;</span>
+                  <span>{art.data.author}</span>
+                </div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 leading-snug hover:text-brand-600 transition-colors">
+                  <a href={`/artikel/${art.slug}/`} class="line-clamp-2">
+                    {art.data.title}
+                  </a>
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">
+                  {art.data.description}
+                </p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <a
+                  href={`/artikel/${art.slug}/`}
+                  class="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1 group"
+                >
+                  <span>Baca Selengkapnya</span>
+                  <span class="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+                </a>
+                <span class="text-[11px] text-slate-400">Teknis Lapangan</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

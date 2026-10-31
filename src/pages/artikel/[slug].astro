@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('artikel');
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+interface Props {
+  article: CollectionEntry<'artikel'>;
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+
+const allArticles = await getCollection('artikel');
+const relatedArticles = allArticles
+  .filter((a) => a.slug !== article.slug)
+  .slice(0, 3);
+
+const canonical = `https://mesindoteknisia.com/artikel/${article.slug}/`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Beranda',
+        item: 'https://mesindoteknisia.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Artikel & Panduan Teknis',
+        item: 'https://mesindoteknisia.com/artikel/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: article.data.title,
+        item: canonical,
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.data.title,
+    description: article.data.description,
+    image: article.data.heroImage.startsWith('http')
+      ? article.data.heroImage
+      : `https://mesindoteknisia.com${article.data.heroImage}`,
+    datePublished: article.data.publishDate,
+    author: {
+      '@type': 'Organization',
+      name: article.data.author,
+      url: 'https://mesindoteknisia.com',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Mesindo Teknisia',
+      url: 'https://mesindoteknisia.com',
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={`${article.data.title} - Mesindo Teknisia`}
+  description={article.data.description}
+  canonical={canonical}
+  type="article"
+  jsonLd={jsonLd}
+>
+  <!-- Hero Section -->
+  <section class="bg-industrial-950 text-white border-b border-industrial-800 py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <nav class="flex items-center gap-2 text-xs text-slate-400 mb-2 flex-wrap" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Beranda</a>
+        <span>/</span>
+        <a href="/artikel/" class="hover:text-white transition-colors">Artikel</a>
+        <span>/</span>
+        <span class="text-brand-300 font-semibold truncate max-w-xs">{article.data.title}</span>
+      </nav>
+
+      <div class="flex items-center gap-3 text-xs flex-wrap">
+        <span class="bg-brand-500/20 text-brand-300 border border-brand-500/30 px-2.5 py-0.5 rounded-md font-semibold">
+          {article.data.category}
+        </span>
+        <span class="text-slate-400">&bull;</span>
+        <span class="text-slate-300">{article.data.publishDate}</span>
+        <span class="text-slate-400">&bull;</span>
+        <span class="text-slate-300">{article.data.author}</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight tracking-tight">
+        {article.data.title}
+      </h1>
+
+      <p class="text-sm sm:text-base text-slate-300 leading-relaxed border-l-4 border-brand-500 pl-4 py-1 bg-industrial-900/60 rounded-r-lg">
+        {article.data.description}
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Article Content -->
+  <article class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <figure class="mb-10 rounded-xl overflow-hidden border border-slate-200 bg-slate-100 shadow-xs">
+        <img
+          src={article.data.heroImage}
+          alt={article.data.title}
+          class="w-full aspect-16/9 object-cover"
+          loading="eager"
+        />
+      </figure>
+
+      <!-- Markdown Content Body -->
+      <div class="prose prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-headings:tracking-tight prose-h2:text-xl sm:prose-h2:text-2xl prose-h2:border-b prose-h2:border-slate-200 prose-h2:pb-3 prose-h2:mt-10 prose-h3:text-lg sm:prose-h3:text-xl prose-p:text-slate-700 prose-p:leading-relaxed prose-li:text-slate-700 prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-amber-50/60 prose-blockquote:p-4 prose-blockquote:rounded-r-lg prose-blockquote:text-slate-800 prose-table:w-full prose-table:border prose-table:border-slate-200 prose-th:bg-slate-900 prose-th:text-white prose-th:p-3 prose-th:text-xs prose-td:p-3 prose-td:text-xs prose-td:border-b prose-td:border-slate-200 prose-a:text-brand-600 prose-a:font-semibold hover:prose-a:underline">
+        <Content />
+      </div>
+
+      <!-- Action Box -->
+      <div class="mt-12 p-6 sm:p-8 rounded-2xl bg-industrial-950 text-white flex flex-col sm:flex-row items-center justify-between gap-6 border border-industrial-800 shadow-md">
+        <div class="space-y-1 text-center sm:text-left">
+          <p class="text-xs uppercase tracking-wider text-brand-300 font-mono">Konsultasi Rekayasa Permesinan</p>
+          <h3 class="text-lg sm:text-xl font-bold text-white">Butuh Solusi Machining atau Overhaul di Pabrik Anda?</h3>
+          <p class="text-xs sm:text-sm text-slate-300">Tim insinyur Mesindo Teknisia siap melakukan inspeksi on-site dan estimasi teknis presisi.</p>
+        </div>
+        <a
+          href="https://wa.me/6285183002070?text=Halo%20Mesindo%20Teknisia,%20saya%20ingin%20konsultasi%20layanan%20engineering"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="shrink-0 inline-flex items-center justify-center px-6 py-3 rounded-lg bg-brand-500 hover:bg-brand-600 text-industrial-950 font-bold text-xs sm:text-sm shadow-md transition-colors"
+        >
+          Konsultasi WhatsApp 0851-8300-2070
+        </a>
+      </div>
+
+      <!-- Related Articles -->
+      {relatedArticles.length > 0 && (
+        <div class="mt-16 pt-10 border-t border-slate-200 space-y-6">
+          <h3 class="text-xl font-bold text-slate-900">Artikel &amp; Panduan Teknis Terkait</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {relatedArticles.map((rel) => (
+              <a href={`/artikel/${rel.slug}/`} class="group block space-y-2">
+                <div class="aspect-16/10 rounded-lg overflow-hidden bg-slate-100 border border-slate-200">
+                  <img src={rel.data.heroImage} alt={rel.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                </div>
+                <p class="text-[11px] font-semibold text-brand-600 uppercase tracking-wider">{rel.data.category}</p>
+                <h4 class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-brand-600 transition-colors line-clamp-2">
+                  {rel.data.title}
+                </h4>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </article>
+</BaseLayout>
